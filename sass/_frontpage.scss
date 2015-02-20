@@ -1,0 +1,133 @@
+body {
+	padding-top:50px;
+}
+
+#search-form {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	text-align: center;
+}
+
+#mainpage {
+	background-color: white;
+}
+
+#side-menu {
+	z-index: -1;
+	padding-top: 50px;
+	background-color: #FACC98;
+	
+	.navmenu-brand {
+		color: black;
+		font-weight: bold;
+	}
+	
+	.navmenu-nav > li > a {
+		color: black;
+	}
+}
+
+#masthead {
+	min-height:270px;
+	background-color:#000044;
+  	color:#aaaacc;
+}
+
+#masthead h1 {
+	font-size: 55px;
+	line-height: 1.25em;
+}
+
+#masthead .well {
+	margin-top:13%;
+	background-color:#111155;
+  	border-color:#000033;
+}
+
+.icon-bar {
+	background-color:#fff;
+}
+
+@media screen and (min-width: 768px) {
+	#masthead h1 {
+		font-size: 100px;
+	}
+}
+
+.navbar-bright {
+	background-color: #111155;
+    color: #fff;
+}
+  
+.navbar-bright a, #masthead a, #masthead .lead {
+  	color:#aaaacc;
+}
+
+.navbar-bright li > a:hover {
+    background-color: #000033;
+}
+
+.task-container {
+	margin-top: 1em;	
+}
+
+.task-intro {
+	.task-desc {
+		padding-top: 2em;
+	}
+	
+	.poster {
+		width: 100%;
+	}
+}
+
+.task-buttons {
+	padding-top: 2em;
+	padding-bottom: 2em;
+	background-color: rgb(149, 151, 181);
+}
+
+.task-steps {
+	visibility: hidden;
+	
+	&.animated {
+		transition: all .75s ease-in-out;
+	}
+	
+	&.solo {
+		visibility: visible;
+	}
+	
+	&.dual {
+		visibility: visible;
+		padding-left: 5%;
+	}
+}
+
+.task-demo {
+	iframe {
+		&.affix {
+			top: 50px;
+		}
+		
+		&.affix-bottom {
+			left: 15px !important;
+			bottom: 0;
+			position: absolute;
+		}
+	}
+}
+
+.footer {	
+	background-color: #BABAE0;
+	border-top: 5px solid rgb(141, 140, 197);
+	
+	.left {
+		padding: 20px 25px 0 25px;
+	}
+	
+	.right {
+		padding: 20px 25px 0 25px;
+	}
+}

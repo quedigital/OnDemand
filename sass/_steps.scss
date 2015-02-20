@@ -1,0 +1,120 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon.eot?harnvx');
+	src:url('../fonts/icomoon.eot?#iefixharnvx') format('embedded-opentype'),
+		url('../fonts/icomoon.woff?harnvx') format('woff'),
+		url('../fonts/icomoon.ttf?harnvx') format('truetype'),
+		url('../fonts/icomoon.svg?harnvx#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-command:before {
+	content: "\e600";
+}
+
+.task-container {
+	h2 {
+		margin-bottom: 4rem;
+	}
+	
+	.step {
+		position: relative;
+		margin: 2rem 4rem 2rem 0rem;
+		cursor: pointer;
+		
+		.number {
+			display: inline-block;
+			color: white;
+			font-weight: bold;
+			font-family: Futura;
+			font-size: 20px;
+			line-height: 30px;
+			text-align: center;
+			margin: 0;
+			padding: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
+	
+			&:before {
+				content: "";
+				background-color: #a43;
+				display: block;
+				width: 30px;
+				height: 30px;
+				border-radius: 15px;
+			}
+	
+			span {
+				position: absolute;
+				top: -1px;
+				left: 0;
+				width: 100%;
+				text-align: center;
+			}
+			
+		}
+		
+		p {
+			margin: 0 2rem 0 4rem;
+			padding: .25rem .5rem;
+			transition: background-color ease-in-out 1s;
+		}
+		
+		.current {
+			background-color: white;
+		}
+	}
+	
+	.timesaver {
+		margin: 1rem 4rem 1rem 4.5rem;
+		font-style: italic;
+		
+		&::before {
+			content: "Timesaver";
+			text-transform: uppercase;
+			display: inline-block;
+			font-size: 1.5rem;
+			font-weight: bold;
+			color: #35a;
+		}
+	}
+	
+	.did-you-know {
+		margin: 2rem 4rem 2rem 3rem;
+		width: 70%;
+		background-color: #c99;
+		border: 2px solid white;
+		border-radius: 20px;
+		padding: 1rem;
+		box-shadow: 0px -6px 6px rgba(0, 0, 0, 0.4);
+		
+		&:before {
+			content: "Did You Know?";
+			display: block;
+			font-size: 2rem;
+			font-weight: bold;
+			padding: 0 0 1rem .5rem;
+		}
+		
+		span.intro {
+			font-weight: bold;
+			font-style: italic;
+		}
+	}
+}
