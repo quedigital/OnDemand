@@ -1,0 +1,96 @@
+#homepane {
+	background: url(../images/windows10.jpg), white;
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	background-position: center;
+	
+	min-height: 100%;
+	
+	& > div {
+		padding-top: 10px;
+	}
+	
+	.jumbotron {
+		background-color: #A5C6EC;
+	}
+}
+
+.vcenter {
+	display: inline-block;
+	vertical-align: middle;
+	float: none;
+}
+
+#nextpane {
+	background-color: #869bdc;
+	min-height: 200px;
+	padding-bottom: 10px;
+}
+
+.search-form {
+    border-radius: 30px 0px 0px 30px;
+}
+
+.search-button {
+    border-radius: 0px 30px 30px 0px;
+    cursor:pointer;
+}
+
+.welcome-search {
+	h2 {
+		margin-bottom: 1em;
+	}
+	
+	.input-group {
+		margin-bottom: 2.5em;
+		height: 2em;
+		
+		input {
+			font-size: 32px;
+			height: 100%;
+			padding-left: 1em;
+			padding-right: 1em;
+		}
+		
+		.input-group-btn {
+			height: 100%;
+			
+			button {
+				height: 100%;
+				box-sizing: content-box;
+				
+				i {
+					height: 100%;
+				}
+			}
+		}		
+	}
+}
+
+.product-name {
+	color: rgb(86, 176, 86);
+}
+
+.credits {
+	background-color: rgb(92, 92, 97);
+	color: rgb(182, 183, 194);
+}
+
+#marketing-carousel {
+	.carousel-inner > .item > img {
+		margin: 0 auto;
+	}
+}
+
+.badge-list {
+	white-space: nowrap;
+	overflow: hidden;
+	margin-top: 1em;
+	text-align: center;
+	
+	img {
+		display: inline-block;
+		width: 33%;
+		padding: 0 5px 0 5px;
+	}
+}

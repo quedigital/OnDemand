@@ -1,9 +1,26 @@
-/* line 1, ../sass/_frontpage.scss */
-body {
-  padding-top: 50px;
+/* line 1, ../sass/_all.scss */
+html {
+  /*	height: 100%;*/
 }
 
-/* line 5, ../sass/_frontpage.scss */
+/* line 5, ../sass/_all.scss */
+body {
+  padding-top: 50px;
+  /*height: 100%;*/
+}
+
+/* line 10, ../sass/_all.scss */
+#main-contents {
+  /*	height: 100%;*/
+  min-height: 650px;
+}
+
+/* line 15, ../sass/_all.scss */
+.inherit-height {
+  height: inherit;
+}
+
+/* line 1, ../sass/_taskpane.scss */
 #search-form {
   position: absolute;
   width: 100%;
@@ -11,136 +28,290 @@ body {
   text-align: center;
 }
 
-/* line 12, ../sass/_frontpage.scss */
-#mainpage {
+/* line 8, ../sass/_taskpane.scss */
+#taskpane {
   background-color: white;
+  display: block;
 }
 
-/* line 16, ../sass/_frontpage.scss */
+/* line 13, ../sass/_taskpane.scss */
 #side-menu {
   z-index: -1;
   padding-top: 50px;
   background-color: #FACC98;
 }
-/* line 21, ../sass/_frontpage.scss */
+/* line 18, ../sass/_taskpane.scss */
 #side-menu .navmenu-brand {
   color: black;
   font-weight: bold;
 }
-/* line 26, ../sass/_frontpage.scss */
+/* line 23, ../sass/_taskpane.scss */
 #side-menu .navmenu-nav > li > a {
   color: black;
 }
 
-/* line 31, ../sass/_frontpage.scss */
+/* line 28, ../sass/_taskpane.scss */
 #masthead {
   min-height: 270px;
   background-color: #000044;
   color: #aaaacc;
 }
 
-/* line 37, ../sass/_frontpage.scss */
+/* line 34, ../sass/_taskpane.scss */
 #masthead h1 {
   font-size: 55px;
   line-height: 1.25em;
 }
 
-/* line 42, ../sass/_frontpage.scss */
+/* line 39, ../sass/_taskpane.scss */
 #masthead .well {
   margin-top: 13%;
   background-color: #111155;
   border-color: #000033;
 }
 
-/* line 48, ../sass/_frontpage.scss */
+/* line 45, ../sass/_taskpane.scss */
 .icon-bar {
   background-color: #fff;
 }
 
 @media screen and (min-width: 768px) {
-  /* line 53, ../sass/_frontpage.scss */
+  /* line 50, ../sass/_taskpane.scss */
   #masthead h1 {
     font-size: 100px;
   }
 }
-/* line 58, ../sass/_frontpage.scss */
+/* line 55, ../sass/_taskpane.scss */
 .navbar-bright {
-  background-color: #111155;
+  background-color: #56B056;
   color: #fff;
 }
 
-/* line 63, ../sass/_frontpage.scss */
-.navbar-bright a, #masthead a, #masthead .lead {
-  color: #aaaacc;
+/* line 60, ../sass/_taskpane.scss */
+.navbar-bright a {
+  color: #0D0D2F;
+}
+/* line 63, ../sass/_taskpane.scss */
+.navbar-bright a:hover {
+  color: #8686b6;
 }
 
-/* line 67, ../sass/_frontpage.scss */
+/* line 68, ../sass/_taskpane.scss */
+#masthead a, #masthead .lead {
+  color: #D8DBA0;
+}
+
+/* line 72, ../sass/_taskpane.scss */
 .navbar-bright li > a:hover {
   background-color: #000033;
 }
 
-/* line 71, ../sass/_frontpage.scss */
+/* line 76, ../sass/_taskpane.scss */
 .task-container {
-  margin-top: 1em;
+  padding-top: 1em;
+  background-color: #dedfd4;
 }
 
-/* line 76, ../sass/_frontpage.scss */
+/* line 81, ../sass/_taskpane.scss */
+.task-intro {
+  padding-bottom: 2em;
+}
+/* line 84, ../sass/_taskpane.scss */
 .task-intro .task-desc {
   padding-top: 2em;
 }
-/* line 80, ../sass/_frontpage.scss */
+/* line 88, ../sass/_taskpane.scss */
 .task-intro .poster {
   width: 100%;
 }
+/* line 92, ../sass/_taskpane.scss */
+.task-intro h2 {
+  color: white;
+}
 
-/* line 85, ../sass/_frontpage.scss */
+/* line 97, ../sass/_taskpane.scss */
 .task-buttons {
   padding-top: 2em;
   padding-bottom: 2em;
   background-color: #9597b5;
 }
 
-/* line 91, ../sass/_frontpage.scss */
+/* line 103, ../sass/_taskpane.scss */
 .task-steps {
-  visibility: hidden;
+  /*visibility: hidden;*/
 }
-/* line 94, ../sass/_frontpage.scss */
+/* line 106, ../sass/_taskpane.scss */
 .task-steps.animated {
   transition: all .75s ease-in-out;
 }
-/* line 98, ../sass/_frontpage.scss */
+/* line 110, ../sass/_taskpane.scss */
 .task-steps.solo {
   visibility: visible;
 }
-/* line 102, ../sass/_frontpage.scss */
+/* line 114, ../sass/_taskpane.scss */
 .task-steps.dual {
   visibility: visible;
   padding-left: 5%;
 }
+/* line 119, ../sass/_taskpane.scss */
+.task-steps h2 {
+  color: #30517c;
+  text-shadow: -1px 1px 3px rgba(0, 0, 0, 0.3);
+}
 
-/* line 110, ../sass/_frontpage.scss */
+/* line 127, ../sass/_taskpane.scss */
 .task-demo iframe.affix {
   top: 50px;
 }
-/* line 114, ../sass/_frontpage.scss */
+/* line 131, ../sass/_taskpane.scss */
 .task-demo iframe.affix-bottom {
   left: 15px !important;
   bottom: 0;
   position: absolute;
 }
 
-/* line 122, ../sass/_frontpage.scss */
+/* line 139, ../sass/_taskpane.scss */
 .footer {
   background-color: #BABAE0;
   border-top: 5px solid #8d8cc5;
 }
-/* line 126, ../sass/_frontpage.scss */
+/* line 143, ../sass/_taskpane.scss */
 .footer .left {
   padding: 20px 25px 0 25px;
 }
-/* line 130, ../sass/_frontpage.scss */
+/* line 147, ../sass/_taskpane.scss */
 .footer .right {
   padding: 20px 25px 0 25px;
+}
+
+/* line 152, ../sass/_taskpane.scss */
+.timesaver kbd {
+  font-style: normal;
+}
+
+/* line 1, ../sass/_searchpane.scss */
+#searchpane {
+  background: linear-gradient(to bottom, #caf1fa 75%, #1e5799 100%);
+  padding-top: 25px;
+  min-height: 700px;
+}
+
+/* line 8, ../sass/_searchpane.scss */
+.task-preview {
+  cursor: pointer;
+  transition: background-color .25s ease-in-out;
+}
+/* line 13, ../sass/_searchpane.scss */
+.task-preview:hover {
+  background-color: #c1e2c0;
+  border: 1px solid #5cb249;
+}
+/* line 18, ../sass/_searchpane.scss */
+.task-preview h3 {
+  overflow: hidden;
+  height: 2em;
+}
+
+/* line 1, ../sass/_homepane.scss */
+#homepane {
+  background: url(../images/windows10.jpg), white;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100%;
+}
+/* line 9, ../sass/_homepane.scss */
+#homepane > div {
+  padding-top: 10px;
+}
+/* line 13, ../sass/_homepane.scss */
+#homepane .jumbotron {
+  background-color: #A5C6EC;
+}
+
+/* line 18, ../sass/_homepane.scss */
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+/* line 24, ../sass/_homepane.scss */
+#nextpane {
+  background-color: #869bdc;
+  min-height: 200px;
+  padding-bottom: 10px;
+}
+
+/* line 30, ../sass/_homepane.scss */
+.search-form {
+  border-radius: 30px 0px 0px 30px;
+}
+
+/* line 34, ../sass/_homepane.scss */
+.search-button {
+  border-radius: 0px 30px 30px 0px;
+  cursor: pointer;
+}
+
+/* line 40, ../sass/_homepane.scss */
+.welcome-search h2 {
+  margin-bottom: 1em;
+}
+/* line 44, ../sass/_homepane.scss */
+.welcome-search .input-group {
+  margin-bottom: 2.5em;
+  height: 2em;
+}
+/* line 48, ../sass/_homepane.scss */
+.welcome-search .input-group input {
+  font-size: 32px;
+  height: 100%;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+/* line 55, ../sass/_homepane.scss */
+.welcome-search .input-group .input-group-btn {
+  height: 100%;
+}
+/* line 58, ../sass/_homepane.scss */
+.welcome-search .input-group .input-group-btn button {
+  height: 100%;
+  box-sizing: content-box;
+}
+/* line 62, ../sass/_homepane.scss */
+.welcome-search .input-group .input-group-btn button i {
+  height: 100%;
+}
+
+/* line 70, ../sass/_homepane.scss */
+.product-name {
+  color: #56b056;
+}
+
+/* line 74, ../sass/_homepane.scss */
+.credits {
+  background-color: #5c5c61;
+  color: #b6b7c2;
+}
+
+/* line 80, ../sass/_homepane.scss */
+#marketing-carousel .carousel-inner > .item > img {
+  margin: 0 auto;
+}
+
+/* line 85, ../sass/_homepane.scss */
+.badge-list {
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 1em;
+  text-align: center;
+}
+/* line 91, ../sass/_homepane.scss */
+.badge-list img {
+  display: inline-block;
+  width: 33%;
+  padding: 0 5px 0 5px;
 }
 
 @font-face {

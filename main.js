@@ -3,8 +3,9 @@ requirejs.config({
 	paths: {
 		"jquery": "jquery-2.1.3.min",
 		"jquery.ui": "jquery-ui.min",
-		"bootstrap": "bootstrap.min",
-		"jasny-bootstrap": "jasny-bootstrap.min"
+		"bootstrap": "bootstrap",
+		"jasny-bootstrap": "jasny-bootstrap.min",
+		"holder": "holder.min"
 	},
 	
 	shim: {
@@ -27,11 +28,16 @@ requirejs.config({
 
 // NOTE: Couldn't use embed-responsive-4by3 for the iframe (even though it made sizing automatic) because it didn't (easily) work with affix's fixed positioning
 
-require(["toc-viewer", "bootstrap", "jasny-bootstrap"], function () {
+require(["holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results"], function () {
 
 	var v = $(".toc-viewer").TOCViewer();
+	$(".search-results-container").SearchResults();
 	
 	function sizeToFit () {
+		var screenHeight = $(window).height();
+		
+		$(".screenheight").height(screenHeight - 50);
+		
 		var bh = $("#main-bar").height();
 		var wh = $(window).innerHeight() - bh;
 		
@@ -79,34 +85,59 @@ require(["toc-viewer", "bootstrap", "jasny-bootstrap"], function () {
 		}
 	}
 	
+	function onDoSearch () {
+		var sr = $(".search-results-container").SearchResults("instance");
+		sr.doit();
+
+		$(".task-preview").click(onGoToTask);
+		
+		$("#taskpane").addClass("hidden");
+		$("#homepane").addClass("hidden");
+		$("#searchpane").removeClass("hidden");
+	}
+	
+	function onGoToTask () {
+		$("#homepane").addClass("hidden");
+		$("#searchpane").addClass("hidden");
+		$("#taskpane").removeClass("hidden");
+
+		$(".task-steps").removeClass("animated");
+		
+		sizeToFit();
+		
+		// delay; animate after sizing
+		setTimeout(function () { $(".task-steps").addClass("animated"); }, 10);
+	}
+	
+	function onHomeButton () {
+		$("#searchpane").addClass("hidden");
+		$("#taskpane").addClass("hidden");
+		$("#homepane").removeClass("hidden");
+	}
+	
 	$(window).resize(sizeToFit);
+	
+	sizeToFit();
+	
+	$(".hidden-on-startup").removeClass("hidden");
 	
 	$(".task-steps").addClass("solo");
 	
 	$(".captivate-buttons input").change(onCaptivateButton);
+	$(".search-button").click(onDoSearch);
+	$("#home-button").click(onHomeButton);
 	
-	sizeToFit();
-	
-	setTimeout(function () { $(".task-steps").addClass("animated"); }, 0);
-
 	//var inst = v.TOCViewer("instance");
 	//inst.doit();
 
 	$("#captivate-iframe").affix({
 		offset: {
-			top: function () { return $(".task-container").offset().top - $("#search-form").outerHeight(true); },
-			bottom: function () { return $(".footer").outerHeight() - $("#search-form").outerHeight(true); }
+			top: function () { 
+				return $(".task-container").offset().top - $("#search-form").outerHeight(false);
+			},
+			bottom: function () {
+				return $(".footer").outerHeight() - $("#search-form").outerHeight(false);
+			}
 		}
 	});
-
-/*
-var $body   = $(document.body);
-var navHeight = $('.navbar').outerHeight(true) + 10;
-
-$body.scrollspy({
-	target: '#leftCol',
-	offset: navHeight
-});
-*/
-
 });

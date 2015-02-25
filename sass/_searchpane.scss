@@ -1,0 +1,22 @@
+#searchpane {
+	background: linear-gradient(to bottom, #caf1fa 75%,#1e5799 100%);
+	padding-top: 25px;
+	
+	min-height: 700px;
+}
+
+.task-preview {
+	cursor: pointer;
+	
+	transition: background-color .25s ease-in-out;
+	
+	&:hover {
+		background-color: rgb(193, 226, 192);
+		border: 1px solid rgb(92, 178, 73);
+	}
+	
+	h3 {
+		overflow: hidden;
+		height: 2em;
+	}
+}

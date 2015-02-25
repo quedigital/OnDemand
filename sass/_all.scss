@@ -1,0 +1,17 @@
+html {
+/*	height: 100%;*/
+}
+
+body {
+	padding-top: 50px;
+	/*height: 100%;*/
+}
+
+#main-contents {
+/*	height: 100%;*/
+	min-height: 650px;
+}
+
+.inherit-height {
+	height: inherit;
+}
