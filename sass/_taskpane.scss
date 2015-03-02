@@ -10,21 +10,6 @@
 	display: block;
 }
 
-#side-menu {
-	z-index: -1;
-	padding-top: 50px;
-	background-color: #FACC98;
-	
-	.navmenu-brand {
-		color: black;
-		font-weight: bold;
-	}
-	
-	.navmenu-nav > li > a {
-		color: black;
-	}
-}
-
 #masthead {
 	min-height:270px;
 	background-color:#000044;
@@ -151,4 +136,11 @@
 
 .timesaver kbd {
 	font-style: normal;
+}
+
+.did-you-know {
+	display: block;
+	width: 10em;
+	margin-left: auto;
+	margin-right: 0;
 }

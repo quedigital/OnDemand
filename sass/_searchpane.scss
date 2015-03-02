@@ -1,5 +1,5 @@
 #searchpane {
-	background: linear-gradient(to bottom, #caf1fa 75%,#1e5799 100%);
+	background-color: #caf1fa;
 	padding-top: 25px;
 	
 	min-height: 700px;
@@ -18,5 +18,12 @@
 	h3 {
 		overflow: hidden;
 		height: 2em;
+		margin-top: 0px;
+		margin-bottom: 20px;
 	}
+}
+
+.search-footer {
+	height: 100px;
+	background: linear-gradient(to bottom, #caf1fa 0%,#1e5799 100%);
 }

@@ -29,7 +29,9 @@
 
 .task-container {
 	h2 {
-		margin-bottom: 4rem;
+		button {
+			margin-left: 2em;
+		}
 	}
 	
 	.step {
@@ -92,29 +94,6 @@
 			font-size: 1.5rem;
 			font-weight: bold;
 			color: #35a;
-		}
-	}
-	
-	.did-you-know {
-		margin: 2rem 4rem 2rem 3rem;
-		width: 70%;
-		background-color: #c99;
-		border: 2px solid white;
-		border-radius: 20px;
-		padding: 1rem;
-		box-shadow: 0px -6px 6px rgba(0, 0, 0, 0.4);
-		
-		&:before {
-			content: "Did You Know?";
-			display: block;
-			font-size: 2rem;
-			font-weight: bold;
-			padding: 0 0 1rem .5rem;
-		}
-		
-		span.intro {
-			font-weight: bold;
-			font-style: italic;
 		}
 	}
 }

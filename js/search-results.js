@@ -27,7 +27,7 @@ define(["holder", "jquery.ui"], function (Holder) {
 			for (var i = 0; i < n; i++) {
 				var el = this.addResult();
 				
-				el.hide().animate( { _dummy: 0 }, { duration: i * 100, complete: function () { $(this).show().addClass("animated fadeInUp"); } });
+				el.animate( { _dummy: 0 }, { duration: i * 100, complete: function () { $(this).css("visibility", "visible").addClass("animated fadeInUp"); } });
 			}
 			
 			Holder.run();			
@@ -36,9 +36,11 @@ define(["holder", "jquery.ui"], function (Holder) {
 		addResult: function () {
 			var title = titles[Math.floor(Math.random() * titles.length)];
 			
-			var s = '<div class="col-sm-4 col-md-2"><div class="thumbnail task-preview"><img data-src="holder.js/100%x200" alt="Generic placeholder thumbnail"><div class="caption"><h3>' + title + '</h3><p>This is a thumbnail content area.</p><div class="text-center"><div class="btn-group"><a class="btn btn-primary watch-it-link" role="button">Watch It</a><a class="btn btn-success" role="button">Try It</a></div></div></div></div></div>';
+			var s = '<div class="col-sm-4 col-md-2"><div class="thumbnail task-preview"><img data-src="holder.js/100%x200" alt="Generic placeholder thumbnail"><div class="caption"><h3>' + title + '</h3><div class="btn-group btn-group-justified"><a class="btn btn-primary watch-it-link" role="button">Watch It</a><a class="btn btn-success" role="button">Try It</a></div></div></div></div>';
 			
 			var el = $(s);
+			
+			el.css("visibility", "hidden");
 			
 			this.element.append(el);
 			

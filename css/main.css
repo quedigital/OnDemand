@@ -1,23 +1,47 @@
-/* line 1, ../sass/_all.scss */
-html {
-  /*	height: 100%;*/
-}
-
-/* line 5, ../sass/_all.scss */
+/* line 4, ../sass/_all.scss */
 body {
   padding-top: 50px;
-  /*height: 100%;*/
 }
 
-/* line 10, ../sass/_all.scss */
+/* line 8, ../sass/_all.scss */
+#main-bar {
+  border: none;
+}
+
+/* line 12, ../sass/_all.scss */
 #main-contents {
-  /*	height: 100%;*/
   min-height: 650px;
 }
 
-/* line 15, ../sass/_all.scss */
+/* line 16, ../sass/_all.scss */
 .inherit-height {
   height: inherit;
+}
+
+/* line 20, ../sass/_all.scss */
+#home-button {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+/* line 25, ../sass/_all.scss */
+#home-button img {
+  height: 16px;
+}
+
+/* line 33, ../sass/_all.scss */
+#side-menu {
+  padding-top: 100px;
+  z-index: -1;
+}
+
+/* line 38, ../sass/_all.scss */
+.back-to-search {
+  background-color: #334f3c;
+}
+/* line 41, ../sass/_all.scss */
+.back-to-search #back-button {
+  color: white;
 }
 
 /* line 1, ../sass/_taskpane.scss */
@@ -35,163 +59,155 @@ body {
 }
 
 /* line 13, ../sass/_taskpane.scss */
-#side-menu {
-  z-index: -1;
-  padding-top: 50px;
-  background-color: #FACC98;
-}
-/* line 18, ../sass/_taskpane.scss */
-#side-menu .navmenu-brand {
-  color: black;
-  font-weight: bold;
-}
-/* line 23, ../sass/_taskpane.scss */
-#side-menu .navmenu-nav > li > a {
-  color: black;
-}
-
-/* line 28, ../sass/_taskpane.scss */
 #masthead {
   min-height: 270px;
   background-color: #000044;
   color: #aaaacc;
 }
 
-/* line 34, ../sass/_taskpane.scss */
+/* line 19, ../sass/_taskpane.scss */
 #masthead h1 {
   font-size: 55px;
   line-height: 1.25em;
 }
 
-/* line 39, ../sass/_taskpane.scss */
+/* line 24, ../sass/_taskpane.scss */
 #masthead .well {
   margin-top: 13%;
   background-color: #111155;
   border-color: #000033;
 }
 
-/* line 45, ../sass/_taskpane.scss */
+/* line 30, ../sass/_taskpane.scss */
 .icon-bar {
   background-color: #fff;
 }
 
 @media screen and (min-width: 768px) {
-  /* line 50, ../sass/_taskpane.scss */
+  /* line 35, ../sass/_taskpane.scss */
   #masthead h1 {
     font-size: 100px;
   }
 }
-/* line 55, ../sass/_taskpane.scss */
+/* line 40, ../sass/_taskpane.scss */
 .navbar-bright {
   background-color: #56B056;
   color: #fff;
 }
 
-/* line 60, ../sass/_taskpane.scss */
+/* line 45, ../sass/_taskpane.scss */
 .navbar-bright a {
   color: #0D0D2F;
 }
-/* line 63, ../sass/_taskpane.scss */
+/* line 48, ../sass/_taskpane.scss */
 .navbar-bright a:hover {
   color: #8686b6;
 }
 
-/* line 68, ../sass/_taskpane.scss */
+/* line 53, ../sass/_taskpane.scss */
 #masthead a, #masthead .lead {
   color: #D8DBA0;
 }
 
-/* line 72, ../sass/_taskpane.scss */
+/* line 57, ../sass/_taskpane.scss */
 .navbar-bright li > a:hover {
   background-color: #000033;
 }
 
-/* line 76, ../sass/_taskpane.scss */
+/* line 61, ../sass/_taskpane.scss */
 .task-container {
   padding-top: 1em;
   background-color: #dedfd4;
 }
 
-/* line 81, ../sass/_taskpane.scss */
+/* line 66, ../sass/_taskpane.scss */
 .task-intro {
   padding-bottom: 2em;
 }
-/* line 84, ../sass/_taskpane.scss */
+/* line 69, ../sass/_taskpane.scss */
 .task-intro .task-desc {
   padding-top: 2em;
 }
-/* line 88, ../sass/_taskpane.scss */
+/* line 73, ../sass/_taskpane.scss */
 .task-intro .poster {
   width: 100%;
 }
-/* line 92, ../sass/_taskpane.scss */
+/* line 77, ../sass/_taskpane.scss */
 .task-intro h2 {
   color: white;
 }
 
-/* line 97, ../sass/_taskpane.scss */
+/* line 82, ../sass/_taskpane.scss */
 .task-buttons {
   padding-top: 2em;
   padding-bottom: 2em;
   background-color: #9597b5;
 }
 
-/* line 103, ../sass/_taskpane.scss */
+/* line 88, ../sass/_taskpane.scss */
 .task-steps {
   /*visibility: hidden;*/
 }
-/* line 106, ../sass/_taskpane.scss */
+/* line 91, ../sass/_taskpane.scss */
 .task-steps.animated {
   transition: all .75s ease-in-out;
 }
-/* line 110, ../sass/_taskpane.scss */
+/* line 95, ../sass/_taskpane.scss */
 .task-steps.solo {
   visibility: visible;
 }
-/* line 114, ../sass/_taskpane.scss */
+/* line 99, ../sass/_taskpane.scss */
 .task-steps.dual {
   visibility: visible;
   padding-left: 5%;
 }
-/* line 119, ../sass/_taskpane.scss */
+/* line 104, ../sass/_taskpane.scss */
 .task-steps h2 {
   color: #30517c;
   text-shadow: -1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* line 127, ../sass/_taskpane.scss */
+/* line 112, ../sass/_taskpane.scss */
 .task-demo iframe.affix {
   top: 50px;
 }
-/* line 131, ../sass/_taskpane.scss */
+/* line 116, ../sass/_taskpane.scss */
 .task-demo iframe.affix-bottom {
   left: 15px !important;
   bottom: 0;
   position: absolute;
 }
 
-/* line 139, ../sass/_taskpane.scss */
+/* line 124, ../sass/_taskpane.scss */
 .footer {
   background-color: #BABAE0;
   border-top: 5px solid #8d8cc5;
 }
-/* line 143, ../sass/_taskpane.scss */
+/* line 128, ../sass/_taskpane.scss */
 .footer .left {
   padding: 20px 25px 0 25px;
 }
-/* line 147, ../sass/_taskpane.scss */
+/* line 132, ../sass/_taskpane.scss */
 .footer .right {
   padding: 20px 25px 0 25px;
 }
 
-/* line 152, ../sass/_taskpane.scss */
+/* line 137, ../sass/_taskpane.scss */
 .timesaver kbd {
   font-style: normal;
 }
 
+/* line 141, ../sass/_taskpane.scss */
+.did-you-know {
+  display: block;
+  width: 10em;
+  margin-left: auto;
+  margin-right: 0;
+}
+
 /* line 1, ../sass/_searchpane.scss */
 #searchpane {
-  background: linear-gradient(to bottom, #caf1fa 75%, #1e5799 100%);
+  background-color: #caf1fa;
   padding-top: 25px;
   min-height: 700px;
 }
@@ -210,6 +226,14 @@ body {
 .task-preview h3 {
   overflow: hidden;
   height: 2em;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+/* line 26, ../sass/_searchpane.scss */
+.search-footer {
+  height: 100px;
+  background: linear-gradient(to bottom, #caf1fa 0%, #1e5799 100%);
 }
 
 /* line 1, ../sass/_homepane.scss */
@@ -237,81 +261,247 @@ body {
 }
 
 /* line 24, ../sass/_homepane.scss */
-#nextpane {
-  background-color: #869bdc;
+#marketing-row {
+  background-color: rgba(134, 155, 220, 0.25);
   min-height: 200px;
   padding-bottom: 10px;
 }
+/* line 29, ../sass/_homepane.scss */
+#marketing-row .carousel-control {
+  background: none;
+}
 
-/* line 30, ../sass/_homepane.scss */
+/* line 34, ../sass/_homepane.scss */
 .search-form {
   border-radius: 30px 0px 0px 30px;
 }
 
-/* line 34, ../sass/_homepane.scss */
+/* line 38, ../sass/_homepane.scss */
 .search-button {
   border-radius: 0px 30px 30px 0px;
   cursor: pointer;
 }
 
-/* line 40, ../sass/_homepane.scss */
-.welcome-search h2 {
+/* line 44, ../sass/_homepane.scss */
+.welcome-search h3 {
+  margin-top: 0;
   margin-bottom: 1em;
 }
-/* line 44, ../sass/_homepane.scss */
-.welcome-search .input-group {
-  margin-bottom: 2.5em;
-  height: 2em;
-}
-/* line 48, ../sass/_homepane.scss */
+/* line 51, ../sass/_homepane.scss */
 .welcome-search .input-group input {
-  font-size: 32px;
-  height: 100%;
+  font-size: 20px;
   padding-left: 1em;
   padding-right: 1em;
 }
-/* line 55, ../sass/_homepane.scss */
+/* line 57, ../sass/_homepane.scss */
 .welcome-search .input-group .input-group-btn {
-  height: 100%;
+  height: 20px;
 }
-/* line 58, ../sass/_homepane.scss */
+/* line 60, ../sass/_homepane.scss */
 .welcome-search .input-group .input-group-btn button {
   height: 100%;
   box-sizing: content-box;
 }
-/* line 62, ../sass/_homepane.scss */
-.welcome-search .input-group .input-group-btn button i {
-  height: 100%;
-}
 
-/* line 70, ../sass/_homepane.scss */
+/* line 68, ../sass/_homepane.scss */
 .product-name {
-  color: #56b056;
+  color: #222;
+  text-shadow: -1px 1px 1px #3f3e5a;
 }
 
-/* line 74, ../sass/_homepane.scss */
+/* line 73, ../sass/_homepane.scss */
 .credits {
   background-color: #5c5c61;
   color: #b6b7c2;
 }
 
-/* line 80, ../sass/_homepane.scss */
+/* line 79, ../sass/_homepane.scss */
 #marketing-carousel .carousel-inner > .item > img {
   margin: 0 auto;
 }
 
-/* line 85, ../sass/_homepane.scss */
+/* line 84, ../sass/_homepane.scss */
 .badge-list {
   white-space: nowrap;
   overflow: hidden;
   margin-top: 1em;
   text-align: center;
 }
-/* line 91, ../sass/_homepane.scss */
+/* line 90, ../sass/_homepane.scss */
 .badge-list img {
   display: inline-block;
   width: 33%;
   padding: 0 5px 0 5px;
+}
+
+/* line 97, ../sass/_homepane.scss */
+#side-menu2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 0;
+}
+
+/* line 106, ../sass/_homepane.scss */
+.navmenu-que {
+  background-color: #f5a346;
+  border: none;
+}
+/* line 110, ../sass/_homepane.scss */
+.navmenu-que .navmenu-brand {
+  font-weight: bold;
+  color: white !important;
+  border-bottom: 1px solid white;
+  padding-bottom: 20px;
+}
+/* line 117, ../sass/_homepane.scss */
+.navmenu-que .navmenu-brand img {
+  height: 16px;
+}
+/* line 122, ../sass/_homepane.scss */
+.navmenu-que .nav > li {
+  cursor: pointer;
+}
+/* line 125, ../sass/_homepane.scss */
+.navmenu-que .nav > li a {
+  color: black;
+}
+/* line 129, ../sass/_homepane.scss */
+.navmenu-que .nav > li.active a {
+  background-color: #9d7138;
+  color: white;
+}
+/* line 133, ../sass/_homepane.scss */
+.navmenu-que .nav > li.active a:hover {
+  background-color: #453520;
+}
+/* line 138, ../sass/_homepane.scss */
+.navmenu-que .nav > li:hover {
+  background-color: #f5cb92;
+}
+
+/* line 144, ../sass/_homepane.scss */
+.intro-box {
+  margin-bottom: 20px;
+  padding: 10px;
+}
+/* line 148, ../sass/_homepane.scss */
+.intro-box .panel-box {
+  height: 150px;
+  float: left;
+  width: 33%;
+  position: relative;
+  cursor: pointer;
+}
+/* line 154, ../sass/_homepane.scss */
+.intro-box .panel-box .panel-content {
+  text-shadow: -1px 1px 2px black;
+  /* centering:
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  */
+}
+/* line 167, ../sass/_homepane.scss */
+.intro-box .panel-box:hover::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+/* line 179, ../sass/_homepane.scss */
+.intro-box .panel-box:nth-child(1) {
+  background: url(../images/stock1.jpg);
+  background-size: cover;
+  color: white;
+}
+/* line 184, ../sass/_homepane.scss */
+.intro-box .panel-box:nth-child(1) .play-overlay {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  text-align: center;
+}
+/* line 193, ../sass/_homepane.scss */
+.intro-box .panel-box:nth-child(1) .panel-content {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+/* line 201, ../sass/_homepane.scss */
+.intro-box .panel-box:nth-child(2) {
+  background: url(../images/stock2.jpg);
+  background-size: cover;
+  color: #eef09f;
+}
+/* line 206, ../sass/_homepane.scss */
+.intro-box .panel-box:nth-child(2) .panel-content {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  text-align: center;
+}
+/* line 214, ../sass/_homepane.scss */
+.intro-box .panel-box:nth-child(3) {
+  background: url(../images/stock3.jpg);
+  background-size: cover;
+  color: white;
+}
+/* line 219, ../sass/_homepane.scss */
+.intro-box .panel-box:nth-child(3) .panel-content {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  text-align: right;
+  right: 1em;
+  text-shadow: -1px 1px 2px darkblue;
+}
+
+/* line 231, ../sass/_homepane.scss */
+.coach.markcontainer {
+  font-family: 'Permanent Marker', cursive;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+}
+/* line 240, ../sass/_homepane.scss */
+.coach.markcontainer:before {
+  position: absolute;
+  display: block;
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+/* line 251, ../sass/_homepane.scss */
+.coach.markcontainer .mark {
+  display: block;
+  position: absolute;
+  width: auto;
+  height: auto;
+  text-align: left;
+  color: white;
+  background: none;
+  font-size: 24px;
+  line-height: 1.2em;
+}
+/* line 262, ../sass/_homepane.scss */
+.coach.markcontainer .mark img {
+  position: absolute;
 }
 
 @font-face {
@@ -341,17 +531,17 @@ body {
   content: "\e600";
 }
 
-/* line 31, ../sass/_steps.scss */
-.task-container h2 {
-  margin-bottom: 4rem;
+/* line 32, ../sass/_steps.scss */
+.task-container h2 button {
+  margin-left: 2em;
 }
-/* line 35, ../sass/_steps.scss */
+/* line 37, ../sass/_steps.scss */
 .task-container .step {
   position: relative;
   margin: 2rem 4rem 2rem 0rem;
   cursor: pointer;
 }
-/* line 40, ../sass/_steps.scss */
+/* line 42, ../sass/_steps.scss */
 .task-container .step .number {
   display: inline-block;
   color: white;
@@ -366,7 +556,7 @@ body {
   top: 0;
   left: 0;
 }
-/* line 54, ../sass/_steps.scss */
+/* line 56, ../sass/_steps.scss */
 .task-container .step .number:before {
   content: "";
   background-color: #a43;
@@ -375,7 +565,7 @@ body {
   height: 30px;
   border-radius: 15px;
 }
-/* line 63, ../sass/_steps.scss */
+/* line 65, ../sass/_steps.scss */
 .task-container .step .number span {
   position: absolute;
   top: -1px;
@@ -383,22 +573,22 @@ body {
   width: 100%;
   text-align: center;
 }
-/* line 73, ../sass/_steps.scss */
+/* line 75, ../sass/_steps.scss */
 .task-container .step p {
   margin: 0 2rem 0 4rem;
   padding: .25rem .5rem;
   transition: background-color ease-in-out 1s;
 }
-/* line 79, ../sass/_steps.scss */
+/* line 81, ../sass/_steps.scss */
 .task-container .step .current {
   background-color: white;
 }
-/* line 84, ../sass/_steps.scss */
+/* line 86, ../sass/_steps.scss */
 .task-container .timesaver {
   margin: 1rem 4rem 1rem 4.5rem;
   font-style: italic;
 }
-/* line 88, ../sass/_steps.scss */
+/* line 90, ../sass/_steps.scss */
 .task-container .timesaver::before {
   content: "Timesaver";
   text-transform: uppercase;
@@ -406,27 +596,4 @@ body {
   font-size: 1.5rem;
   font-weight: bold;
   color: #35a;
-}
-/* line 98, ../sass/_steps.scss */
-.task-container .did-you-know {
-  margin: 2rem 4rem 2rem 3rem;
-  width: 70%;
-  background-color: #c99;
-  border: 2px solid white;
-  border-radius: 20px;
-  padding: 1rem;
-  box-shadow: 0px -6px 6px rgba(0, 0, 0, 0.4);
-}
-/* line 107, ../sass/_steps.scss */
-.task-container .did-you-know:before {
-  content: "Did You Know?";
-  display: block;
-  font-size: 2rem;
-  font-weight: bold;
-  padding: 0 0 1rem .5rem;
-}
-/* line 115, ../sass/_steps.scss */
-.task-container .did-you-know span.intro {
-  font-weight: bold;
-  font-style: italic;
 }

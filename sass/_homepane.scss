@@ -21,10 +21,14 @@
 	float: none;
 }
 
-#nextpane {
-	background-color: #869bdc;
+#marketing-row {
+	background-color: rgba(134, 155, 220, 0.25);
 	min-height: 200px;
 	padding-bottom: 10px;
+	
+	.carousel-control {
+		background: none;
+	}
 }
 
 .search-form {
@@ -37,38 +41,33 @@
 }
 
 .welcome-search {
-	h2 {
+	h3 {
+		margin-top: 0;
 		margin-bottom: 1em;
 	}
 	
 	.input-group {
-		margin-bottom: 2.5em;
-		height: 2em;
 		
 		input {
-			font-size: 32px;
-			height: 100%;
+			font-size: 20px;
 			padding-left: 1em;
 			padding-right: 1em;
 		}
 		
 		.input-group-btn {
-			height: 100%;
+			height: 20px;
 			
 			button {
 				height: 100%;
 				box-sizing: content-box;
-				
-				i {
-					height: 100%;
-				}
 			}
 		}		
 	}
 }
 
 .product-name {
-	color: rgb(86, 176, 86);
+	color: #222;
+	text-shadow: -1px 1px 1px rgb(63, 62, 90);
 }
 
 .credits {
@@ -92,5 +91,177 @@
 		display: inline-block;
 		width: 33%;
 		padding: 0 5px 0 5px;
+	}
+}
+
+#side-menu2 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	
+	width: 100%;
+	border-radius: 0;
+}
+
+.navmenu-que {
+	background-color: rgb(245, 163, 70);
+	border: none;
+	
+	.navmenu-brand {
+		font-weight: bold;
+		color: white !important;
+		border-bottom: 1px solid white;
+		
+		padding-bottom: 20px;
+		
+		img {
+			height: 16px;
+		}
+	}
+	
+	.nav > li {		
+		cursor: pointer;
+		
+		a {
+			color: black;
+		}
+		
+		&.active a {
+			background-color: rgb(157, 113, 56);
+			color: white;
+			
+			&:hover {
+				background-color: #453520;
+			}
+		}
+		
+		&:hover {
+			background-color: rgb(245, 203, 146);
+		}
+	}
+}
+
+.intro-box {
+	margin-bottom: 20px;
+	padding: 10px;
+	
+	.panel-box {
+		height: 150px;
+		float: left;		
+		width: 33%;
+		position: relative;
+				
+		.panel-content {
+			text-shadow: -1px 1px 2px black;
+			
+			/* centering:
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
+			-webkit-transform: translateY(-50%);
+			*/			
+		}
+		
+		cursor: pointer;
+		
+		&:hover::before {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: rgba(255, 255, 255, .25);
+		}
+	}
+	
+	.panel-box:nth-child(1) {
+		background: url(../images/stock1.jpg);
+		background-size: cover;
+		color: white;
+		
+		.play-overlay {
+			position: relative;
+			top: 50%;
+			left: 50%;
+			transform: translateY(-50%) translateX(-50%);
+			-webkit-transform: translateY(-50%) translateX(-50%);
+			text-align: center;
+		}
+		
+		.panel-content {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			text-align: center;
+		}
+	}
+
+	.panel-box:nth-child(2) {
+		background: url(../images/stock2.jpg);
+		background-size: cover;
+		color: rgb(238, 240, 159);
+		
+		.panel-content {
+			position: absolute;
+			top: 0;
+			width: 100%;
+			text-align: center;
+		}
+	}
+
+	.panel-box:nth-child(3) {
+		background: url(../images/stock3.jpg);
+		background-size: cover;
+		color: white;
+		
+		.panel-content {
+			position: absolute;
+			top: 0;
+			width: 100%;
+			text-align: right;
+			right: 1em;
+			text-shadow: -1px 1px 2px darkblue;
+		}
+	}
+}
+
+.coach {
+	&.markcontainer {
+		font-family: 'Permanent Marker', cursive;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 10000;
+		
+		&:before {
+			position: absolute;
+			display: block;
+			content: "";
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: rgba(0, 0, 0, .5);
+		}
+		
+		.mark {
+			display: block;
+			position: absolute;
+			width: auto;
+			height: auto;
+			text-align: left;
+			color: white;
+			background: none;
+			font-size: 24px;
+			line-height: 1.2em;
+			
+			img {
+				position: absolute;
+			}
+		}
 	}
 }
