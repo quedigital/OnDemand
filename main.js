@@ -66,6 +66,8 @@ require(["holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results
 		
 		if ($(event.target).is($("#watch-button"))) {
 			if (watchit) {
+				$("#try-button").prop("checked", false);
+				$("#try-button").parents("label").removeClass("active");
 				onDoWatchIt();
 			}
 		} else if ($(event.target).is($("#try-button"))) {
@@ -84,28 +86,26 @@ require(["holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results
 	}
 	
 	function onDoWatchIt () {
-		$("#watch-button").prop("checked", false);
-		$("#watch-button").parents("label").addClass("active");
-		
-		$("#try-button").prop("checked", false);
-		$("#try-button").parents("label").removeClass("active");
-		
 		$(".task-steps.solo").removeClass("solo").addClass("dual").css("margin-left", 0);
 		
 		$(".task-demo.hidden").removeClass("hidden");
 		
 		sizeToFit();
 		
+		/*
 		setTimeout(function () {
 			window.cp.play();
 		}, 1500);
+		*/
 	}
 	
 	function onDoSearch () {
 		var sr = $(".search-results-container").SearchResults("instance");
 		sr.doit();
 
-		$(".task-preview").click(onGoToTask);
+		$(".go-to-task").off("click");
+		
+		$(".go-to-task").click(onGoToTask);
 		
 		$("#taskpane").addClass("hidden");
 		$("#homepane").addClass("hidden");
@@ -117,7 +117,11 @@ require(["holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results
 		$(".back-to-search").removeClass("hidden");
 	}
 	
-	function onGoToTask () {
+	function onGoToTask (event) {
+		$('#previewModal').modal('hide');
+			
+		event.stopPropagation();
+		
 		$("#homepane").addClass("hidden");
 		$("#searchpane").addClass("hidden");
 		$("#taskpane").removeClass("hidden");
@@ -187,18 +191,29 @@ require(["holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results
 	$(".captivate-buttons input").change(onCaptivateButton);
 	$("#header-play").click(onDoWatchIt);
 	$(".search-button").click(onDoSearch);
+	$("#show-popular").click(onDoSearch);
 	$("#home-button").click(onHomeButton);
 	$("#back-button").click(onHomeButton);
 	$(".navmenu-nav li").click(onDoSearch);
+	$("#learn-more").click(onGoToTask);
 	
 	// manage z-index of side-menu with scrolling content
-	$("#side-menu").on("shown.bs.offcanvas", function () { $("#side-menu").css("z-index", 1); });
-	$("#side-menu").on("hide.bs.offcanvas", function () { $("#side-menu").css("z-index", -1); });
+	$("#side-menu").on("shown.bs.offcanvas", function () { $("#side-menu").css( { "z-index":  1 } ); });
+	$("#side-menu").on("show.bs.offcanvas", function () { $("#side-menu").css( { display: "block" } ); });
+	$("#side-menu").on("hide.bs.offcanvas", function () { $("#side-menu").css( { "z-index": -1 } ); });
+	$("#side-menu").on("hidden.bs.offcanvas", function () { $("#side-menu").css( { display: "none" } ); });
 		
 	$("#feature-tour").click(onShowFeatures);
 	
+	$("body").on("hide.bs.modal", function () { $("video")[0].pause(); });
+	
 	//var inst = v.TOCViewer("instance");
 	//inst.doit();
+	
+	var m = $(window).height() - $("#top-part").outerHeight() - $("#bottom-part").outerHeight() - $("#top-part").offset().top;
+	if (m > 0) {
+		$("#top-part").css("margin-bottom", m);
+	}
 
 	$("#captivate-iframe").affix({
 		offset: {

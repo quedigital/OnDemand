@@ -47,14 +47,14 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left">
 					<li>
-						<a id="home-button"><img src="images/que.png"/> Windows 10 Interactive</a>
+						<a id="home-button"><img src="images/que.png"/> Interactive <span class="normal">Windows 10</span></a>
 					</li>
 					<li>
 						<a id="toc-button" class="hidden" data-toggle="offcanvas" data-target=".navmenu" data-autohide="false" data-canvas="#main-contents"><i class="fa fa-list"></i> Contents</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li data-coach="Access your account information from here." data-coach-pos="bottom"><a href="#about">Account</a></li>
+					<li data-coach="Access your account information here." data-coach-pos="bottom"><a href="#about">Account</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -126,14 +126,17 @@
 							</div>
 							<p id="part2">The folder expands to display an indented list of folders and files from within the folder.</p>
 						</div>
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title">Did You Know?</h3>
-  </div>
-  <div class="panel-body">
-    <span class="lead">You can quickly show the full text with ellipsis.</span> Point to the icon's name without clicking for a moment to display a balloon. Hold down the <kbd>Option</kbd> key to display it immediately.
-  </div>
-</div>						<div class="step">
+						
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Did You Know?</h3>
+							</div>
+							<div class="panel-body">
+								<span class="lead">You can quickly show the full text with ellipsis.</span> Point to the icon's name without clicking for a moment to display a balloon. Hold down the <kbd>Option</kbd> key to display it immediately.
+							</div>
+						</div>
+						
+						<div class="step">
 							<div class="number"><span>4</span></div>
 							<p id="part1">Click the triangle (pointing down) next to a folder in the list.</p>
 							<div class="timesaver">
@@ -141,16 +144,17 @@
 							</div>
 							<p id="part2">The folder collapses.</p>
 						</div>
-<button class="btn btn-primary did-you-know" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-  Did You Know?
-</button>
-<div class="collapse" id="collapseExample">
-						<div class="panel panel-info">
-							<div class="panel-body">
-								<span class="lead">You can quickly show the full text with ellipsis.</span> Point to the icon's name without clicking for a moment to display a balloon. Hold down the <kbd>Option</kbd> key to display it immediately.
+						
+						<button class="btn btn-primary did-you-know" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Did You Know?
+						</button>
+						<div class="collapse" id="collapseExample">
+							<div class="panel panel-info">
+								<div class="panel-body">
+									<span class="lead">You can quickly show the full text with ellipsis.</span> Point to the icon's name without clicking for a moment to display a balloon. Hold down the <kbd>Option</kbd> key to display it immediately.
+								</div>
 							</div>
 						</div>
-</div>
+						
 						<div class="step">
 							<div class="number"><span>5</span></div>
 							<p>Open the folder you want to view.</p>
@@ -160,7 +164,7 @@
 							<p>Click the <strong>List View</strong> button on the toolbar.</p>
 						</div>
 
-<a tabindex="0" class="btn btn-lg btn-info did-you-know" role="button" data-toggle="popover" data-trigger="focus" data-placement="left" data-content="<span class='lead'>You can quickly show the full text with ellipsis.</span> Point to the icon&apos;s name without clicking for a moment to display a balloon. Hold down the <kbd>Option</kbd> key to display it immediately.">Did You Know?</a>
+						<a tabindex="0" class="btn btn-lg btn-info did-you-know" role="button" data-toggle="popover" data-trigger="focus" data-placement="left" data-content="<span class='lead'>You can quickly show the full text with ellipsis.</span> Point to the icon&apos;s name without clicking for a moment to display a balloon. Hold down the <kbd>Option</kbd> key to display it immediately.">Did You Know?</a>
 						
 						<div class="step">
 							<div class="number"><span>7</span></div>
@@ -230,7 +234,7 @@
 	</div>
 	
 	<div id="homepane" class="hidden hidden-on-startup">
-		<div class="container-fluid">
+		<div id="top-part" class="container-fluid">
 			<div class="col-md-3">
 				<div id="side-menu2" class="navmenu navmenu-que">
 					<a class="navmenu-brand">Contents</a>
@@ -245,13 +249,13 @@
 			--><div class="col-md-6">
 				<div class="row">
 					<div class="col-xs-12 intro-box">
-						<div class="panel-box">
+						<div class="panel-box" data-toggle="modal" data-target="#myModal">
 							<div class="panel-content">
 								<h4>Introducing Que Interactive</h4>
 							</div>
 							<i class="play-overlay fa fa-play-circle fa-4x"></i>
 						</div>
-						<div class="panel-box">
+						<div id="show-popular" class="panel-box">
 							<div class="panel-content">
 								<h4>See Our Most Popular Topics</h4>
 							</div>
@@ -341,52 +345,87 @@
 				</div>				
 			</div>
 		</div>
-		<div id="marketing-row" class="container-fluid">
-			<div id="marketing-carousel" class="carousel slide" data-ride="carousel" data-interval="4000">
-				<!-- Indicators -->
-				<ol class="carousel-indicators">
-					<li data-target="#marketing-carousel" data-slide-to="0" class="active"></li>
-					<li data-target="#marketing-carousel" data-slide-to="1"></li>
-					<li data-target="#marketing-carousel" data-slide-to="2"></li>
-				</ol>
+		<div id="bottom-part">
+			<div id="marketing-row" class="container-fluid">
+				<div id="marketing-carousel" class="carousel slide" data-ride="carousel" data-interval="4000">
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<li data-target="#marketing-carousel" data-slide-to="0" class="active"></li>
+						<li data-target="#marketing-carousel" data-slide-to="1"></li>
+						<li data-target="#marketing-carousel" data-slide-to="2"></li>
+					</ol>
+				
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner">
+						<div class="item active">
+							<img src="http://placehold.it/400x215" alt="...">
+							<div class="carousel-caption">
+								<h3>Check Out This Marketing</h3>
+							</div>
+						</div>
+						<div class="item">
+							<img src="http://placehold.it/400x215" alt="...">
+							<div class="carousel-caption">
+								<h3>This is Another Great Ad</h3>
+							</div>
+						</div>
+						<div class="item">
+							<img src="http://placehold.it/400x215" alt="...">
+							<div class="carousel-caption">
+								<h3>You Should See This Thing</h3>
+							</div>
+						</div>
+					</div>
+				
+					<!-- Controls -->
+					<a class="left carousel-control" href="#marketing-carousel" role="button" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+					</a>
+					<a class="right carousel-control" href="#marketing-carousel" role="button" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right"></span>
+					</a>
+				</div> <!-- Carousel -->
+			</div>
 			
-				<!-- Wrapper for slides -->
-				<div class="carousel-inner">
-					<div class="item active">
-						<img src="http://placehold.it/400x215" alt="...">
-						<div class="carousel-caption">
-							<h3>Check Out This Marketing</h3>
-						</div>
-					</div>
-					<div class="item">
-						<img src="http://placehold.it/400x215" alt="...">
-						<div class="carousel-caption">
-							<h3>This is Another Great Ad</h3>
-						</div>
-					</div>
-					<div class="item">
-						<img src="http://placehold.it/400x215" alt="...">
-						<div class="carousel-caption">
-							<h3>You Should See This Thing</h3>
-						</div>
-					</div>
-				</div>
-			
-				<!-- Controls -->
-				<a class="left carousel-control" href="#marketing-carousel" role="button" data-slide="prev">
-					<span class="glyphicon glyphicon-chevron-left"></span>
-				</a>
-				<a class="right carousel-control" href="#marketing-carousel" role="button" data-slide="next">
-					<span class="glyphicon glyphicon-chevron-right"></span>
-				</a>
-			</div> <!-- Carousel -->
-		</div>
-		
-		<div class="credits container-fluid">
-			<p class="text-center"><i class="fa fa-copyright"></i> 2015 Que Publishing</p>
+			<div class="credits container-fluid">
+				<p class="text-center"><i class="fa fa-copyright"></i> 2015 Que Publishing</p>
+			</div>
 		</div>
 	</div>
 
+</div>
+
+<div id="myModal" class="videopopup modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<video controls>
+					<source src="video/sample1.m4v" type="video/mp4" autoplay>
+				</video>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="previewModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3>Title</h3>
+				<div class="well">
+					<p class="lead">This is where you could put a description. A short sentence or two telling what the learner will gain by going through this particular tutorial.</p>
+				</div>
+				<div class="btn-group btn-group-justified"><a class="btn btn-primary go-to-task" role="button">Watch It</a><a class="btn btn-success go-to-task" role="button">Try It</a></div>
+			</div>
+			<div class="modal-footer">
+				<button id="learn-more" type="button" class="btn btn-info" data-dismiss="modal">Learn More</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div id="coach-marks">

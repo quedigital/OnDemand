@@ -1,7 +1,7 @@
-TODO: re-do search results
-TODO: "watch it" button on task screen doesn't toggle (visually or functionally)
 
 ////////////////////////////////////////////////////////////////////////////////
 
 DONE: add tour [joyride] or "chalkboard" overlay ("chalk marks")
 DONE: fit menu into left-hand column of main screen
+DONE: re-do search results
+DONE: "watch it" button on task screen doesn't toggle (visually or functionally)

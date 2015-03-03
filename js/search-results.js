@@ -36,15 +36,31 @@ define(["holder", "jquery.ui"], function (Holder) {
 		addResult: function () {
 			var title = titles[Math.floor(Math.random() * titles.length)];
 			
-			var s = '<div class="col-sm-4 col-md-2"><div class="thumbnail task-preview"><img data-src="holder.js/100%x200" alt="Generic placeholder thumbnail"><div class="caption"><h3>' + title + '</h3><div class="btn-group btn-group-justified"><a class="btn btn-primary watch-it-link" role="button">Watch It</a><a class="btn btn-success" role="button">Try It</a></div></div></div></div>';
+			var s = '<div class="search-result col-sm-4 col-md-2"><div class="thumbnail task-preview"><div class="caption"><h3>' + title + '</h3><div class="btn-group btn-group-justified"><a class="btn btn-primary go-to-task" role="button">Watch It</a><a class="btn btn-success go-to-task" role="button">Try It</a></div></div></div></div>';			
 			
 			var el = $(s);
 			
 			el.css("visibility", "hidden");
 			
+			if (Math.random() < .1) {
+				$("<div>", { class: "marker-new" }).prependTo(el.find(".task-preview"));
+			}
+			
+			if (Math.random() < .1) {
+				$("<img>", { class: "checkmark", src: "images/checkmark.png" }).appendTo(el);
+			}
+			
+			el.find(".task-preview").click($.proxy(this.showPreview, this, title));
+			
 			this.element.append(el);
 			
 			return el;		
+		},
+		
+		showPreview: function (title) {
+			$("#previewModal").find("h3").text(title);
+			
+			$('#previewModal').modal('show');
 		},
 
 		_destroy: function () {

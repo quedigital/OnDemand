@@ -24,7 +24,6 @@
 #marketing-row {
 	background-color: rgba(134, 155, 220, 0.25);
 	min-height: 200px;
-	padding-bottom: 10px;
 	
 	.carousel-control {
 		background: none;
@@ -71,6 +70,7 @@
 }
 
 .credits {
+	padding-top: 10px;
 	background-color: rgb(92, 92, 97);
 	color: rgb(182, 183, 194);
 }
@@ -143,7 +143,7 @@
 
 .intro-box {
 	margin-bottom: 20px;
-	padding: 10px;
+	padding: 0 10px 10px 10px;
 	
 	.panel-box {
 		height: 150px;
@@ -263,5 +263,11 @@
 				position: absolute;
 			}
 		}
+	}
+}
+
+.videopopup {
+	video {
+		width: 100%;
 	}
 }
