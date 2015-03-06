@@ -60,52 +60,63 @@ require(["holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results
 		$(".task-steps.solo").css("margin-left", margin);
 	}
 	
-	function onCaptivateButton (event) {				
+	function onWatchOrTryButton (event) {						
+		if ($(event.target).is($("#watch-button"))) {
+			$("#try-button").prop("checked", false);
+			$("#try-button").parents("label").removeClass("active");
+		} else if ($(event.target).is($("#try-button"))) {
+			$("#watch-button").prop("checked", false);
+			$("#watch-button").parents("label").removeClass("active");
+		}
+
 		var watchit = $("#watch-button").prop("checked");
 		var tryit = $("#try-button").prop("checked");
-		
-		if ($(event.target).is($("#watch-button"))) {
-			if (watchit) {
-				$("#try-button").prop("checked", false);
-				$("#try-button").parents("label").removeClass("active");
-				onDoWatchIt();
-			}
-		} else if ($(event.target).is($("#try-button"))) {
-			if (tryit) {
-				$("#watch-button").prop("checked", false);
-				$("#watch-button").parents("label").removeClass("active");
-			}
-		}
 		
 		if (!watchit && !tryit) {
 			$(".task-steps").addClass("solo").removeClass("dual");
 			$(".task-demo").addClass("hidden");
 			
 			sizeToFit();
+		} else if (watchit) {
+			onDoWatchIt(event, false);
+		} else if (tryit) {
 		}
 	}
 	
-	function onDoWatchIt () {
+	function onDoWatchIt (event, scrollTo) {
+		if (event)
+			event.stopPropagation();
+		
+		if ($("#taskpane").hasClass("hidden")) {
+			onGoToTask(event);
+		}
+		
 		$(".task-steps.solo").removeClass("solo").addClass("dual").css("margin-left", 0);
 		
 		$(".task-demo.hidden").removeClass("hidden");
 		
 		sizeToFit();
 		
-		/*
+		if (scrollTo != false) {
+			$(window).scrollTop($(".task-steps").offset().top - 50);
+		}
+		
 		setTimeout(function () {
 			window.cp.play();
 		}, 1500);
-		*/
 	}
 	
 	function onDoSearch () {
+		$(window).scrollTop(0);
+		
 		var sr = $(".search-results-container").SearchResults("instance");
 		sr.doit();
 
 		$(".go-to-task").off("click");
+		$(".do-watch--it").off("click");
 		
 		$(".go-to-task").click(onGoToTask);
+		$(".do-watch-it").click(onDoWatchIt);
 		
 		$("#taskpane").addClass("hidden");
 		$("#homepane").addClass("hidden");
@@ -119,8 +130,6 @@ require(["holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results
 	
 	function onGoToTask (event) {
 		$('#previewModal').modal('hide');
-			
-		event.stopPropagation();
 		
 		$("#homepane").addClass("hidden");
 		$("#searchpane").addClass("hidden");
@@ -188,7 +197,7 @@ require(["holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results
 	
 	$(".task-steps").addClass("solo");
 	
-	$(".captivate-buttons input").change(onCaptivateButton);
+	$(".captivate-buttons input").change(onWatchOrTryButton);
 	$("#header-play").click(onDoWatchIt);
 	$(".search-button").click(onDoSearch);
 	$("#show-popular").click(onDoSearch);

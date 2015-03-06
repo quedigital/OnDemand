@@ -476,26 +476,13 @@ body {
   width: 100%;
   text-align: center;
 }
-/* line 201, ../sass/_homepane.scss */
-.intro-box .panel-box:nth-child(2) {
-  background: url(../images/stock2.jpg);
-  background-size: cover;
-  color: #eef09f;
-}
-/* line 206, ../sass/_homepane.scss */
-.intro-box .panel-box:nth-child(2) .panel-content {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  text-align: center;
-}
-/* line 214, ../sass/_homepane.scss */
+/* line 204, ../sass/_homepane.scss */
 .intro-box .panel-box:nth-child(3) {
   background: url(../images/stock3.jpg);
   background-size: cover;
   color: white;
 }
-/* line 219, ../sass/_homepane.scss */
+/* line 209, ../sass/_homepane.scss */
 .intro-box .panel-box:nth-child(3) .panel-content {
   position: absolute;
   top: 0;
@@ -505,7 +492,7 @@ body {
   text-shadow: -1px 1px 2px darkblue;
 }
 
-/* line 231, ../sass/_homepane.scss */
+/* line 221, ../sass/_homepane.scss */
 .coach.markcontainer {
   font-family: 'Permanent Marker', cursive;
   position: absolute;
@@ -515,7 +502,7 @@ body {
   bottom: 0;
   z-index: 10000;
 }
-/* line 240, ../sass/_homepane.scss */
+/* line 230, ../sass/_homepane.scss */
 .coach.markcontainer:before {
   position: absolute;
   display: block;
@@ -526,7 +513,7 @@ body {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
 }
-/* line 251, ../sass/_homepane.scss */
+/* line 241, ../sass/_homepane.scss */
 .coach.markcontainer .mark {
   display: block;
   position: absolute;
@@ -538,12 +525,12 @@ body {
   font-size: 24px;
   line-height: 1.2em;
 }
-/* line 262, ../sass/_homepane.scss */
+/* line 252, ../sass/_homepane.scss */
 .coach.markcontainer .mark img {
   position: absolute;
 }
 
-/* line 270, ../sass/_homepane.scss */
+/* line 260, ../sass/_homepane.scss */
 .videopopup video {
   width: 100%;
 }

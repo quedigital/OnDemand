@@ -1,7 +1,10 @@
+// TODO: just 2 buttons on home screen
+// TODO: expand right column with button click (hide otherwise)
+// TODO: hide TOC when something else is clicked on
 
 ////////////////////////////////////////////////////////////////////////////////
 
-DONE: add tour [joyride] or "chalkboard" overlay ("chalk marks")
-DONE: fit menu into left-hand column of main screen
-DONE: re-do search results
-DONE: "watch it" button on task screen doesn't toggle (visually or functionally)
+// DONE: add tour [joyride] or "chalkboard" overlay ("chalk marks")
+// DONE: fit menu into left-hand column of main screen
+// DONE: re-do search results
+// DONE: "watch it" button on task screen doesn't toggle (visually or functionally)
