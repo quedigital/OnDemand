@@ -1,6 +1,5 @@
-// TODO: just 2 buttons on home screen
-// TODO: expand right column with button click (hide otherwise)
 // TODO: hide TOC when something else is clicked on
+// TODO: pop-up when task is complete, with next task & other search results or related tasks
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -8,3 +7,8 @@
 // DONE: fit menu into left-hand column of main screen
 // DONE: re-do search results
 // DONE: "watch it" button on task screen doesn't toggle (visually or functionally)
+// DONE: expand right column with button click (hide otherwise)
+// DONE: text for home screen button
+// DONE: just 2 buttons on home screen
+// DONE: after each task, "Continue with next" or "Next in Search result" or "related Task"
+// DONE: better fonts for home screen

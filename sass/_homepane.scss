@@ -2,7 +2,7 @@
 	background: url(../images/windows10.jpg), white;
 	background-size: 100% auto;
 	background-repeat: no-repeat;
-	background-position: center;
+	background-position: 0 0;
 	
 	min-height: 100%;
 	
@@ -11,7 +11,10 @@
 	}
 	
 	.jumbotron {
-		background-color: #A5C6EC;
+		h3 {
+			margin-top: 0;
+			margin-bottom: 1em;
+		}
 	}
 }
 
@@ -39,11 +42,13 @@
     cursor:pointer;
 }
 
-.welcome-search {
-	h3 {
-		margin-top: 0;
-		margin-bottom: 1em;
-	}
+#start-to-finish {
+	background-color: rgb(86, 176, 86);
+	color: white;
+}
+
+#welcome-search {
+	background-color: #A5C6EC;
 	
 	.input-group {
 		
@@ -142,7 +147,6 @@
 }
 
 .intro-box {
-	margin-bottom: 20px;
 	padding: 0 10px 10px 10px;
 	
 	.panel-box {
@@ -260,4 +264,31 @@
 	video {
 		width: 100%;
 	}
+}
+
+#start-chooser {
+	padding-top: 2em;
+}
+
+#choices {
+	margin-top: 2em;
+}
+
+#start-here {
+	margin-top: 2em;
+}
+
+.my-progress {
+}
+
+#my-progress {
+	transform: translateX(500px);
+	transition: transform .5s ease-in-out;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: rgba(50, 75, 200, .5);
+}
+
+#right-col {
+	overflow-x: hidden;
 }

@@ -33,8 +33,12 @@ requirejs.config({
 
 // NOTE: Couldn't use embed-responsive-4by3 for the iframe (even though it made sizing automatic) because it didn't (easily) work with affix's fixed positioning
 
-require(["holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results", "joyride", "coach-marks"], function () {
+require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results", "joyride", "coach-marks"], function (domReady) {
 
+	domReady(function () {
+		sizeToFit();
+	});
+	
 	var v = $(".toc-viewer").TOCViewer();
 	$(".search-results-container").SearchResults();
 	
@@ -58,6 +62,14 @@ require(["holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results
 		w = $(".task-steps").width();
 		var margin = (container_width - w) * .5;
 		$(".task-steps.solo").css("margin-left", margin);
+		
+		var a = $("#welcome-search").outerHeight();
+		var b = $("#start-to-finish").outerHeight();
+		if (a < b) {
+			$("#welcome-search").outerHeight(b);
+		} else if (b < a) {
+			$("#start-to-finish").outerHeight(a);
+		}
 	}
 	
 	function onWatchOrTryButton (event) {						
@@ -113,13 +125,14 @@ require(["holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results
 		sr.doit();
 
 		$(".go-to-task").off("click");
-		$(".do-watch--it").off("click");
+		$(".do-watch-it").off("click");
 		
 		$(".go-to-task").click(onGoToTask);
 		$(".do-watch-it").click(onDoWatchIt);
 		
 		$("#taskpane").addClass("hidden");
 		$("#homepane").addClass("hidden");
+		$("#progress").removeClass("hidden");
 		$("#searchpane").removeClass("hidden");
 		$("body").css("padding-top", 80);
 		
@@ -135,6 +148,8 @@ require(["holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results
 		$("#searchpane").addClass("hidden");
 		$("#taskpane").removeClass("hidden");
 
+		$("#progress").removeClass("hidden");
+
 		$("#toc-button").removeClass("hidden");
 		$("#search-form").removeClass("hidden");
 		$(".back-to-search").addClass("hidden");
@@ -149,17 +164,16 @@ require(["holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results
 	}
 	
 	function onHomeButton () {
-		console.log("home");
-		
 		$("#searchpane").addClass("hidden");
 		$("#taskpane").addClass("hidden");
 		$("#homepane").removeClass("hidden");
 		
-		$("#toc-button").addClass("hidden");
+		$("#toc-button").removeClass("hidden");
 		$(".back-to-search").addClass("hidden");
 		$("body").css("padding-top", 50);
 		
 		$("#search-form").addClass("hidden");
+		$("#progress").removeClass("hidden");
 	}
 
 	function checkForCaptivate () {
@@ -187,12 +201,24 @@ require(["holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results
 		$("#coach-marks").CoachMarks().CoachMarks("instance").open();
 	}
 	
+	function onShowProgress () {
+		$(".my-progress").toggleClass("showing");
+		
+		if ($(".my-progress").hasClass("showing")) {
+			$(".my-progress").css("transform", "translateX(0)");
+			$("#searchpane #left-side").removeClass("col-xs-12").addClass("col-xs-9");
+			$("#searchpane #my-progress-clone-holder").removeClass("hidden").addClass("col-xs-3");
+		} else {
+			$(".my-progress").css("transform", "translateX(500px)");
+			$("#searchpane #left-side").removeClass("col-xs-9").addClass("col-xs-12");
+			$("#searchpane #my-progress-clone-holder").removeClass("col-xs-3").addClass("hidden");
+		}
+	}
+	
 	$('[data-toggle="popover"]').popover({ html: true });
 	
 	$(window).resize(sizeToFit);
-	
-	sizeToFit();
-	
+		
 	$(".hidden-on-startup").removeClass("hidden");
 	
 	$(".task-steps").addClass("solo");
@@ -205,6 +231,8 @@ require(["holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results
 	$("#back-button").click(onHomeButton);
 	$(".navmenu-nav li").click(onDoSearch);
 	$("#learn-more").click(onGoToTask);
+	$("#progress").click(onShowProgress);
+	$(".go-to-task").click(onGoToTask);
 	
 	// manage z-index of side-menu with scrolling content
 	$("#side-menu").on("shown.bs.offcanvas", function () { $("#side-menu").css( { "z-index":  1 } ); });
@@ -212,14 +240,16 @@ require(["holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results
 	$("#side-menu").on("hide.bs.offcanvas", function () { $("#side-menu").css( { "z-index": -1 } ); });
 	$("#side-menu").on("hidden.bs.offcanvas", function () { $("#side-menu").css( { display: "none" } ); });
 		
-	$("#feature-tour").click(onShowFeatures);
+	$("#help").click(onShowFeatures);
 	
 	$("body").on("hide.bs.modal", function () { $("video")[0].pause(); });
+	
+	$("#my-progress").clone().appendTo("#my-progress-clone-holder");
 	
 	//var inst = v.TOCViewer("instance");
 	//inst.doit();
 	
-	var m = $(window).height() - $("#top-part").outerHeight() - $("#bottom-part").outerHeight() - $("#top-part").offset().top;
+	var m = $(window).height() - $("#top-part").outerHeight() - $("#top-part").offset().top;
 	if (m > 0) {
 		$("#top-part").css("margin-bottom", m);
 	}

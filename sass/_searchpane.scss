@@ -25,26 +25,7 @@
 			border-bottom: 1px solid red;
 		}
 	}
-	
-	.task-preview {
-		cursor: pointer;
-		overflow: hidden;
 		
-		transition: background-color .25s ease-in-out;
-		
-		&:hover {
-			background-color: rgb(193, 226, 192);
-			border: 1px solid rgb(92, 178, 73);
-		}
-		
-		h3 {
-			overflow: hidden;
-			height: 2em;
-			margin-top: 0px;
-			margin-bottom: 20px;
-		}
-	}
-	
 	.checkmark {
 		position: absolute;
 		z-index: 100;
@@ -52,6 +33,25 @@
 		bottom: 0;
 		left: 50%;
 		transform: translateX(-50%);
+	}
+}
+
+.task-preview {
+	cursor: pointer;
+	overflow: hidden;
+	
+	transition: background-color .25s ease-in-out;
+	
+	&:hover {
+		background-color: rgb(193, 226, 192);
+		border: 1px solid rgb(92, 178, 73);
+	}
+	
+	h3 {
+		overflow: hidden;
+		height: 2em;
+		margin-top: 0px;
+		margin-bottom: 20px;
 	}
 }
 

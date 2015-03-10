@@ -14,6 +14,7 @@
 	<link href="css/main.css" rel="stylesheet">
 	
 	<link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>	
+	<link href='http://fonts.googleapis.com/css?family=Martel+Sans:400,800' rel='stylesheet' type='text/css'>
 	
 	<script	data-main="main" src="js/require.js"></script>
 </head>
@@ -25,7 +26,7 @@
 <div id="side-menu" class="navmenu navmenu-que navmenu-fixed-left hidden hidden-on-startup">
 	<a class="navmenu-brand">Contents</a>
 	<ul class="nav navmenu-nav">
-		<li><a>How to do something with Windows 10</a></li>
+		<li><a>Installing Windows</a></li>
 		<li class="active"><a>How to do that one weird thing with Windows 10</a></li>
 		<li><a>How do this other thing with Windows 10</a></li>
 		<li><a>One final thing to do with Windows 10</a></li>
@@ -47,14 +48,15 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left">
 					<li>
-						<a id="home-button"><img src="images/que.png"/> Interactive <span class="normal">Windows 10</span></a>
+						<a id="home-button"><span class="label label-info">Home</span> <img src="images/que.png"/> Interactive <span class="normal">Windows 10 </span></a>
 					</li>
 					<li>
-						<a id="toc-button" class="hidden" data-toggle="offcanvas" data-target=".navmenu" data-autohide="false" data-canvas="#main-contents"><i class="fa fa-list"></i> Contents</a>
+						<a id="toc-button" class="" data-toggle="offcanvas" data-target=".navmenu" data-autohide="false" data-canvas="#main-contents"><i class="fa fa-list"></i> Contents</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li data-coach="Access your account information here." data-coach-pos="bottom"><a href="#about">Account</a></li>
+					<li><a id="progress">My Progress</a></li>
+					<li data-coach="Stuck? Get help here." data-coach-pos="bottom"><a id="help">Help</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -63,7 +65,7 @@
 		<div class="container">
 			<ul class="nav navbar-nav navbar-left">
 				<li>
-					<a id="back-button">Go back to search again</a>
+					<a id="back-button">Try search again</a>
 				</li>
 			</ul>
 		</div>
@@ -190,96 +192,91 @@
 			</div>
 			
 			<div class="footer row">
-				<div class="left col-md-2">
+				<div class="left col-xs-2">
 				</div>
-				<div class="right col-md-8">
+				<div class="right col-xs-4">
 					<div class="panel panel-primary">
-						<div class="panel-heading">Other Tasks You Should Master:</div>
+						<div class="panel-heading">Next Task In The Course:</div>
 						<div class="panel-body">
-							<div class="col-xs-6 col-md-3">
-								<a class="thumbnail">
-									<img data-src="holder.js/100%x300">
-								</a>
+							<div class="thumbnail task-preview"><div class="caption"><h3>Installing Office</h3><div class="btn-group btn-group-justified"><a class="btn btn-primary do-watch-it" role="button">Watch It</a><a class="btn btn-success do-watch-it" role="button">Try It</a></div></div></div>
+						</div>
+					</div>
+				</div>			
+				<div class="right col-xs-4">
+					<div class="panel panel-primary">
+						<div class="panel-heading">Related Tasks:</div>
+						<div class="panel-body">
+							<div class="col-xs-4">
+								<div class="thumbnail task-preview"><div class="caption"><h3>Related Task 1</h3><div class="btn-group btn-group-justified"><a class="btn btn-primary do-watch-it" role="button">Watch It</a><a class="btn btn-success do-watch-it" role="button">Try It</a></div></div></div>
 							</div>
-							<div class="col-xs-6 col-md-3">
-								<a class="thumbnail">
-									<img data-src="holder.js/100%x300">
-								</a>
+							<div class="col-xs-4">
+								<div class="thumbnail task-preview"><div class="caption"><h3>Related Task 2</h3><div class="btn-group btn-group-justified"><a class="btn btn-primary do-watch-it" role="button">Watch It</a><a class="btn btn-success do-watch-it" role="button">Try It</a></div></div></div>
 							</div>
-							<div class="col-xs-6 col-md-3">
-								<a class="thumbnail">
-									<img data-src="holder.js/100%x300">
-								</a>
-							</div>
-							<div class="col-xs-6 col-md-3">
-								<a class="thumbnail">
-									<img data-src="holder.js/100%x300">
-								</a>
+							<div class="col-xs-4">
+								<div class="thumbnail task-preview"><div class="caption"><h3>Next Result</h3><div class="btn-group btn-group-justified"><a class="btn btn-primary do-watch-it" role="button">Watch It</a><a class="btn btn-success do-watch-it" role="button">Try It</a></div></div></div>
 							</div>
 						</div>
 					</div>
 				</div>			
-				<div class="left col-md-2">
+				<div class="left col-xs-2">
 				</div>
 			</div>
 		</div>
 	</div>
 	
 	<div id="searchpane" class="hidden">
-		<div class="container-fluid search-results-container">
+		<div>
+			<div id="left-side" class="col-xs-12">
+				<div class="container-fluid search-results-container">
+				</div>
+			</div>
+			<div id="my-progress-clone-holder" class="hidden">
+			</div>
 		</div>
+		<div class="clearfix"></div>
 		<div class="search-footer">
 		</div>
 	</div>
 	
 	<div id="homepane" class="hidden hidden-on-startup">
 		<div id="top-part" class="container-fluid">
-			<div class="col-md-3">
-				<div id="side-menu2" class="navmenu navmenu-que">
-					<a class="navmenu-brand">Contents</a>
-					<ul class="nav navmenu-nav">
-						<li><a>How to do something with Windows 10</a></li>
-						<li class="active"><a>How to do that one weird thing with Windows 10</a></li>
-						<li><a>How do this other thing with Windows 10</a></li>
-						<li><a>One final thing to do with Windows 10</a></li>
-					</ul>
-				</div>
+			<div id="left-col" class="col-md-2">
 			</div><!--
-			--><div class="col-md-6">
-				<div class="row">
-					<div class="col-xs-12 intro-box">
-						<div id="show-popular" class="panel-box">
-							<div class="panel-content">
-								<h4>See Our Most Popular Topics</h4>
+			--><div id="center-col" class="col-md-8">
+				<div id="start-chooser" class="row">
+					<h1 class="headline text-center blue-ish">Welcome to <span class="label label-que">Que Interactive</span> Windows 10</h1>
+					<hr class="examplefour"/>
+					<h3 id="start-here" class="headline text-center">Start Here:</h3>
+					<div id="choices" class="row">
+						<div class="col-xs-6 intro-box">
+							<div id="start-to-finish" class="jumbotron">
+								<h3>Follow the Course:</h3>
+								<button type="button" class="go-to-task btn btn-labeled btn-primary"><span class="btn-label">Next Up <i class="fa fa-arrow-right"></i></span>Installing Windows</button>
+								<!--
+								<button class="btn btn-primary btn-lg btn-block">
+									Installing Windows
+								</button>
+								-->
 							</div>
 						</div>
-						<div class="panel-box">
-						</div>
-						<div id="feature-tour" class="panel-box">
-							<div class="panel-content">
-								<h4>Show Me the Features</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="jumbotron welcome-search">
-							<h3>Browse the tasks in this course</h3>
-							<div class="input-group">
-								<input type="text" class="form-control search-form input-large" placeholder="Search for tasks to learn" data-coach="Find what you want to learn by typing something here." data-coach-pos="bottom" data-coach-arrow="ne">
-								<span class="input-group-btn">
-									<button class="btn btn-primary search-button">
-										<i class="fa fa-search fa-lg"></i>
-									</button>
-								</span>
+						<div class="col-xs-6">
+							<div id="welcome-search" class="jumbotron">
+								<h3>Browse for Tasks in the Course:</h3>
+								<div class="input-group">
+									<input type="text" class="form-control search-form input-large" placeholder="Search" data-coach="Find what you want to learn by typing something here." data-coach-pos="bottom" data-coach-arrow="ne">
+									<span class="input-group-btn">
+										<button class="btn btn-primary search-button">
+											<i class="fa fa-search fa-lg"></i>
+										</button>
+									</span>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div><!--
-			--><div class="col-md-3">
-				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			--><div id="right-col" class="col-md-2">
+				<div class="panel-group my-progress" id="my-progress" role="tablist" aria-multiselectable="true">
 					<div class="panel panel-default">
 						<div class="panel-heading" role="tab" id="headingOne">
 							<h4 class="panel-title">
@@ -312,6 +309,7 @@
 							</div>
 						</div>
 					</div>
+					
 					<div class="panel panel-default">
 						<div class="panel-heading" role="tab" id="headingThree">
 							<h4 class="panel-title">
@@ -323,7 +321,7 @@
 						</div>
 					</div>
 	
-					<div class="panel panel-default">
+					<div class="panel panel-success">
 						<div class="panel-heading" role="tab" id="headingThree">
 							<h4 class="panel-title">
 								Total Tasks Viewed
@@ -337,6 +335,29 @@
 							</div>
 						</div>
 					</div>
+					
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingThree">
+							<h4 class="panel-title">
+								Bookmarks
+							</h4>
+						</div>
+						<div class="panel-body">
+							How to Ressurrect Clippy
+						</div>
+					</div>
+
+					<div class="panel panel-info">
+						<div class="panel-heading" role="tab" id="headingThree">
+							<h4 class="panel-title">
+								Notes
+							</h4>
+						</div>
+						<div class="panel-body">
+							How to Open the Control Panel
+						</div>
+					</div>
+					
 				</div>				
 			</div>
 		</div>
