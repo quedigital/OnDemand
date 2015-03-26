@@ -1,532 +1,352 @@
-/* line 4, ../sass/_all.scss */
 body {
   padding-top: 50px;
-  background-color: #F2C694;
-}
+  background-color: #F2C694; }
 
-/* line 9, ../sass/_all.scss */
 #main-bar {
-  border: none;
-}
+  border: none; }
 
-/* line 16, ../sass/_all.scss */
 .inherit-height {
-  height: inherit;
-}
+  height: inherit; }
 
-/* line 20, ../sass/_all.scss */
 #home-button {
   color: white;
   font-weight: bold;
-  font-size: 18px;
-}
-/* line 25, ../sass/_all.scss */
-#home-button img {
-  height: 16px;
-}
+  font-size: 18px; }
+  #home-button img {
+    height: 16px; }
 
-/* line 33, ../sass/_all.scss */
 #side-menu {
   padding-top: 100px;
   z-index: -1;
   display: none;
-  bottom: auto;
-}
+  bottom: auto; }
 
-/* line 40, ../sass/_all.scss */
 .back-to-search {
-  background-color: #334f3c;
-}
-/* line 43, ../sass/_all.scss */
-.back-to-search #back-button {
-  color: white;
-}
+  background-color: #334f3c; }
+  .back-to-search #back-button {
+    color: white; }
 
-/* line 48, ../sass/_all.scss */
 .normal {
   font-weight: normal;
-  color: #313a4c;
-}
+  color: #313a4c; }
 
-/* line 53, ../sass/_all.scss */
 hr.examplefour {
   border: 0;
   height: 3px;
-  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(54, 200, 44, 0.75), rgba(0, 0, 0, 0));
-  background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(54, 200, 44, 0.75), rgba(0, 0, 0, 0));
-  background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(54, 200, 44, 0.75), rgba(0, 0, 0, 0));
-  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(54, 200, 44, 0.75), rgba(0, 0, 0, 0));
-}
+  background-image: -webkit-linear-gradient(left, transparent, rgba(54, 200, 44, 0.75), transparent);
+  background-image: -moz-linear-gradient(left, transparent, rgba(54, 200, 44, 0.75), transparent);
+  background-image: -ms-linear-gradient(left, transparent, rgba(54, 200, 44, 0.75), transparent);
+  background-image: -o-linear-gradient(left, transparent, rgba(54, 200, 44, 0.75), transparent); }
 
-/* line 62, ../sass/_all.scss */
 .headline {
   font-family: 'Martel Sans', sans-serif;
-  font-weight: 800;
-}
+  font-weight: 800; }
 
-/* line 67, ../sass/_all.scss */
 .blue-ish {
-  color: darkblue;
-}
+  color: darkblue; }
 
-/* line 71, ../sass/_all.scss */
 .label-que {
   background-color: black;
   padding-bottom: 0;
-  vertical-align: middle;
-}
+  vertical-align: middle; }
 
-/* line 1, ../sass/_taskpane.scss */
 #search-form {
   position: absolute;
   width: 100%;
   left: 0;
-  text-align: center;
-}
+  text-align: center; }
 
-/* line 8, ../sass/_taskpane.scss */
 #taskpane {
   background-color: white;
-  display: block;
-}
+  display: block; }
 
-/* line 13, ../sass/_taskpane.scss */
 #masthead {
   min-height: 270px;
   background-color: #000044;
-  color: #aaaacc;
-}
+  color: #aaaacc; }
 
-/* line 19, ../sass/_taskpane.scss */
 #masthead h1 {
   font-size: 55px;
-  line-height: 1.25em;
-}
+  line-height: 1.25em; }
 
-/* line 24, ../sass/_taskpane.scss */
 #masthead .well {
   margin-top: 13%;
   background-color: #111155;
-  border-color: #000033;
-}
+  border-color: #000033; }
 
-/* line 30, ../sass/_taskpane.scss */
 .icon-bar {
-  background-color: #fff;
-}
+  background-color: #fff; }
 
 @media screen and (min-width: 768px) {
-  /* line 35, ../sass/_taskpane.scss */
   #masthead h1 {
-    font-size: 100px;
-  }
-}
-/* line 40, ../sass/_taskpane.scss */
+    font-size: 100px; } }
 .navbar-bright {
   background-color: #56B056;
-  color: #fff;
-}
+  color: #fff; }
 
-/* line 45, ../sass/_taskpane.scss */
 .navbar-bright a {
-  color: #0D0D2F;
-}
-/* line 48, ../sass/_taskpane.scss */
-.navbar-bright a:hover {
-  color: #8686b6;
-}
+  color: #0D0D2F; }
+  .navbar-bright a:hover {
+    color: #8686b6; }
 
-/* line 53, ../sass/_taskpane.scss */
 #masthead a, #masthead .lead {
-  color: #D8DBA0;
-}
+  color: #D8DBA0; }
 
-/* line 57, ../sass/_taskpane.scss */
 .navbar-bright li > a:hover {
-  background-color: #000033;
-}
+  background-color: #000033; }
 
-/* line 61, ../sass/_taskpane.scss */
 .task-container {
   padding-top: 1em;
-  background-color: #dedfd4;
-}
+  background-color: #dedfd4; }
 
-/* line 66, ../sass/_taskpane.scss */
 .task-intro {
-  padding-bottom: 2em;
-}
-/* line 69, ../sass/_taskpane.scss */
-.task-intro .task-desc {
-  padding-top: 2em;
-}
-/* line 73, ../sass/_taskpane.scss */
-.task-intro .poster {
-  width: 100%;
-}
-/* line 77, ../sass/_taskpane.scss */
-.task-intro h2 {
-  color: white;
-}
+  padding-bottom: 2em; }
+  .task-intro .task-desc {
+    padding-top: 2em; }
+  .task-intro .poster {
+    width: 100%; }
+  .task-intro h2 {
+    color: white; }
 
-/* line 82, ../sass/_taskpane.scss */
 .task-buttons {
   padding-top: 2em;
   padding-bottom: 2em;
-  background-color: #9597b5;
-}
+  background-color: #9597b5; }
 
-/* line 88, ../sass/_taskpane.scss */
 .task-steps {
-  /*visibility: hidden;*/
-}
-/* line 91, ../sass/_taskpane.scss */
-.task-steps.animated {
-  transition: all .75s ease-in-out;
-}
-/* line 95, ../sass/_taskpane.scss */
-.task-steps.solo {
-  visibility: visible;
-}
-/* line 99, ../sass/_taskpane.scss */
-.task-steps.dual {
-  visibility: visible;
-  padding-left: 5%;
-}
-/* line 104, ../sass/_taskpane.scss */
-.task-steps h2 {
-  color: #30517c;
-  text-shadow: -1px 1px 3px rgba(0, 0, 0, 0.3);
-}
+  /*visibility: hidden;*/ }
+  .task-steps.animated {
+    transition: all .75s ease-in-out; }
+  .task-steps.solo {
+    visibility: visible; }
+  .task-steps.dual {
+    visibility: visible;
+    padding-left: 5%; }
+  .task-steps h2 {
+    color: #30517c;
+    text-shadow: -1px 1px 3px rgba(0, 0, 0, 0.3); }
 
-/* line 112, ../sass/_taskpane.scss */
 .task-demo iframe.affix {
-  top: 50px;
-}
-/* line 116, ../sass/_taskpane.scss */
+  top: 50px; }
 .task-demo iframe.affix-bottom {
   left: 15px !important;
   bottom: 0;
-  position: absolute;
-}
+  position: absolute; }
 
-/* line 124, ../sass/_taskpane.scss */
 .footer {
   background-color: #BABAE0;
-  border-top: 5px solid #8d8cc5;
-}
-/* line 128, ../sass/_taskpane.scss */
-.footer .left {
-  padding: 20px 25px 0 25px;
-}
-/* line 132, ../sass/_taskpane.scss */
-.footer .right {
-  padding: 20px 25px 0 25px;
-}
+  border-top: 5px solid #8d8cc5; }
+  .footer .left {
+    padding: 20px 25px 0 25px; }
+  .footer .right {
+    padding: 20px 25px 0 25px; }
 
-/* line 137, ../sass/_taskpane.scss */
 .timesaver kbd {
-  font-style: normal;
-}
+  font-style: normal; }
 
-/* line 141, ../sass/_taskpane.scss */
 .did-you-know {
   display: block;
   width: 10em;
   margin-left: auto;
-  margin-right: 0;
-}
+  margin-right: 0; }
 
-/* line 1, ../sass/_searchpane.scss */
 #searchpane {
   background-color: #caf1fa;
   padding-top: 25px;
-  min-height: 700px;
-}
+  min-height: 700px; }
 
-/* line 9, ../sass/_searchpane.scss */
 .search-result .marker-new {
   position: relative;
   float: right;
-  transform: rotate(45deg);
-}
-/* line 14, ../sass/_searchpane.scss */
-.search-result .marker-new:before {
-  content: "New";
-  position: absolute;
-  display: block;
-  width: 6em;
-  color: #dcef39;
-  background-color: rgba(255, 0, 0, 0.5);
-  text-align: center;
-  height: 1.6em;
-  transform: translateX(-50%) translateY(50%);
-  border-top: 1px solid red;
-  border-bottom: 1px solid red;
-}
-/* line 29, ../sass/_searchpane.scss */
+  transform: rotate(45deg); }
+  .search-result .marker-new:before {
+    content: "New";
+    position: absolute;
+    display: block;
+    width: 6em;
+    color: #dcef39;
+    background-color: rgba(255, 0, 0, 0.5);
+    text-align: center;
+    height: 1.6em;
+    transform: translateX(-50%) translateY(50%);
+    border-top: 1px solid red;
+    border-bottom: 1px solid red; }
 .search-result .checkmark {
   position: absolute;
   z-index: 100;
   width: 50px;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
-}
+  transform: translateX(-50%); }
 
-/* line 39, ../sass/_searchpane.scss */
 .task-preview {
   cursor: pointer;
   overflow: hidden;
-  transition: background-color .25s ease-in-out;
-}
-/* line 45, ../sass/_searchpane.scss */
-.task-preview:hover {
-  background-color: #c1e2c0;
-  border: 1px solid #5cb249;
-}
-/* line 50, ../sass/_searchpane.scss */
-.task-preview h3 {
-  overflow: hidden;
-  height: 2em;
-  margin-top: 0px;
-  margin-bottom: 20px;
-}
+  transition: background-color .25s ease-in-out; }
+  .task-preview:hover {
+    background-color: #c1e2c0;
+    border: 1px solid #5cb249; }
+  .task-preview h3 {
+    overflow: hidden;
+    height: 2em;
+    margin-top: 0px;
+    margin-bottom: 20px; }
 
-/* line 58, ../sass/_searchpane.scss */
 .search-footer {
   height: 100px;
-  background: linear-gradient(to bottom, #caf1fa 0%, #1e5799 100%);
-}
+  background: linear-gradient(to bottom, #caf1fa 0%, #1e5799 100%); }
 
-/* line 64, ../sass/_searchpane.scss */
 #previewModal h3 {
-  margin-bottom: 1em;
-}
+  margin-bottom: 1em; }
 
-/* line 1, ../sass/_homepane.scss */
 #homepane {
   background: url(../images/windows10.jpg), white;
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: 0 0;
-  min-height: 100%;
-}
-/* line 9, ../sass/_homepane.scss */
-#homepane > div {
-  padding-top: 10px;
-}
-/* line 14, ../sass/_homepane.scss */
-#homepane .jumbotron h3 {
-  margin-top: 0;
-  margin-bottom: 1em;
-}
+  min-height: 100%; }
+  #homepane > div {
+    padding-top: 10px; }
+  #homepane .jumbotron h3 {
+    margin-top: 0;
+    margin-bottom: 1em; }
 
-/* line 21, ../sass/_homepane.scss */
 .vcenter {
   display: inline-block;
   vertical-align: middle;
-  float: none;
-}
+  float: none; }
 
-/* line 27, ../sass/_homepane.scss */
 #marketing-row {
   background-color: rgba(134, 155, 220, 0.25);
-  min-height: 200px;
-}
-/* line 31, ../sass/_homepane.scss */
-#marketing-row .carousel-control {
-  background: none;
-}
+  min-height: 200px; }
+  #marketing-row .carousel-control {
+    background: none; }
 
-/* line 36, ../sass/_homepane.scss */
 .search-form {
-  border-radius: 30px 0px 0px 30px;
-}
+  border-radius: 30px 0px 0px 30px; }
 
-/* line 40, ../sass/_homepane.scss */
 .search-button {
   border-radius: 0px 30px 30px 0px;
-  cursor: pointer;
-}
+  cursor: pointer; }
 
-/* line 45, ../sass/_homepane.scss */
 #start-to-finish {
   background-color: #56b056;
-  color: white;
-}
+  color: white; }
 
-/* line 50, ../sass/_homepane.scss */
 #welcome-search {
-  background-color: #A5C6EC;
-}
-/* line 55, ../sass/_homepane.scss */
-#welcome-search .input-group input {
-  font-size: 20px;
-  padding-left: 1em;
-  padding-right: 1em;
-}
-/* line 61, ../sass/_homepane.scss */
-#welcome-search .input-group .input-group-btn {
-  height: 20px;
-}
-/* line 64, ../sass/_homepane.scss */
-#welcome-search .input-group .input-group-btn button {
-  height: 100%;
-  box-sizing: content-box;
-}
+  background-color: #A5C6EC; }
+  #welcome-search .input-group input {
+    font-size: 20px;
+    padding-left: 1em;
+    padding-right: 1em; }
+  #welcome-search .input-group .input-group-btn {
+    height: 20px; }
+    #welcome-search .input-group .input-group-btn button {
+      height: 100%;
+      box-sizing: content-box; }
 
-/* line 72, ../sass/_homepane.scss */
 .product-name {
   color: #222;
-  text-shadow: -1px 1px 1px #3f3e5a;
-}
+  text-shadow: -1px 1px 1px #3f3e5a; }
 
-/* line 77, ../sass/_homepane.scss */
 .credits {
   padding-top: 10px;
   background-color: #5c5c61;
-  color: #b6b7c2;
-}
+  color: #b6b7c2; }
 
-/* line 84, ../sass/_homepane.scss */
 #marketing-carousel .carousel-inner > .item > img {
-  margin: 0 auto;
-}
+  margin: 0 auto; }
 
-/* line 89, ../sass/_homepane.scss */
 .badge-list {
   white-space: nowrap;
   overflow: hidden;
   margin-top: 1em;
-  text-align: center;
-}
-/* line 95, ../sass/_homepane.scss */
-.badge-list img {
-  display: inline-block;
-  width: 33%;
-  padding: 0 5px 0 5px;
-}
+  text-align: center; }
+  .badge-list img {
+    display: inline-block;
+    width: 33%;
+    padding: 0 5px 0 5px; }
 
-/* line 102, ../sass/_homepane.scss */
 #side-menu2 {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  border-radius: 0;
-}
+  border-radius: 0; }
 
-/* line 111, ../sass/_homepane.scss */
 .navmenu-que {
   background-color: #f5a346;
-  border: none;
-}
-/* line 115, ../sass/_homepane.scss */
-.navmenu-que .navmenu-brand {
-  font-weight: bold;
-  color: white !important;
-  border-bottom: 1px solid white;
-  padding-bottom: 20px;
-}
-/* line 122, ../sass/_homepane.scss */
-.navmenu-que .navmenu-brand img {
-  height: 16px;
-}
-/* line 127, ../sass/_homepane.scss */
-.navmenu-que .nav > li {
-  cursor: pointer;
-}
-/* line 130, ../sass/_homepane.scss */
-.navmenu-que .nav > li a {
-  color: black;
-}
-/* line 134, ../sass/_homepane.scss */
-.navmenu-que .nav > li.active a {
-  background-color: #9d7138;
-  color: white;
-}
-/* line 138, ../sass/_homepane.scss */
-.navmenu-que .nav > li.active a:hover {
-  background-color: #453520;
-}
-/* line 143, ../sass/_homepane.scss */
-.navmenu-que .nav > li:hover {
-  background-color: #f5cb92;
-}
+  border: none; }
+  .navmenu-que .navmenu-brand {
+    font-weight: bold;
+    color: white !important;
+    border-bottom: 1px solid white;
+    padding-bottom: 20px; }
+    .navmenu-que .navmenu-brand img {
+      height: 16px; }
+  .navmenu-que .nav > li {
+    cursor: pointer; }
+    .navmenu-que .nav > li a {
+      color: black; }
+    .navmenu-que .nav > li.active a {
+      background-color: #9d7138;
+      color: white; }
+      .navmenu-que .nav > li.active a:hover {
+        background-color: #453520; }
+    .navmenu-que .nav > li:hover {
+      background-color: #f5cb92; }
 
-/* line 149, ../sass/_homepane.scss */
-.intro-box {
-  padding: 0 10px 10px 10px;
-}
-/* line 152, ../sass/_homepane.scss */
 .intro-box .panel-box {
   height: 150px;
   float: left;
   width: 33%;
   position: relative;
-  cursor: pointer;
-}
-/* line 158, ../sass/_homepane.scss */
-.intro-box .panel-box .panel-content {
-  text-shadow: -1px 1px 2px black;
-  /* centering:
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  */
-}
-/* line 171, ../sass/_homepane.scss */
-.intro-box .panel-box:hover::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.25);
-}
-/* line 183, ../sass/_homepane.scss */
+  cursor: pointer; }
+  .intro-box .panel-box .panel-content {
+    text-shadow: -1px 1px 2px black;
+    /* centering:
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    */ }
+  .intro-box .panel-box:hover::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.25); }
 .intro-box .panel-box:nth-child(1) {
   background: url(../images/stock1.jpg);
   background-size: cover;
-  color: white;
-}
-/* line 188, ../sass/_homepane.scss */
-.intro-box .panel-box:nth-child(1) .play-overlay {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
-  -webkit-transform: translateY(-50%) translateX(-50%);
-  text-align: center;
-}
-/* line 197, ../sass/_homepane.scss */
-.intro-box .panel-box:nth-child(1) .panel-content {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-}
-/* line 208, ../sass/_homepane.scss */
+  color: white; }
+  .intro-box .panel-box:nth-child(1) .play-overlay {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    text-align: center; }
+  .intro-box .panel-box:nth-child(1) .panel-content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center; }
 .intro-box .panel-box:nth-child(3) {
   background: url(../images/stock3.jpg);
   background-size: cover;
-  color: white;
-}
-/* line 213, ../sass/_homepane.scss */
-.intro-box .panel-box:nth-child(3) .panel-content {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  text-align: right;
-  right: 1em;
-  text-shadow: -1px 1px 2px darkblue;
-}
+  color: white; }
+  .intro-box .panel-box:nth-child(3) .panel-content {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: right;
+    right: 1em;
+    text-shadow: -1px 1px 2px darkblue; }
 
-/* line 225, ../sass/_homepane.scss */
 .coach.markcontainer {
   font-family: 'Permanent Marker', cursive;
   position: absolute;
@@ -534,79 +354,64 @@ hr.examplefour {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 10000;
-}
-/* line 234, ../sass/_homepane.scss */
-.coach.markcontainer:before {
-  position: absolute;
-  display: block;
-  content: "";
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-/* line 245, ../sass/_homepane.scss */
-.coach.markcontainer .mark {
-  display: block;
-  position: absolute;
-  width: auto;
-  height: auto;
-  text-align: left;
-  color: white;
-  background: none;
-  font-size: 24px;
-  line-height: 1.2em;
-}
-/* line 256, ../sass/_homepane.scss */
-.coach.markcontainer .mark img {
-  position: absolute;
-}
+  z-index: 10000; }
+  .coach.markcontainer:before {
+    position: absolute;
+    display: block;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); }
+  .coach.markcontainer .mark {
+    display: block;
+    position: absolute;
+    width: auto;
+    height: auto;
+    text-align: left;
+    color: white;
+    background: none;
+    font-size: 24px;
+    line-height: 1.2em; }
+    .coach.markcontainer .mark img {
+      position: absolute; }
 
-/* line 264, ../sass/_homepane.scss */
 .videopopup video {
-  width: 100%;
-}
+  width: 100%; }
 
-/* line 269, ../sass/_homepane.scss */
 #start-chooser {
-  padding-top: 2em;
-}
+  padding-top: 2em; }
 
-/* line 273, ../sass/_homepane.scss */
 #choices {
-  margin-top: 2em;
-}
+  margin-top: 2em; }
 
-/* line 277, ../sass/_homepane.scss */
 #start-here {
-  margin-top: 2em;
-}
+  margin-top: 2em; }
 
-/* line 284, ../sass/_homepane.scss */
-#my-progress {
+#progress-menu {
+  top: 51px;
+  background: none;
+  border: none; }
+
+#accordion {
+  /*
   transform: translateX(500px);
   transition: transform .5s ease-in-out;
+  */
   padding: 10px;
   border-radius: 10px;
-  background-color: rgba(50, 75, 200, 0.5);
-}
+  background-color: rgba(50, 75, 200, 0.5); }
 
-/* line 292, ../sass/_homepane.scss */
 #right-col {
-  overflow-x: hidden;
-}
+  overflow-x: hidden; }
 
 @font-face {
   font-family: 'icomoon';
   src: url("../fonts/icomoon.eot?harnvx");
   src: url("../fonts/icomoon.eot?#iefixharnvx") format("embedded-opentype"), url("../fonts/icomoon.woff?harnvx") format("woff"), url("../fonts/icomoon.ttf?harnvx") format("truetype"), url("../fonts/icomoon.svg?harnvx#icomoon") format("svg");
   font-weight: normal;
-  font-style: normal;
-}
-
-/* line 12, ../sass/_steps.scss */
+  font-style: normal; }
 [class^="icon-"], [class*=" icon-"] {
   font-family: 'icomoon';
   speak: none;
@@ -617,77 +422,58 @@ hr.examplefour {
   line-height: 1;
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  -moz-osx-font-smoothing: grayscale; }
 
-/* line 26, ../sass/_steps.scss */
 .icon-command:before {
-  content: "\e600";
-}
+  content: "\e600"; }
 
-/* line 32, ../sass/_steps.scss */
 .task-container h2 button {
-  margin-left: 2em;
-}
-/* line 37, ../sass/_steps.scss */
+  margin-left: 2em; }
 .task-container .step {
   position: relative;
   margin: 2rem 4rem 2rem 0rem;
-  cursor: pointer;
-}
-/* line 42, ../sass/_steps.scss */
-.task-container .step .number {
-  display: inline-block;
-  color: white;
-  font-weight: bold;
-  font-family: Futura;
-  font-size: 20px;
-  line-height: 30px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-/* line 56, ../sass/_steps.scss */
-.task-container .step .number:before {
-  content: "";
-  background-color: #a43;
-  display: block;
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
-}
-/* line 65, ../sass/_steps.scss */
-.task-container .step .number span {
-  position: absolute;
-  top: -1px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-}
-/* line 75, ../sass/_steps.scss */
-.task-container .step p {
-  margin: 0 2rem 0 4rem;
-  padding: .25rem .5rem;
-  transition: background-color ease-in-out 1s;
-}
-/* line 81, ../sass/_steps.scss */
-.task-container .step .current {
-  background-color: white;
-}
-/* line 86, ../sass/_steps.scss */
+  cursor: pointer; }
+  .task-container .step .number {
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+    font-family: Futura;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0; }
+    .task-container .step .number:before {
+      content: "";
+      background-color: #a43;
+      display: block;
+      width: 30px;
+      height: 30px;
+      border-radius: 15px; }
+    .task-container .step .number span {
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 100%;
+      text-align: center; }
+  .task-container .step p {
+    margin: 0 2rem 0 4rem;
+    padding: .25rem .5rem;
+    transition: background-color ease-in-out 1s; }
+  .task-container .step .current {
+    background-color: white; }
 .task-container .timesaver {
   margin: 1rem 4rem 1rem 4.5rem;
-  font-style: italic;
-}
-/* line 90, ../sass/_steps.scss */
-.task-container .timesaver::before {
-  content: "Timesaver";
-  text-transform: uppercase;
-  display: inline-block;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #35a;
-}
+  font-style: italic; }
+  .task-container .timesaver::before {
+    content: "Timesaver";
+    text-transform: uppercase;
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #35a; }
+
+/*# sourceMappingURL=main.css.map */

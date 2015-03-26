@@ -38,14 +38,78 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 	domReady(function () {
 		sizeToFit();
 	});
-	
+
+	var currentIndex = 1, currentType = undefined;
+
+	var toc =
+		[
+			{
+				title: "Creating Aliases",
+				html: "CreatingAliases.html",
+				"watch": {
+					html: "captivates/CreatingAliases-watchit/index.html",
+					completed: false,
+					keys: [
+						{ slide: 1, step: 1 },
+						{ slide: 2, step: 2 },
+						{ slide: 3, step: 3, sub: "#part1" },
+						{ slide: 4, step: 3, sub: "#part2" },
+						{ slide: 5, step: 3, sub: "#part3" },
+						{ slide: 6, step: 4 },
+						{ slide: 7, step: 5 },
+					]
+				},
+				"try": {
+					html: "CreatingAliases-tryit/index.html",
+					completed: false,
+					keys: [
+						{ slide: 1, step: 1 },
+						{ slide: 2, step: 2 },
+						{ slide: 3, step: 3, sub: "#part1" },
+						{ slide: 4, step: 3, sub: "#part2" },
+						{ slide: 5, step: 3, sub: "#part3" },
+						{ slide: 6, step: 4 },
+						{ slide: 7, step: 5 },
+					]
+				}
+			},
+			{
+				title: "Working with Files",
+				html: "WorkingWithFiles.html",
+				"watch": {
+					html: "captivates/workingwithfiles-watch/index.html",
+					completed: false,
+					keys: [
+						{ slide: 1, step: 1 },
+						{ slide: 2, step: 2 },
+						{ slide: 3, step: 3, sub: "#part1" },
+						{ slide: 4, step: 3, sub: "#part2" },
+						{ slide: 5, step: 4, sub: "#part1" },
+						{ slide: 6, step: 4, sub: "#part2" },
+					]
+				},
+				"try": {
+					html: "captivates/workingwithfiles-try/index.html",
+					completed: false,
+					keys: [
+						{ slide: 1, step: 1 },
+						{ slide: 2, step: 2 },
+						{ slide: 3, step: 3, sub: "#part1" },
+						{ slide: 4, step: 3, sub: "#part2" },
+						{ slide: 5, step: 4, sub: "#part1" },
+						{ slide: 6, step: 4, sub: "#part2" },
+					]
+				}
+			},
+		];
+
 	var v = $(".toc-viewer").TOCViewer();
 	$(".search-results-container").SearchResults();
 	
 	function sizeToFit () {
 		var screenHeight = $(window).height();
 		
-		$(".screenheight").height(screenHeight - 50);
+		$(".screenheight").css("min-height", screenHeight - 50);
 		
 		var bh = $("#main-bar").height();
 		var wh = $(window).innerHeight() - bh;
@@ -56,13 +120,16 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		var container_width = $(".task-demo").width();
 		var container_left = $(".task-steps").outerWidth();
 		
-		$("#captivate-iframe").css( { left: container_left + 15, width: container_width, maxHeight: wh, height: h } );
+		$(".task-demo iframe").css( { left: container_left + 15, width: container_width, maxHeight: wh, height: h } );
 		
 		container_width = $(".task-container").width();
 		w = $(".task-steps").width();
 		var margin = (container_width - w) * .5;
 		$(".task-steps.solo").css("margin-left", margin);
-		
+
+		// give the task steps a bottom margin so the Captivate can be seen as we scroll to the last step
+		$(".task-steps").css("margin-bottom", h * .5);
+
 		var a = $("#welcome-search").outerHeight();
 		var b = $("#start-to-finish").outerHeight();
 		if (a < b) {
@@ -92,32 +159,83 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		} else if (watchit) {
 			onDoWatchIt(event, false);
 		} else if (tryit) {
+			onDoTryIt(event, false);
 		}
 	}
-	
-	function onDoWatchIt (event, scrollTo) {
+
+    function setCaptivateMapping (keys) {
+        captivateMapping = keys;
+    }
+
+    function removeCaptivate () {
+		$(".task-demo iframe").remove();
+	}
+
+	function loadCaptivate (url) {
+		removeCaptivate();
+
+		var iframe = $("<iframe>").addClass("tutorial").attr({ frameborder: 0, src: url });
+
+		$(".task-demo").append(iframe);
+
+        $(".task-demo iframe").affix({
+            offset: {
+                top: function () {
+                    return $(".task-container").offset().top - $("#search-form").outerHeight(false);
+                },
+                bottom: function () {
+                    return $(".footer").outerHeight() - $("#search-form").outerHeight(false);
+                }
+            }
+        });
+	}
+
+	function getCaptivateFrameReady () {
 		if (event)
 			event.stopPropagation();
-		
+
 		if ($("#taskpane").hasClass("hidden")) {
 			onGoToTask(event);
 		}
-		
+
 		$(".task-steps.solo").removeClass("solo").addClass("dual").css("margin-left", 0);
-		
+
 		$(".task-demo.hidden").removeClass("hidden");
-		
+
 		sizeToFit();
-		
+
 		if (scrollTo != false) {
-			$(window).scrollTop($(".task-steps").offset().top - 50);
+            //var t = $(".task-steps").offset().top - 50;
+            //$("html, body").animate({ scrollTop: t }, 1500);
 		}
-		
-		setTimeout(function () {
-			window.cp.play();
-		}, 1500);
 	}
-	
+
+	function onDoWatchIt (event, scrollTo) {
+		getCaptivateFrameReady();
+
+        playIt("watch");
+	}
+
+	function onDoTryIt (event, scrollTo) {
+		getCaptivateFrameReady();
+
+        playIt("try");
+	}
+
+	function playIt (type) {
+        currentType = type;
+
+		var item = toc[currentIndex];
+
+		loadCaptivate(item[type].html);
+
+		var keys = item[type].keys;
+
+		setCaptivateMapping(keys);
+
+		checkForCaptivate();
+	}
+
 	function onDoSearch () {
 		$(window).scrollTop(0);
 		
@@ -155,6 +273,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		$(".back-to-search").addClass("hidden");
 		$("body").css("padding-top", 50);
 
+        $(".steps").load("pages/workingwithfiles.html", onStepsLoaded);
+
 		$(".task-steps").removeClass("animated");
 		
 		sizeToFit();
@@ -181,6 +301,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 			cp = window.frames[0].cpAPIInterface;
 			window.cp = cp;
 			cp_events = window.frames[0].cpAPIEventEmitter;
+            cp.pause();
+
 			onCaptivateLoaded();
 		} else {
 			setTimeout(checkForCaptivate, 100);
@@ -188,16 +310,52 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 	}
 	
 	function onCaptivateLoaded () {
-		window.cp.pause();
+        sizeToFit();
+
+		//window.cp.pause();
 		
 		// NOTE: this doesn't seem to fire from within an iFrame:
 		cp_events.addEventListener("CPAPI_MOVIESTART", function () { console.log("movie started!"); });
 
-		//cp_events.addEventListener("CPAPI_SLIDEENTER", onSlideEntered);
-		//cp_events.addEventListener("CPAPI_MOVIESTOP", onMovieStop);
+		cp_events.addEventListener("CPAPI_SLIDEENTER", onSlideEntered);
+		cp_events.addEventListener("CPAPI_MOVIESTOP", onMovieStop);
+
+        setTimeout(function () { cp.play(); }, 1500);
 	}
-	
-	function onShowFeatures () {
+
+    function onStepsLoaded () {
+        $('[data-toggle="popover"]').popover({ html: true });
+    }
+
+    function onMovieStop () {
+        var slide = getCurrentSlide();
+
+        if (slide == getNumberOfSlides()) {
+            onLessonComplete();
+        }
+    }
+
+    function getCurrentSlide () {
+        return cp.getCurrentSlideIndex();
+    }
+
+    // TODO: is there a Captivate method for this?
+    function getNumberOfSlides () {
+        return captivateMapping.length;
+    }
+
+    function onLessonComplete () {
+        setTimeout(showSuccessMessage, 1000);
+    }
+
+    function showSuccessMessage () {
+        var audio = $("#lesson-complete-audio")[0];
+        audio.play();
+
+        toc[currentIndex][currentType].completed = true;
+    }
+
+    function onShowFeatures () {
 		$("#coach-marks").CoachMarks().CoachMarks("instance").open();
 	}
 	
@@ -214,9 +372,45 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 			$("#searchpane #my-progress-clone-holder").removeClass("col-xs-3").addClass("hidden");
 		}
 	}
-	
-	$('[data-toggle="popover"]').popover({ html: true });
-	
+
+	function onSlideEntered (event) {
+		var slide = event.Data.slideNumber;
+
+        var screenHeight = $(window).height();
+
+        var centerPoint = screenHeight * .5;
+
+		for (var i = 0; i < captivateMapping.length; i++) {
+			if (captivateMapping[i].slide == slide) {
+				var step = captivateMapping[i].step;
+				var sub = captivateMapping[i].sub;
+				var number = $(".number span:contains('" + step + "')");
+				var stepDOM = number.parents(".step");
+
+				$(".current").removeClass("current");
+
+				var gotoDOM;
+
+				if (sub) {
+					gotoDOM = stepDOM.find(sub);
+				} else {
+					gotoDOM = stepDOM.find("p");
+				}
+
+                if (gotoDOM) {
+                    gotoDOM.addClass("current");
+
+                    var a = $("html, body").scrollTop();
+                    var t = gotoDOM.offset().top;
+                    var b = (a + t) - centerPoint;
+                    $("html, body").animate({scrollTop: b}, 2000);
+                }
+
+				break;
+			}
+		}
+	}
+
 	$(window).resize(sizeToFit);
 		
 	$(".hidden-on-startup").removeClass("hidden");
@@ -231,7 +425,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 	$("#back-button").click(onHomeButton);
 	$(".navmenu-nav li").click(onDoSearch);
 	$("#learn-more").click(onGoToTask);
-	$("#progress").click(onShowProgress);
+//	$("#progress").click(onShowProgress);
 	$(".go-to-task").click(onGoToTask);
 	
 	// manage z-index of side-menu with scrolling content
@@ -244,26 +438,15 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 	
 	$("body").on("hide.bs.modal", function () { $("video")[0].pause(); });
 	
-	$("#my-progress").clone().appendTo("#my-progress-clone-holder");
+	//$("#accordion").clone().appendTo("#my-progress-clone-holder");
 	
 	//var inst = v.TOCViewer("instance");
 	//inst.doit();
 	
+	/*
 	var m = $(window).height() - $("#top-part").outerHeight() - $("#top-part").offset().top;
 	if (m > 0) {
 		$("#top-part").css("margin-bottom", m);
 	}
-
-	$("#captivate-iframe").affix({
-		offset: {
-			top: function () { 
-				return $(".task-container").offset().top - $("#search-form").outerHeight(false);
-			},
-			bottom: function () {
-				return $(".footer").outerHeight() - $("#search-form").outerHeight(false);
-			}
-		}
-	});
-	
-	checkForCaptivate();
+	*/
 });

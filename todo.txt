@@ -1,4 +1,4 @@
-// TODO: hide TOC when something else is clicked on
+// TODO: put something at the end of the steps to take up the blank space there
 // TODO: pop-up when task is complete, with next task & other search results or related tasks
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -12,3 +12,8 @@
 // DONE: just 2 buttons on home screen
 // DONE: after each task, "Continue with next" or "Next in Search result" or "related Task"
 // DONE: better fonts for home screen
+// DONE: play "lesson complete" when done with slides
+// DONE: scroll to current step text as slides advance
+// DONE: "progress" sidebar doesn't appear at the correct times
+// DONE: pad steps frame with +/- height of captivate so scrolling doesn't begin until steps are almost off-screen
+// DONE: hide TOC when something else is clicked on

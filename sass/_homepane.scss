@@ -147,8 +147,6 @@
 }
 
 .intro-box {
-	padding: 0 10px 10px 10px;
-	
 	.panel-box {
 		height: 150px;
 		float: left;		
@@ -278,10 +276,13 @@
 	margin-top: 2em;
 }
 
-.my-progress {
+#progress-menu {
+	top: 51px;
+	background: none;
+	border: none;
 }
 
-#my-progress {
+#accordion {
 	transform: translateX(500px);
 	transition: transform .5s ease-in-out;
 	padding: 10px;
