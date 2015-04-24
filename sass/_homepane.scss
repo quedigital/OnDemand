@@ -283,7 +283,9 @@
 }
 
 #accordion {
+	/*
 	transform: translateX(500px);
+	*/
 	transition: transform .5s ease-in-out;
 	padding: 10px;
 	border-radius: 10px;

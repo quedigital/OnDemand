@@ -17,3 +17,6 @@
 // DONE: "progress" sidebar doesn't appear at the correct times
 // DONE: pad steps frame with +/- height of captivate so scrolling doesn't begin until steps are almost off-screen
 // DONE: hide TOC when something else is clicked on
+// DONE: make search results show all from toc
+// DONE: fix sizing/placement issue of hotspots in Player on initial load
+// DONE: watch and try mode

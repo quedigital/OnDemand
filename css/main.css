@@ -50,6 +50,9 @@ hr.examplefour {
   padding-bottom: 0;
   vertical-align: middle; }
 
+#contents-menu ul li a {
+  cursor: pointer; }
+
 #search-form {
   position: absolute;
   width: 100%;
@@ -397,8 +400,8 @@ hr.examplefour {
 #accordion {
   /*
   transform: translateX(500px);
-  transition: transform .5s ease-in-out;
   */
+  transition: transform .5s ease-in-out;
   padding: 10px;
   border-radius: 10px;
   background-color: rgba(50, 75, 200, 0.5); }

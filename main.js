@@ -44,10 +44,10 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 	var toc =
 		[
 			{
-				title: "Creating Aliases",
-				html: "CreatingAliases.html",
+				title: "Player Test Google 1",
+				html: "creating-aliases.html",
 				"watch": {
-					html: "captivates/CreatingAliases-watchit/index.html",
+					html: "/Authoring/Player/index.html?mode=watch",
 					completed: false,
 					keys: [
 						{ slide: 1, step: 1 },
@@ -60,7 +60,37 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 					]
 				},
 				"try": {
-					html: "CreatingAliases-tryit/index.html",
+					html: "/Authoring/Player/index.html?mode=try",
+					completed: false,
+					keys: [
+						{ slide: 1, step: 1 },
+						{ slide: 2, step: 2 },
+						{ slide: 3, step: 3, sub: "#part1" },
+						{ slide: 4, step: 3, sub: "#part2" },
+						{ slide: 5, step: 3, sub: "#part3" },
+						{ slide: 6, step: 4 },
+						{ slide: 7, step: 5 },
+					]
+				}
+			},
+			{
+				title: "Creating Aliases",
+				html: "creating-aliases.html",
+				"watch": {
+					html: "captivates/creatingaliases-watch/index.html",
+					completed: false,
+					keys: [
+						{ slide: 1, step: 1 },
+						{ slide: 2, step: 2 },
+						{ slide: 3, step: 3, sub: "#part1" },
+						{ slide: 4, step: 3, sub: "#part2" },
+						{ slide: 5, step: 3, sub: "#part3" },
+						{ slide: 6, step: 4 },
+						{ slide: 7, step: 5 },
+					]
+				},
+				"try": {
+					html: "captivates/creatingaliases-try/index.html",
 					completed: false,
 					keys: [
 						{ slide: 1, step: 1 },
@@ -75,7 +105,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 			},
 			{
 				title: "Working with Files",
-				html: "WorkingWithFiles.html",
+				html: "workingwithfiles.html",
 				"watch": {
 					html: "captivates/workingwithfiles-watch/index.html",
 					completed: false,
@@ -101,11 +131,94 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 					]
 				}
 			},
+			{
+				title: "Video Conferencing with Hangouts",
+				html: "video-conferencing-with-hangouts-steps.html",
+				"watch": {
+					html: "captivates/automated_html5/1_video_conferencing_with_hangout/index.html",
+				},
+				"try": {
+				}
+			},
+			{
+				title: "Start a Video Call",
+				html: "start-a-video-call-steps.html",
+				"watch": {
+					html: "captivates/automated_html5/2_start_a_video_call_autoblue/index.html",
+				},
+				"try": {
+					html: "captivates/manual_html5/2_start_a_video_call_manual/index.html",
+					keys: [
+						{ slide: 1, step: 1 },
+						{ slide: 2, step: 2 },
+						{ slide: 3, step: 3, sub: "#part1" },
+						{ slide: 4, step: 3, sub: "#part2" },
+						{ slide: 5, step: 4, sub: "#part1" },
+						{ slide: 6, step: 4, sub: "#part2" },
+					]
+				}
+			},
+			{
+				title: "Using Apps on a Video Call",
+				html: "using-apps-on-a-video-call-steps.html",
+				"watch": {
+					html: "captivates/automated_html5/2_5_using_apps_on_a_call_video_autoblue/index.html",
+				},
+				"try": {
+				}
+			},
+			{
+				title: "Answering a Video Call Invite",
+				html: "answering-a-video-call-steps.html",
+				"watch": {
+					html: "captivates/automated_html5/3_answer_a_video_call_invite_autoblue/index.html",
+				},
+				"try": {
+					html: "captivates/manual_html5/3_answer_a_video_call_invite_manual/index.html",
+				}
+			},
+			{
+				title: "Invite Someone to Your Video Chat",
+				html: "invite-someone-to-your-video-steps.html",
+				"watch": {
+					html: "captivates/automated_html5/4_invite_someone_to_your_video_chat/index.html",
+				},
+				"try": {
+					html: "captivates/manual_html5/4_invite_someone_to_your_video_chat_manual/index.html",
+				}
+			},
+			{
+				title: "Share Your Screen",
+				html: "share-your-screen-steps.html",
+				"watch": {
+					html: "captivates/automated_html5/5_share_your_screen_autoblue/index.html",
+				},
+				"try": {
+					html: "captivates/manual_html5/5_share_your_screen_manual/index.html",
+				}
+			},
+			{
+				title: "Open a Chat Pane",
+				html: "open-a-chat-pane-steps.html",
+				"watch": {
+					html: "captivates/automated_html5/6_open_a_chat_pane_autoblue/index.html",
+				},
+				"try": {
+					html: "captivates/manual_html5/6_open_a_chat_pane_manual/index.html",
+				}
+			},
+			{
+				title: "Share a Google Drive",
+				html: "share-a-google-drive-steps.html",
+				"watch": {
+					html: "captivates/automated_html5/7_share_a_google_drive_file_autoblue/index.html",
+				},
+				"try": {
+					html: "captivates/manual_html5/7_share_a_google_drive_file_manual/index.html",
+				}
+			},
 		];
 
-	var v = $(".toc-viewer").TOCViewer();
-	$(".search-results-container").SearchResults();
-	
 	function sizeToFit () {
 		var screenHeight = $(window).height();
 		
@@ -205,8 +318,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		sizeToFit();
 
 		if (scrollTo != false) {
-            //var t = $(".task-steps").offset().top - 50;
-            //$("html, body").animate({ scrollTop: t }, 1500);
+            var t = $(".task-steps").offset().top - 50;
+            $("html, body").animate({ scrollTop: t }, 1500);
 		}
 	}
 
@@ -240,13 +353,13 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		$(window).scrollTop(0);
 		
 		var sr = $(".search-results-container").SearchResults("instance");
-		sr.doit();
+		sr.doit(toc);
 
 		$(".go-to-task").off("click");
-		$(".do-watch-it").off("click");
+//		$(".do-watch-it").off("click");
 		
 		$(".go-to-task").click(onGoToTask);
-		$(".do-watch-it").click(onDoWatchIt);
+//		$(".do-watch-it").click(onDoWatchIt);
 		
 		$("#taskpane").addClass("hidden");
 		$("#homepane").addClass("hidden");
@@ -273,7 +386,11 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		$(".back-to-search").addClass("hidden");
 		$("body").css("padding-top", 50);
 
-        $(".steps").load("pages/workingwithfiles.html", onStepsLoaded);
+		$(".task-desc h2").text(toc[currentIndex].title);
+
+		var html = "pages/" + toc[currentIndex].html;
+
+        $(".steps").load(html, onStepsLoaded);
 
 		$(".task-steps").removeClass("animated");
 		
@@ -320,7 +437,12 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		cp_events.addEventListener("CPAPI_SLIDEENTER", onSlideEntered);
 		cp_events.addEventListener("CPAPI_MOVIESTOP", onMovieStop);
 
-        setTimeout(function () { cp.play(); }, 1500);
+		cp_events.addEventListener("QUE_COMPLETE", onLessonComplete);
+
+        setTimeout(function () {
+	        cp.start();
+	        cp.play();
+        }, 1500);
 	}
 
     function onStepsLoaded () {
@@ -330,7 +452,9 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
     function onMovieStop () {
         var slide = getCurrentSlide();
 
-        if (slide == getNumberOfSlides()) {
+	    var numSlides = getNumberOfSlides();
+
+	    if (slide >= numSlides || numSlides == undefined) {
             onLessonComplete();
         }
     }
@@ -339,9 +463,13 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
         return cp.getCurrentSlideIndex();
     }
 
-    // TODO: is there a Captivate method for this?
     function getNumberOfSlides () {
-        return captivateMapping.length;
+	    if (cp && cp.getNumberOfSlides) {
+		    return cp.getNumberOfSlides();
+	    } if (captivateMapping)
+            return captivateMapping.length;
+	    else
+	        return undefined;
     }
 
     function onLessonComplete () {
@@ -380,6 +508,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 
         var centerPoint = screenHeight * .5;
 
+		if (!captivateMapping) return;
+
 		for (var i = 0; i < captivateMapping.length; i++) {
 			if (captivateMapping[i].slide == slide) {
 				var step = captivateMapping[i].step;
@@ -411,6 +541,54 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		}
 	}
 
+	function buildUIforTOC () {
+		var m = $("#contents-menu ul");
+
+		m.empty();
+
+		for (var i = 0; i < toc.length; i++) {
+			var t = toc[i];
+			var li = $("<li>", { class: "bob" });
+			var a = $("<a>", { text: t.title });
+			a.appendTo(li);
+			li.click($.proxy(onClickTaskFromMenu, this, i));
+			li.appendTo(m);
+		}
+	}
+
+	function onClickTaskFromMenu (index) {
+		$("#contents-menu").offcanvas('hide');
+
+		currentIndex = index;
+
+		onGoToTask();
+	}
+
+	function onSearchDoWatchIt (event, index) {
+		currentIndex = index;
+
+		onDoWatchIt(event, true);
+	}
+
+	function onSearchDoTryIt (event, index) {
+		currentIndex = index;
+
+		onDoTryIt(event, true);
+	}
+
+	function onSearchGoToTask (event, index) {
+		currentIndex = index;
+
+		onGoToTask(event);
+	}
+
+	var v = $(".toc-viewer").TOCViewer();
+	$(".search-results-container").SearchResults();
+	var sr = $(".search-results-container").SearchResults("instance");
+	sr.option("toc", toc);
+
+	buildUIforTOC();
+
 	$(window).resize(sizeToFit);
 		
 	$(".hidden-on-startup").removeClass("hidden");
@@ -423,8 +601,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 	$("#show-popular").click(onDoSearch);
 	$("#home-button").click(onHomeButton);
 	$("#back-button").click(onHomeButton);
-	$(".navmenu-nav li").click(onDoSearch);
-	$("#learn-more").click(onGoToTask);
+	//$(".navmenu-nav li").click(onDoSearch);
+//	$("#learn-more").click(onGoToTask);
 //	$("#progress").click(onShowProgress);
 	$(".go-to-task").click(onGoToTask);
 	
@@ -437,7 +615,11 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 	$("#help").click(onShowFeatures);
 	
 	$("body").on("hide.bs.modal", function () { $("video")[0].pause(); });
-	
+
+	$("body").on("do-watch-it", onSearchDoWatchIt);
+	$("body").on("do-try-it", onSearchDoTryIt);
+	$("body").on("go-to-task", onSearchGoToTask);
+
 	//$("#accordion").clone().appendTo("#my-progress-clone-holder");
 	
 	//var inst = v.TOCViewer("instance");
