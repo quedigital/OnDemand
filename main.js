@@ -7,6 +7,7 @@ requirejs.config({
 		"jasny-bootstrap": "jasny-bootstrap.min",
 		"holder": "holder.min",
 		"joyride": "jquery.joyride-2.1",
+		"toc-data": "../google_hangouts/toc-data"
 	},
 	
 	shim: {
@@ -33,7 +34,7 @@ requirejs.config({
 
 // NOTE: Couldn't use embed-responsive-4by3 for the iframe (even though it made sizing automatic) because it didn't (easily) work with affix's fixed positioning
 
-require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results", "joyride", "coach-marks"], function (domReady) {
+require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results", "joyride", "coach-marks"], function (domReady, tocData) {
 
 	domReady(function () {
 		sizeToFit();
@@ -41,11 +42,14 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 
 	var currentIndex = 1, currentType = undefined;
 
+	var toc = tocData;
+
+	/*
 	var toc =
 		[
 			{
 				title: "Player Test Google 1",
-				html: "creating-aliases.html",
+				html: "google_hangouts/pages/0.html",
 				"watch": {
 					html: "/Authoring/Player/index.html?mode=watch",
 					completed: false,
@@ -75,7 +79,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 			},
 			{
 				title: "Creating Aliases",
-				html: "creating-aliases.html",
+				html: "pages/creating-aliases.html",
 				"watch": {
 					html: "captivates/creatingaliases-watch/index.html",
 					completed: false,
@@ -105,7 +109,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 			},
 			{
 				title: "Working with Files",
-				html: "workingwithfiles.html",
+				html: "pages/workingwithfiles.html",
 				"watch": {
 					html: "captivates/workingwithfiles-watch/index.html",
 					completed: false,
@@ -133,7 +137,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 			},
 			{
 				title: "Video Conferencing with Hangouts",
-				html: "video-conferencing-with-hangouts-steps.html",
+				html: "pages/video-conferencing-with-hangouts-steps.html",
 				"watch": {
 					html: "captivates/automated_html5/1_video_conferencing_with_hangout/index.html",
 				},
@@ -142,7 +146,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 			},
 			{
 				title: "Start a Video Call",
-				html: "start-a-video-call-steps.html",
+				html: "pages/start-a-video-call-steps.html",
 				"watch": {
 					html: "captivates/automated_html5/2_start_a_video_call_autoblue/index.html",
 				},
@@ -160,7 +164,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 			},
 			{
 				title: "Using Apps on a Video Call",
-				html: "using-apps-on-a-video-call-steps.html",
+				html: "pages/using-apps-on-a-video-call-steps.html",
 				"watch": {
 					html: "captivates/automated_html5/2_5_using_apps_on_a_call_video_autoblue/index.html",
 				},
@@ -169,7 +173,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 			},
 			{
 				title: "Answering a Video Call Invite",
-				html: "answering-a-video-call-steps.html",
+				html: "pages/answering-a-video-call-steps.html",
 				"watch": {
 					html: "captivates/automated_html5/3_answer_a_video_call_invite_autoblue/index.html",
 				},
@@ -179,7 +183,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 			},
 			{
 				title: "Invite Someone to Your Video Chat",
-				html: "invite-someone-to-your-video-steps.html",
+				html: "pages/invite-someone-to-your-video-steps.html",
 				"watch": {
 					html: "captivates/automated_html5/4_invite_someone_to_your_video_chat/index.html",
 				},
@@ -189,7 +193,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 			},
 			{
 				title: "Share Your Screen",
-				html: "share-your-screen-steps.html",
+				html: "pages/share-your-screen-steps.html",
 				"watch": {
 					html: "captivates/automated_html5/5_share_your_screen_autoblue/index.html",
 				},
@@ -199,7 +203,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 			},
 			{
 				title: "Open a Chat Pane",
-				html: "open-a-chat-pane-steps.html",
+				html: "pages/open-a-chat-pane-steps.html",
 				"watch": {
 					html: "captivates/automated_html5/6_open_a_chat_pane_autoblue/index.html",
 				},
@@ -209,7 +213,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 			},
 			{
 				title: "Share a Google Drive",
-				html: "share-a-google-drive-steps.html",
+				html: "pages/share-a-google-drive-steps.html",
 				"watch": {
 					html: "captivates/automated_html5/7_share_a_google_drive_file_autoblue/index.html",
 				},
@@ -218,6 +222,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 				}
 			},
 		];
+	*/
 
 	function sizeToFit () {
 		var screenHeight = $(window).height();
@@ -319,7 +324,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 
 		if (scrollTo != false) {
             var t = $(".task-steps").offset().top - 50;
-            $("html, body").animate({ scrollTop: t }, 1500);
+            $("html, body").animate({ scrollTop: t }, 1000);
 		}
 	}
 
@@ -340,7 +345,13 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 
 		var item = toc[currentIndex];
 
-		loadCaptivate(item[type].html);
+		// NOTE: this is now assuming we're using the Que player (ie, not Captivate anymore)
+
+		// TODO: this path will need to be changed at Production time
+
+		var path = "../Authoring/Player/index.html?" + item[type].params;
+
+		loadCaptivate(path);
 
 		var keys = item[type].keys;
 
@@ -388,7 +399,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 
 		$(".task-desc h2").text(toc[currentIndex].title);
 
-		var html = "pages/" + toc[currentIndex].html;
+		var html = toc[currentIndex].html;
 
         $(".steps").load(html, onStepsLoaded);
 
@@ -502,41 +513,33 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 	}
 
 	function onSlideEntered (event) {
-		var slide = event.Data.slideNumber;
+		// for Captivate: (and it required the captivateMapping, since removed)
+		//var slide = event.Data.slideNumber;
+
+		var key = event.key;
 
         var screenHeight = $(window).height();
 
         var centerPoint = screenHeight * .5;
 
-		if (!captivateMapping) return;
+		var stepDOM = $(".step[data-key='" + key + "'");
 
-		for (var i = 0; i < captivateMapping.length; i++) {
-			if (captivateMapping[i].slide == slide) {
-				var step = captivateMapping[i].step;
-				var sub = captivateMapping[i].sub;
-				var number = $(".number span:contains('" + step + "')");
-				var stepDOM = number.parents(".step");
+		$(".current").removeClass("current");
 
-				$(".current").removeClass("current");
+		if (stepDOM.length) {
+			var gotoDOM = stepDOM.find("p");
 
-				var gotoDOM;
+			if (gotoDOM && gotoDOM.length) {
+				gotoDOM.addClass("current");
 
-				if (sub) {
-					gotoDOM = stepDOM.find(sub);
-				} else {
-					gotoDOM = stepDOM.find("p");
+				var a = $("body").scrollTop();
+				var t = gotoDOM.offset().top;
+				var b = t - centerPoint;
+
+				// don't scroll if it's already up the vertical center
+				if ((t - a) > centerPoint) {
+					$("body").animate({scrollTop: b}, 2000);
 				}
-
-                if (gotoDOM) {
-                    gotoDOM.addClass("current");
-
-                    var a = $("html, body").scrollTop();
-                    var t = gotoDOM.offset().top;
-                    var b = (a + t) - centerPoint;
-                    $("html, body").animate({scrollTop: b}, 2000);
-                }
-
-				break;
 			}
 		}
 	}
