@@ -97,3 +97,35 @@
 		}
 	}
 }
+
+ol.steps {
+	counter-reset: li;
+	list-style: none;
+	padding: 0;
+	margin-bottom: 4em;
+
+	li {
+		position: relative;
+		margin: 1.5em 0 1.5em 45px;
+	}
+
+	li:before {
+		font-family: "Futura";
+		font-size: 20px;
+		color: white;
+		content: counter(li);
+		counter-increment: li;
+		position: absolute;
+		left: -45px;
+		top: 50%;
+		margin-top: -15px;
+		background: #a43;
+		height: 30px;
+		width: 30px;
+		line-height: 30px;
+		text-align: center;
+		font-weight: bold;
+		border-radius: 30px;
+		vertical-align: middle;
+	}
+}

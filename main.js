@@ -7,7 +7,8 @@ requirejs.config({
 		"jasny-bootstrap": "jasny-bootstrap.min",
 		"holder": "holder.min",
 		"joyride": "jquery.joyride-2.1",
-		"toc-data": "../google_hangouts/toc-data"
+		//"toc-data": "../google_hangouts/toc-data"
+		"toc-data": "../habitat_test/toc-data"
 	},
 	
 	shim: {
@@ -36,193 +37,19 @@ requirejs.config({
 
 require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results", "joyride", "coach-marks"], function (domReady, tocData) {
 
+	$.urlParam = function(name){
+		var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		if (results==null){
+			return null;
+		}
+		else{
+			return results[1] || 0;
+		}
+	}
+
 	domReady(function () {
 		sizeToFit();
 	});
-
-	var currentIndex = 1, currentType = undefined;
-
-	var toc = tocData;
-
-	/*
-	var toc =
-		[
-			{
-				title: "Player Test Google 1",
-				html: "google_hangouts/pages/0.html",
-				"watch": {
-					html: "/Authoring/Player/index.html?mode=watch",
-					completed: false,
-					keys: [
-						{ slide: 1, step: 1 },
-						{ slide: 2, step: 2 },
-						{ slide: 3, step: 3, sub: "#part1" },
-						{ slide: 4, step: 3, sub: "#part2" },
-						{ slide: 5, step: 3, sub: "#part3" },
-						{ slide: 6, step: 4 },
-						{ slide: 7, step: 5 },
-					]
-				},
-				"try": {
-					html: "/Authoring/Player/index.html?mode=try",
-					completed: false,
-					keys: [
-						{ slide: 1, step: 1 },
-						{ slide: 2, step: 2 },
-						{ slide: 3, step: 3, sub: "#part1" },
-						{ slide: 4, step: 3, sub: "#part2" },
-						{ slide: 5, step: 3, sub: "#part3" },
-						{ slide: 6, step: 4 },
-						{ slide: 7, step: 5 },
-					]
-				}
-			},
-			{
-				title: "Creating Aliases",
-				html: "pages/creating-aliases.html",
-				"watch": {
-					html: "captivates/creatingaliases-watch/index.html",
-					completed: false,
-					keys: [
-						{ slide: 1, step: 1 },
-						{ slide: 2, step: 2 },
-						{ slide: 3, step: 3, sub: "#part1" },
-						{ slide: 4, step: 3, sub: "#part2" },
-						{ slide: 5, step: 3, sub: "#part3" },
-						{ slide: 6, step: 4 },
-						{ slide: 7, step: 5 },
-					]
-				},
-				"try": {
-					html: "captivates/creatingaliases-try/index.html",
-					completed: false,
-					keys: [
-						{ slide: 1, step: 1 },
-						{ slide: 2, step: 2 },
-						{ slide: 3, step: 3, sub: "#part1" },
-						{ slide: 4, step: 3, sub: "#part2" },
-						{ slide: 5, step: 3, sub: "#part3" },
-						{ slide: 6, step: 4 },
-						{ slide: 7, step: 5 },
-					]
-				}
-			},
-			{
-				title: "Working with Files",
-				html: "pages/workingwithfiles.html",
-				"watch": {
-					html: "captivates/workingwithfiles-watch/index.html",
-					completed: false,
-					keys: [
-						{ slide: 1, step: 1 },
-						{ slide: 2, step: 2 },
-						{ slide: 3, step: 3, sub: "#part1" },
-						{ slide: 4, step: 3, sub: "#part2" },
-						{ slide: 5, step: 4, sub: "#part1" },
-						{ slide: 6, step: 4, sub: "#part2" },
-					]
-				},
-				"try": {
-					html: "captivates/workingwithfiles-try/index.html",
-					completed: false,
-					keys: [
-						{ slide: 1, step: 1 },
-						{ slide: 2, step: 2 },
-						{ slide: 3, step: 3, sub: "#part1" },
-						{ slide: 4, step: 3, sub: "#part2" },
-						{ slide: 5, step: 4, sub: "#part1" },
-						{ slide: 6, step: 4, sub: "#part2" },
-					]
-				}
-			},
-			{
-				title: "Video Conferencing with Hangouts",
-				html: "pages/video-conferencing-with-hangouts-steps.html",
-				"watch": {
-					html: "captivates/automated_html5/1_video_conferencing_with_hangout/index.html",
-				},
-				"try": {
-				}
-			},
-			{
-				title: "Start a Video Call",
-				html: "pages/start-a-video-call-steps.html",
-				"watch": {
-					html: "captivates/automated_html5/2_start_a_video_call_autoblue/index.html",
-				},
-				"try": {
-					html: "captivates/manual_html5/2_start_a_video_call_manual/index.html",
-					keys: [
-						{ slide: 1, step: 1 },
-						{ slide: 2, step: 2 },
-						{ slide: 3, step: 3, sub: "#part1" },
-						{ slide: 4, step: 3, sub: "#part2" },
-						{ slide: 5, step: 4, sub: "#part1" },
-						{ slide: 6, step: 4, sub: "#part2" },
-					]
-				}
-			},
-			{
-				title: "Using Apps on a Video Call",
-				html: "pages/using-apps-on-a-video-call-steps.html",
-				"watch": {
-					html: "captivates/automated_html5/2_5_using_apps_on_a_call_video_autoblue/index.html",
-				},
-				"try": {
-				}
-			},
-			{
-				title: "Answering a Video Call Invite",
-				html: "pages/answering-a-video-call-steps.html",
-				"watch": {
-					html: "captivates/automated_html5/3_answer_a_video_call_invite_autoblue/index.html",
-				},
-				"try": {
-					html: "captivates/manual_html5/3_answer_a_video_call_invite_manual/index.html",
-				}
-			},
-			{
-				title: "Invite Someone to Your Video Chat",
-				html: "pages/invite-someone-to-your-video-steps.html",
-				"watch": {
-					html: "captivates/automated_html5/4_invite_someone_to_your_video_chat/index.html",
-				},
-				"try": {
-					html: "captivates/manual_html5/4_invite_someone_to_your_video_chat_manual/index.html",
-				}
-			},
-			{
-				title: "Share Your Screen",
-				html: "pages/share-your-screen-steps.html",
-				"watch": {
-					html: "captivates/automated_html5/5_share_your_screen_autoblue/index.html",
-				},
-				"try": {
-					html: "captivates/manual_html5/5_share_your_screen_manual/index.html",
-				}
-			},
-			{
-				title: "Open a Chat Pane",
-				html: "pages/open-a-chat-pane-steps.html",
-				"watch": {
-					html: "captivates/automated_html5/6_open_a_chat_pane_autoblue/index.html",
-				},
-				"try": {
-					html: "captivates/manual_html5/6_open_a_chat_pane_manual/index.html",
-				}
-			},
-			{
-				title: "Share a Google Drive",
-				html: "pages/share-a-google-drive-steps.html",
-				"watch": {
-					html: "captivates/automated_html5/7_share_a_google_drive_file_autoblue/index.html",
-				},
-				"try": {
-					html: "captivates/manual_html5/7_share_a_google_drive_file_manual/index.html",
-				}
-			},
-		];
-	*/
 
 	function sizeToFit () {
 		var screenHeight = $(window).height();
@@ -349,7 +176,12 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 
 		// TODO: this path will need to be changed at Production time
 
-		var path = "../Authoring/Player/index.html?" + item[type].params;
+		var path;
+
+		if (window.location.hostname == "localhost")
+			path = "../Authoring/Player/index.html?" + item[type].params;
+		else
+			path = "player/index.html?" + item[type].params;
 
 		loadCaptivate(path);
 
@@ -585,12 +417,29 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 		onGoToTask(event);
 	}
 
-	var v = $(".toc-viewer").TOCViewer();
-	$(".search-results-container").SearchResults();
-	var sr = $(".search-results-container").SearchResults("instance");
-	sr.option("toc", toc);
+	var path = $.urlParam("content");
+	var datafile = decodeURI(path);
 
-	buildUIforTOC();
+	require([datafile], onLoadedTOC);
+
+	var currentIndex = 1, currentType = undefined;
+
+	var toc;
+
+	function initialize () {
+		var v = $(".toc-viewer").TOCViewer();
+		$(".search-results-container").SearchResults();
+		var sr = $(".search-results-container").SearchResults("instance");
+		sr.option("toc", toc);
+
+		buildUIforTOC();
+	}
+
+	function onLoadedTOC (tocData) {
+		toc = tocData;
+
+		initialize();
+	}
 
 	$(window).resize(sizeToFit);
 		
@@ -627,11 +476,4 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 	
 	//var inst = v.TOCViewer("instance");
 	//inst.doit();
-	
-	/*
-	var m = $(window).height() - $("#top-part").outerHeight() - $("#top-part").offset().top;
-	if (m > 0) {
-		$("#top-part").css("margin-bottom", m);
-	}
-	*/
 });

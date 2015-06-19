@@ -1,4 +1,4 @@
-// TODO: make sure the Player can load from InformIT (ie, AWS) using getJSON
+// TODO: make sure the Player can load from InformIT (ie, AWS) using getJSON [should work the same as the ContentViewer]
 // TODO: put something at the end of the steps to take up the blank space there
 // TODO: pop-up when task is complete, with next task & other search results or related tasks
 
@@ -21,3 +21,5 @@
 // DONE: make search results show all from toc
 // DONE: fix sizing/placement issue of hotspots in Player on initial load
 // DONE: watch and try mode
+// DONE: make sure the framework can load different projects easily
+// DONE: fix pathing (localhost vs. S3)
