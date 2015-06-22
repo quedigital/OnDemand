@@ -434,7 +434,6 @@ hr.examplefour {
   margin-left: 2em; }
 .task-container .step {
   position: relative;
-  margin: 2rem 4rem 2rem 0rem;
   cursor: pointer; }
   .task-container .step .number {
     display: inline-block;

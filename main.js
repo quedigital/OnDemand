@@ -345,6 +345,8 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 	}
 
 	function onSlideEntered (event) {
+		console.log("on slide entered " + event.key);
+
 		// for Captivate: (and it required the captivateMapping, since removed)
 		//var slide = event.Data.slideNumber;
 
@@ -359,7 +361,7 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 		$(".current").removeClass("current");
 
 		if (stepDOM.length) {
-			var gotoDOM = stepDOM.find("p");
+			var gotoDOM = stepDOM;//stepDOM.find("p");
 
 			if (gotoDOM && gotoDOM.length) {
 				gotoDOM.addClass("current");
@@ -368,8 +370,10 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 				var t = gotoDOM.offset().top;
 				var b = t - centerPoint;
 
-				// don't scroll if it's already up the vertical center
+				// don't scroll if it's already past the vertical center, unless it's off-screen
 				if ((t - a) > centerPoint) {
+					$("body").animate({scrollTop: b}, 2000);
+				} else if (t - a < 0) {
 					$("body").animate({scrollTop: b}, 2000);
 				}
 			}
