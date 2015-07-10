@@ -290,7 +290,15 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 
     function onStepsLoaded () {
         $('[data-toggle="popover"]').popover({ html: true });
+
+	    loadLeadParagraph();
     }
+
+	function loadLeadParagraph () {
+		var p = $(".steps p").first();
+
+		$(".task-desc .lead").empty().append(p.clone());
+	}
 
     function onMovieStop () {
         var slide = getCurrentSlide();
@@ -345,8 +353,6 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 	}
 
 	function onSlideEntered (event) {
-		console.log("on slide entered " + event.key);
-
 		// for Captivate: (and it required the captivateMapping, since removed)
 		//var slide = event.Data.slideNumber;
 
@@ -428,7 +434,7 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 
 	var currentIndex = 1, currentType = undefined;
 
-	var toc;
+	var toc, title;
 
 	function initialize () {
 		var v = $(".toc-viewer").TOCViewer();
@@ -436,11 +442,14 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 		var sr = $(".search-results-container").SearchResults("instance");
 		sr.option("toc", toc);
 
+		$(".project-title").text(title);
+
 		buildUIforTOC();
 	}
 
-	function onLoadedTOC (tocData) {
-		toc = tocData;
+	function onLoadedTOC (metadata) {
+		toc = metadata.toc;
+		title = metadata.title;
 
 		initialize();
 	}

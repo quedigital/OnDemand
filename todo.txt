@@ -1,3 +1,6 @@
+// TODO: make step text clickable to jump to that step
+// TODO: put in chapter separators
+// TODO: consider having the watch/try visible all the time (one below the other, with jump links)
 // TODO: make sure the Player can load from InformIT (ie, AWS) using getJSON [should work the same as the ContentViewer]
 // TODO: put something at the end of the steps to take up the blank space there
 // TODO: pop-up when task is complete, with next task & other search results or related tasks
@@ -24,3 +27,6 @@
 // DONE: make sure the framework can load different projects easily
 // DONE: fix pathing (localhost vs. S3)
 // DONE: make the steps sync with the player for Habitat content
+// DONE: load project title from data file
+// DONE: grab first paragraph and use that for the large, intro text
+// DONE: step highlighting doesn't seem to be working

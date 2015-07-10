@@ -77,8 +77,8 @@
 			transition: background-color ease-in-out 1s;
 		}
 		
-		.current {
-			background-color: white;
+		&.current {
+			background-color: #f7ff80;
 		}
 	}
 	
