@@ -50,8 +50,34 @@ hr.examplefour {
   padding-bottom: 0;
   vertical-align: middle; }
 
-#contents-menu ul li a {
+#contents-menu .entry:not(.chapter) {
   cursor: pointer; }
+  #contents-menu .entry:not(.chapter) a {
+    padding: 5px 15px; }
+#contents-menu .entry.chapter a {
+  font-weight: bold;
+  color: white;
+  background: black; }
+
+.divider {
+  height: 50px;
+  background-color: black;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  line-height: 50px; }
+
+.banner {
+  background-color: #315cc7;
+  padding: 15px 0;
+  text-align: center;
+  color: #B6B9DF;
+  max-width: 300px;
+  margin: 0 auto;
+  border-radius: 20px; }
+  .banner .h2 {
+    display: inline-block;
+    vertical-align: top; }
 
 #search-form {
   position: absolute;
@@ -112,9 +138,9 @@ hr.examplefour {
     color: white; }
 
 .task-buttons {
-  padding-top: 2em;
-  padding-bottom: 2em;
-  background-color: #9597b5; }
+  background-color: #9597b5;
+  padding: 15px 0;
+  margin: 30px -15px 30px -15px; }
 
 .task-steps {
   /*visibility: hidden;*/ }

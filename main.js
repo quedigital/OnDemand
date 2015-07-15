@@ -61,19 +61,31 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 		
 		var w = $(".task-demo").width();
 		var h = w * .75;
-		
-		var container_width = $(".task-demo").width();
-		var container_left = $(".task-steps").outerWidth();
-		
-		$(".task-demo iframe").css( { left: container_left + 15, width: container_width, maxHeight: wh, height: h } );
-		
-		container_width = $(".task-container").width();
-		w = $(".task-steps").width();
-		var margin = (container_width - w) * .5;
-		$(".task-steps.solo").css("margin-left", margin);
 
-		// give the task steps a bottom margin so the Captivate can be seen as we scroll to the last step
-		$(".task-steps").css("margin-bottom", h * .5);
+		var types = ["watch", "try"];
+
+		for  (var i = 0; i < types.length; i++) {
+			var which = $("." + types[i]);
+
+			var container_width = which.find(".task-demo").width();
+			var container_left = which.find(".task-steps").outerWidth();
+
+			which.find(".task-demo iframe").css({left: container_left + 15, width: container_width, maxHeight: wh, height: h});
+
+			$(".row." + types[i]).css("min-height", h);
+
+			/*
+			container_width = $(".task-container").width();
+
+			w = which.find(".task-steps").width();
+			var margin = (container_width - w) * .5;
+
+			$(".task-steps.solo").css("margin-left", margin);
+
+			// give the task steps a bottom margin so the Captivate can be seen as we scroll to the last step
+			//$(".task-steps").css("margin-bottom", h * .5);
+			*/
+		}
 
 		var a = $("#welcome-search").outerHeight();
 		var b = $("#start-to-finish").outerHeight();
@@ -112,24 +124,34 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
         captivateMapping = keys;
     }
 
-    function removeCaptivate () {
-		$(".task-demo iframe").remove();
+    function removeCaptivate (type) {
+		$("div." + type).find(".task-demo iframe").remove();
 	}
 
-	function loadCaptivate (url) {
-		removeCaptivate();
+	function loadCaptivate (type, url) {
+		removeCaptivate(type);
 
 		var iframe = $("<iframe>").addClass("tutorial").attr({ frameborder: 0, src: url });
 
-		$(".task-demo").append(iframe);
+		var holder = $("div." + type);
 
-        $(".task-demo iframe").affix({
+		holder.find(".task-demo").append(iframe);
+
+		// NOTE: I wish these numbers weren't so kludgy; they don't bode well
+
+        iframe.affix({
             offset: {
                 top: function () {
-                    return $(".task-container").offset().top - $("#search-form").outerHeight(false);
+//	                return $(".task-container").offset().top - $("#search-form").outerHeight(false);
+	                return $(".row." + type).offset().top - $("#search-form").outerHeight(false) - 10;
                 },
                 bottom: function () {
-                    return $(".footer").outerHeight() - $("#search-form").outerHeight(false);
+	                if (type == "watch") {
+		                var t = $(".row.try-header").position().top - $("#search-form").outerHeight(true) - 80;
+		                return t;
+	                } else {
+		                return $(".footer").outerHeight() - $("#search-form").outerHeight(false);
+	                }
                 }
             }
         });
@@ -183,7 +205,7 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 		else
 			path = "player/index.html?" + item[type].params;
 
-		loadCaptivate(path);
+		loadCaptivate(type, path);
 
 		var keys = item[type].keys;
 
@@ -229,18 +251,73 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 		$(".back-to-search").addClass("hidden");
 		$("body").css("padding-top", 50);
 
+		$(window).scrollTop(0);
+
 		$(".task-desc h2").text(toc[currentIndex].title);
 
 		var html = toc[currentIndex].html;
 
         $(".steps").load(html, onStepsLoaded);
 
-		$(".task-steps").removeClass("animated");
-		
-		sizeToFit();
+		//$(".task-steps").removeClass("animated");
 		
 		// delay; animate after sizing
-		setTimeout(function () { $(".task-steps").addClass("animated"); }, 10);
+		//setTimeout(function () { $(".task-steps").addClass("animated"); }, 10);
+
+		loadPlayers();
+	}
+
+	function removePlayers () {
+		for (var i = 0; i < 2; i++) {
+			if (cp_events[i] && cp_events[i].removeEventListener) {
+				cp_events[i].removeEventListener("CPAPI_SLIDEENTER");
+				cp_events[i].removeEventListener("CPAPI_MOVIESTOP");
+
+				cp_events[i].removeEventListener("QUE_COMPLETE");
+			}
+		}
+
+		cp_events = [];
+		cp = []
+		window.cp = [];
+	}
+
+	function loadPlayers () {
+		removePlayers();
+
+		var item = toc[currentIndex];
+
+		// NOTE: this is now assuming we're using the Que player (ie, not Captivate anymore)
+
+		// TODO: this path will need to be changed at Production time
+
+		var type = "watch";
+
+		var path;
+
+		if (window.location.hostname == "localhost")
+			path = "../Authoring/Player/index.html?" + item[type].params;
+		else
+			path = "player/index.html?" + item[type].params;
+
+		loadCaptivate(type, path);
+
+		var keys = item[type].keys;
+
+		setCaptivateMapping(keys);
+
+		checkForCaptivate();
+
+		var type = "try";
+
+		var path;
+
+		if (window.location.hostname == "localhost")
+			path = "../Authoring/Player/index.html?" + item[type].params;
+		else
+			path = "player/index.html?" + item[type].params;
+
+		loadCaptivate(type, path);
 	}
 	
 	function onHomeButton () {
@@ -257,41 +334,71 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 	}
 
 	function checkForCaptivate () {
-		if (window.frames[0].cpAPIInterface) {
-			cp = window.frames[0].cpAPIInterface;
+		if (cp[0] == undefined && window.frames[0] && window.frames[0].cpAPIInterface) {
+			cp[0] = window.frames[0].cpAPIInterface;
 			window.cp = cp;
-			cp_events = window.frames[0].cpAPIEventEmitter;
-            cp.pause();
+			cp_events[0] = window.frames[0].cpAPIEventEmitter;
+			cp[0].pause();
 
-			onCaptivateLoaded();
-		} else {
+			onCaptivateLoaded(0);
+		}
+
+		if (cp[1] == undefined && window.frames[1] && window.frames[1].cpAPIInterface) {
+			cp[1] = window.frames[1].cpAPIInterface;
+			window.cp = cp;
+			cp_events[1] = window.frames[1].cpAPIEventEmitter;
+			cp[1].pause();
+
+			onCaptivateLoaded(1);
+		}
+
+		if (cp[0] == undefined || cp[1] == undefined) {
 			setTimeout(checkForCaptivate, 100);
 		}
 	}
 	
-	function onCaptivateLoaded () {
+	function onCaptivateLoaded (index) {
         sizeToFit();
 
-		//window.cp.pause();
-		
-		// NOTE: this doesn't seem to fire from within an iFrame:
-		cp_events.addEventListener("CPAPI_MOVIESTART", function () { console.log("movie started!"); });
+		switch (index) {
+			case 0:
+				// NOTE: this doesn't seem to fire from within an iFrame:
+//				cp_events[index].addEventListener("CPAPI_MOVIESTART", function () { console.log("movie started!"); });
 
-		cp_events.addEventListener("CPAPI_SLIDEENTER", onSlideEntered);
-		cp_events.addEventListener("CPAPI_MOVIESTOP", onMovieStop);
+				cp_events[index].addEventListener("CPAPI_SLIDEENTER", onWatchSlideEntered);
+				cp_events[index].addEventListener("CPAPI_MOVIESTOP", onWatchMovieStop);
 
-		cp_events.addEventListener("QUE_COMPLETE", onLessonComplete);
+				cp_events[index].addEventListener("QUE_COMPLETE", onWatchLessonComplete);
+				break;
+			case 1:
+				// NOTE: this doesn't seem to fire from within an iFrame:
+//				cp_events[index].addEventListener("CPAPI_MOVIESTART", function () { console.log("movie started!"); });
 
-        setTimeout(function () {
+				cp_events[index].addEventListener("CPAPI_SLIDEENTER", onTrySlideEntered);
+				cp_events[index].addEventListener("CPAPI_MOVIESTOP", onTryMovieStop);
+
+				cp_events[index].addEventListener("QUE_COMPLETE", onTryLessonComplete);
+				break;
+		}
+
+		setTimeout(function () {
+			cp[index].pause();
+		}, 0);
+
+        /*
+		setTimeout(function () {
 	        cp.start();
 	        cp.play();
         }, 1500);
+        */
 	}
 
     function onStepsLoaded () {
         $('[data-toggle="popover"]').popover({ html: true });
 
 	    loadLeadParagraph();
+
+	    activatePageLinks();
     }
 
 	function loadLeadParagraph () {
@@ -300,38 +407,77 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 		$(".task-desc .lead").empty().append(p.clone());
 	}
 
-    function onMovieStop () {
-        var slide = getCurrentSlide();
+	function activatePageLinks () {
+		$(".step").click(onClickStep);
+	}
 
-	    var numSlides = getNumberOfSlides();
+	function onClickStep (event) {
+		var t = $(event.target);
+
+		var key = t.data("key");
+
+		event.stopImmediatePropagation();
+		event.preventDefault();
+
+		var row = t.parents(".row");
+		var type;
+		if (row.hasClass("watch")) {
+			type = "watch";
+			cp[0].gotoSlide(key);
+		} else {
+			type = "try";
+			cp[1].gotoSlide(key);
+		}
+	}
+
+    function onWatchMovieStop () {
+        var slide = getCurrentSlide(0);
+
+	    var numSlides = getNumberOfSlides(0);
 
 	    if (slide >= numSlides || numSlides == undefined) {
-            onLessonComplete();
+            onWatchLessonComplete();
         }
     }
 
-    function getCurrentSlide () {
-        return cp.getCurrentSlideIndex();
+	function onTryMovieStop () {
+		var slide = getCurrentSlide(1);
+
+		var numSlides = getNumberOfSlides(1);
+
+		if (slide >= numSlides || numSlides == undefined) {
+			onTryLessonComplete();
+		}
+	}
+
+	function getCurrentSlide (index) {
+        return cp[index].getCurrentSlideIndex();
     }
 
-    function getNumberOfSlides () {
-	    if (cp && cp.getNumberOfSlides) {
-		    return cp.getNumberOfSlides();
+    function getNumberOfSlides (index) {
+	    if (cp[index] && cp[index].getNumberOfSlides) {
+		    return cp[index].getNumberOfSlides();
 	    } if (captivateMapping)
             return captivateMapping.length;
 	    else
 	        return undefined;
     }
 
-    function onLessonComplete () {
-        setTimeout(showSuccessMessage, 1000);
+    function onWatchLessonComplete () {
+        setTimeout(showSuccessMessage, 1000, 0);
     }
 
-    function showSuccessMessage () {
+	function onTryLessonComplete () {
+		setTimeout(showSuccessMessage, 1000, 1);
+	}
+
+	function showSuccessMessage (index) {
         var audio = $("#lesson-complete-audio")[0];
         audio.play();
 
-        toc[currentIndex][currentType].completed = true;
+		var type = index == 0 ? "watch" : "try";
+
+        toc[currentIndex][type].completed = true;
     }
 
     function onShowFeatures () {
@@ -352,7 +498,7 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 		}
 	}
 
-	function onSlideEntered (event) {
+	function onWatchSlideEntered (event) {
 		// for Captivate: (and it required the captivateMapping, since removed)
 		//var slide = event.Data.slideNumber;
 
@@ -362,9 +508,9 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 
         var centerPoint = screenHeight * .5;
 
-		var stepDOM = $(".step[data-key='" + key + "'");
+		var stepDOM = $(".watch .step[data-key='" + key + "'");
 
-		$(".current").removeClass("current");
+		$(".watch .current").removeClass("current");
 
 		if (stepDOM.length) {
 			var gotoDOM = stepDOM;//stepDOM.find("p");
@@ -376,12 +522,50 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 				var t = gotoDOM.offset().top;
 				var b = t - centerPoint;
 
+				/*
 				// don't scroll if it's already past the vertical center, unless it's off-screen
 				if ((t - a) > centerPoint) {
 					$("body").animate({scrollTop: b}, 2000);
 				} else if (t - a < 0) {
 					$("body").animate({scrollTop: b}, 2000);
 				}
+				*/
+			}
+		}
+	}
+
+	function onTrySlideEntered (event) {
+		// for Captivate: (and it required the captivateMapping, since removed)
+		//var slide = event.Data.slideNumber;
+
+		var key = event.key;
+
+		var screenHeight = $(window).height();
+
+		var centerPoint = screenHeight * .5;
+
+		var stepDOM = $(".try .step[data-key='" + key + "'");
+
+		$(".try .current").removeClass("current");
+
+		if (stepDOM.length) {
+			var gotoDOM = stepDOM;//stepDOM.find("p");
+
+			if (gotoDOM && gotoDOM.length) {
+				gotoDOM.addClass("current");
+
+				var a = $("body").scrollTop();
+				var t = gotoDOM.offset().top;
+				var b = t - centerPoint;
+
+				/*
+				 // don't scroll if it's already past the vertical center, unless it's off-screen
+				 if ((t - a) > centerPoint) {
+				 $("body").animate({scrollTop: b}, 2000);
+				 } else if (t - a < 0) {
+				 $("body").animate({scrollTop: b}, 2000);
+				 }
+				 */
 			}
 		}
 	}
@@ -393,10 +577,14 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 
 		for (var i = 0; i < toc.length; i++) {
 			var t = toc[i];
-			var li = $("<li>", { class: "bob" });
+			var li = $("<li>", { class: "entry" });
 			var a = $("<a>", { text: t.title });
 			a.appendTo(li);
-			li.click($.proxy(onClickTaskFromMenu, this, i));
+			if (t.html) {
+				li.click($.proxy(onClickTaskFromMenu, this, i));
+			} else {
+				li.addClass("chapter");
+			}
 			li.appendTo(m);
 		}
 	}
@@ -426,6 +614,8 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 
 		onGoToTask(event);
 	}
+
+	var cp = [], cp_events = [];
 
 	var path = $.urlParam("content");
 	var datafile = decodeURI(path);
@@ -458,7 +648,7 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 		
 	$(".hidden-on-startup").removeClass("hidden");
 	
-	$(".task-steps").addClass("solo");
+	//$(".task-steps").addClass("solo");
 	
 	$(".captivate-buttons input").change(onWatchOrTryButton);
 	$("#header-play").click(onDoWatchIt);

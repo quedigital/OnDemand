@@ -75,7 +75,41 @@ hr.examplefour {
 }
 
 #contents-menu {
-	ul li a {
+	.entry:not(.chapter) {
 		cursor: pointer;
+
+		& a {
+			padding: 5px 15px;
+		}
+	}
+
+	.entry.chapter a {
+		font-weight: bold;
+		color: white;
+		background: black;
+	}
+}
+
+.divider {
+	height: 50px;
+	background-color: black;
+	color: white;
+	font-size: 24px;
+	text-align: center;
+	line-height: 50px;
+}
+
+.banner {
+	background-color: #315cc7;
+	padding: 15px 0;
+	text-align: center;
+	color: #B6B9DF;
+	max-width: 300px;
+	margin: 0 auto;
+	border-radius: 20px;
+
+	.h2 {
+		display: inline-block;
+		vertical-align: top;
 	}
 }
