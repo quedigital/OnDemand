@@ -57,7 +57,7 @@ hr.examplefour {
 #contents-menu .entry.chapter a {
   font-weight: bold;
   color: white;
-  background: black; }
+  background: #3c365f; }
 
 .divider {
   height: 50px;
@@ -78,6 +78,18 @@ hr.examplefour {
   .banner .h2 {
     display: inline-block;
     vertical-align: top; }
+
+aside.sidenote {
+  background-color: #8add8a;
+  margin-left: 50px;
+  margin-right: -20px;
+  padding: 25px 25px 25px 50px;
+  border-radius: 25px 0 0 25px; }
+  aside.sidenote h4 {
+    color: #7b6b48;
+    margin-top: 0;
+    text-transform: uppercase;
+    font-size: 150%; }
 
 #search-form {
   position: absolute;

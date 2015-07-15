@@ -86,7 +86,7 @@ hr.examplefour {
 	.entry.chapter a {
 		font-weight: bold;
 		color: white;
-		background: black;
+		background: rgb(60, 54, 95);
 	}
 }
 
@@ -111,5 +111,20 @@ hr.examplefour {
 	.h2 {
 		display: inline-block;
 		vertical-align: top;
+	}
+}
+
+aside.sidenote {
+	background-color: rgb(138, 221, 138);
+	margin-left: 50px;
+	margin-right: -20px;
+	padding: 25px 25px 25px 50px;
+	border-radius: 25px 0 0 25px;
+
+	h4 {
+		color: rgb(123, 107, 72);
+		margin-top: 0;
+		text-transform: uppercase;
+		font-size: 150%;
 	}
 }
