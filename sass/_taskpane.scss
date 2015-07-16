@@ -82,7 +82,9 @@
 .task-buttons {
 	background-color: rgb(149, 151, 181);
 	padding: 15px 0;
-	margin: 30px -15px 30px -15px;
+	margin: 0;
+	text-align: center;
+	border-radius: 25px 25px 0 0;
 }
 
 .task-steps {
@@ -108,6 +110,9 @@
 }
 
 .task-demo {
+	position: relative;
+	overflow: hidden;
+
 	iframe {
 		&.affix {
 			top: 50px;

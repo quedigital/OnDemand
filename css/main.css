@@ -69,15 +69,23 @@ hr.examplefour {
 
 .banner {
   background-color: #315cc7;
-  padding: 15px 0;
+  padding: 15px 30px;
   text-align: center;
   color: #B6B9DF;
-  max-width: 300px;
-  margin: 0 auto;
-  border-radius: 20px; }
+  border-radius: 20px;
+  display: inline-block;
+  margin: 0 20px;
+  cursor: pointer;
+  outline: none; }
   .banner .h2 {
     display: inline-block;
     vertical-align: top; }
+  .banner.selected, .banner.selected:hover {
+    background-color: #EAB136;
+    color: #1A1C34; }
+  .banner:hover {
+    background-color: #121235;
+    color: white; }
 
 aside.sidenote {
   background-color: #8add8a;
@@ -90,6 +98,17 @@ aside.sidenote {
     margin-top: 0;
     text-transform: uppercase;
     font-size: 150%; }
+
+.button-separator {
+  background-color: #000044;
+  margin-right: 0; }
+
+.tutorial {
+  position: absolute;
+  transition: transform 1s ease-in-out; }
+
+.tutorial.try {
+  transform: translateX(1500px); }
 
 #search-form {
   position: absolute;
@@ -152,7 +171,9 @@ aside.sidenote {
 .task-buttons {
   background-color: #9597b5;
   padding: 15px 0;
-  margin: 30px -15px 30px -15px; }
+  margin: 0;
+  text-align: center;
+  border-radius: 25px 25px 0 0; }
 
 .task-steps {
   /*visibility: hidden;*/ }
@@ -167,12 +188,15 @@ aside.sidenote {
     color: #30517c;
     text-shadow: -1px 1px 3px rgba(0, 0, 0, 0.3); }
 
-.task-demo iframe.affix {
-  top: 50px; }
-.task-demo iframe.affix-bottom {
-  left: 15px !important;
-  bottom: 0;
-  position: absolute; }
+.task-demo {
+  position: relative;
+  overflow: hidden; }
+  .task-demo iframe.affix {
+    top: 50px; }
+  .task-demo iframe.affix-bottom {
+    left: 15px !important;
+    bottom: 0;
+    position: absolute; }
 
 .footer {
   background-color: #BABAE0;

@@ -1,3 +1,6 @@
+// TODO: make watch it/try it tab panels again
+// TODO: play/pause, prev/next controls
+// TODO: make pause stop the animations too?
 // TODO: make sure the Player can load from InformIT (ie, AWS) using getJSON [should work the same as the ContentViewer]
 // TODO: put something at the end of the steps to take up the blank space there
 // TODO: pop-up when task is complete, with next task & other search results or related tasks

@@ -6,9 +6,7 @@ requirejs.config({
 		"bootstrap": "bootstrap",
 		"jasny-bootstrap": "jasny-bootstrap.min",
 		"holder": "holder.min",
-		"joyride": "jquery.joyride-2.1",
-		//"toc-data": "../google_hangouts/toc-data"
-		"toc-data": "../habitat_test/toc-data"
+		"joyride": "jquery.joyride-2.1"
 	},
 	
 	shim: {
@@ -35,7 +33,7 @@ requirejs.config({
 
 // NOTE: Couldn't use embed-responsive-4by3 for the iframe (even though it made sizing automatic) because it didn't (easily) work with affix's fixed positioning
 
-require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results", "joyride", "coach-marks"], function (domReady, tocData) {
+require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results", "joyride", "coach-marks"], function (domReady) {
 
 	$.urlParam = function(name){
 		var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -62,30 +60,28 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 		var w = $(".task-demo").width();
 		var h = w * .75;
 
-		var types = ["watch", "try"];
+		var holder = $(".demo-holder");
 
-		for  (var i = 0; i < types.length; i++) {
-			var which = $("." + types[i]);
+		var container_width = holder.find(".task-demo").width();
+		var container_left = holder.find(".task-steps").outerWidth();
 
-			var container_width = which.find(".task-demo").width();
-			var container_left = which.find(".task-steps").outerWidth();
+//		holder.find(".task-demo iframe").css({left: container_left + 15, width: container_width, maxHeight: wh, height: h});
+		holder.find(".task-demo iframe").css({width: container_width, maxHeight: wh, height: h});
 
-			which.find(".task-demo iframe").css({left: container_left + 15, width: container_width, maxHeight: wh, height: h});
+		holder.css("min-height", h);
+		$(".task-demo").css("min-height", h);
 
-			$(".row." + types[i]).css("min-height", h);
+		/*
+		container_width = $(".task-container").width();
 
-			/*
-			container_width = $(".task-container").width();
+		w = which.find(".task-steps").width();
+		var margin = (container_width - w) * .5;
 
-			w = which.find(".task-steps").width();
-			var margin = (container_width - w) * .5;
+		$(".task-steps.solo").css("margin-left", margin);
 
-			$(".task-steps.solo").css("margin-left", margin);
-
-			// give the task steps a bottom margin so the Captivate can be seen as we scroll to the last step
-			//$(".task-steps").css("margin-bottom", h * .5);
-			*/
-		}
+		// give the task steps a bottom margin so the Captivate can be seen as we scroll to the last step
+		//$(".task-steps").css("margin-bottom", h * .5);
+		*/
 
 		var a = $("#welcome-search").outerHeight();
 		var b = $("#start-to-finish").outerHeight();
@@ -96,49 +92,24 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 		}
 	}
 	
-	function onWatchOrTryButton (event) {						
-		if ($(event.target).is($("#watch-button"))) {
-			$("#try-button").prop("checked", false);
-			$("#try-button").parents("label").removeClass("active");
-		} else if ($(event.target).is($("#try-button"))) {
-			$("#watch-button").prop("checked", false);
-			$("#watch-button").parents("label").removeClass("active");
-		}
-
-		var watchit = $("#watch-button").prop("checked");
-		var tryit = $("#try-button").prop("checked");
-		
-		if (!watchit && !tryit) {
-			$(".task-steps").addClass("solo").removeClass("dual");
-			$(".task-demo").addClass("hidden");
-			
-			sizeToFit();
-		} else if (watchit) {
-			onDoWatchIt(event, false);
-		} else if (tryit) {
-			onDoTryIt(event, false);
-		}
-	}
-
     function setCaptivateMapping (keys) {
         captivateMapping = keys;
     }
 
     function removeCaptivate (type) {
-		$("div." + type).find(".task-demo iframe").remove();
+		$("iframe.tutorial." + type).remove();
 	}
 
 	function loadCaptivate (type, url) {
 		removeCaptivate(type);
 
-		var iframe = $("<iframe>").addClass("tutorial").attr({ frameborder: 0, src: url });
+		var iframe = $("<iframe>").addClass("tutorial " + type).attr({ frameborder: 0, src: url });
 
-		var holder = $("div." + type);
-
-		holder.find(".task-demo").append(iframe);
+		$(".task-demo").prepend(iframe);
 
 		// NOTE: I wish these numbers weren't so kludgy; they don't bode well
 
+		/*
         iframe.affix({
             offset: {
                 top: function () {
@@ -155,6 +126,7 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
                 }
             }
         });
+        */
 	}
 
 	function getCaptivateFrameReady () {
@@ -615,6 +587,22 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 		onGoToTask(event);
 	}
 
+	function onClickButton (event) {
+		$(".banner.selected").removeClass("selected");
+
+		var btn = $(event.currentTarget);
+
+		btn.addClass("selected");
+
+		if (btn.hasClass("watch")) {
+			$(".tutorial.watch").css("transform", "translateX(0)");
+			$(".tutorial.try").css("transform", "translateX(1500px)");
+		} else {
+			$(".tutorial.watch").css("transform", "translateX(1500px)");
+			$(".tutorial.try").css("transform", "translateX(0)");
+		}
+	}
+
 	var cp = [], cp_events = [];
 
 	var path = $.urlParam("content");
@@ -649,10 +637,11 @@ require(["domready", "toc-data", "holder", "toc-viewer", "bootstrap", "jasny-boo
 	$(".hidden-on-startup").removeClass("hidden");
 	
 	//$(".task-steps").addClass("solo");
-	
-	$(".captivate-buttons input").change(onWatchOrTryButton);
-	$("#header-play").click(onDoWatchIt);
+
+	$(".banner").click(onClickButton);
+
 	$(".search-button").click(onDoSearch);
+
 	$("#show-popular").click(onDoSearch);
 	$("#home-button").click(onHomeButton);
 	$("#back-button").click(onHomeButton);

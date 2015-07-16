@@ -101,16 +101,29 @@ hr.examplefour {
 
 .banner {
 	background-color: #315cc7;
-	padding: 15px 0;
+	padding: 15px 30px;
 	text-align: center;
 	color: #B6B9DF;
-	max-width: 300px;
-	margin: 0 auto;
 	border-radius: 20px;
+	display: inline-block;
+	margin: 0 20px;
 
 	.h2 {
 		display: inline-block;
 		vertical-align: top;
+	}
+
+	cursor: pointer;
+	outline: none;
+
+	&.selected, &.selected:hover {
+		background-color: #EAB136;
+		color: #1A1C34;
+	}
+
+	&:hover {
+		background-color: rgb(18, 18, 53);
+		color: white;
 	}
 }
 
@@ -127,4 +140,18 @@ aside.sidenote {
 		text-transform: uppercase;
 		font-size: 150%;
 	}
+}
+
+.button-separator {
+	background-color: #000044;
+	margin-right: 0;
+}
+
+.tutorial {
+	position: absolute;
+	transition: transform 1s ease-in-out;
+}
+
+.tutorial.try {
+	transform: translateX(1500px);
 }
