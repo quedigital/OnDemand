@@ -129,16 +129,55 @@ hr.examplefour {
 
 aside.sidenote {
 	background-color: rgb(138, 221, 138);
-	margin-left: 50px;
-	margin-right: -20px;
+	margin: 20px -20px 20px 50px;
 	padding: 25px 25px 25px 50px;
 	border-radius: 25px 0 0 25px;
 
-	h4 {
+	h3, h4 {
 		color: rgb(123, 107, 72);
 		margin-top: 0;
-		text-transform: uppercase;
 		font-size: 150%;
+	}
+
+	h3 {
+		font-size: 175%;
+	}
+
+	h4 {
+		font-size: 150%;
+		text-transform: uppercase;
+	}
+}
+
+aside.sidenote-not-all-good {
+	background-color: #B23025;
+	color: white;
+	margin-top: 40px;
+
+	h3 {
+		color: #B23025;
+		font-weight: 200;
+		font-style: italic;
+		margin-top: -2em;
+	}
+
+	h4 {
+		color: white;
+		font-weight: 400;
+	}
+}
+
+aside.sidenote-go-further {
+	position: relative;
+
+	h3 {
+		color: white;
+		font-weight: 200;
+		font-style: italic;
+		transform: rotate(-90deg) translateY(-50%);
+		position: absolute;
+		left: -1em;
+		top: 50%;
 	}
 }
 
