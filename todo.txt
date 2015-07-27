@@ -1,4 +1,3 @@
-// TODO: jump via steps needs to work for Watch and Try
 // TODO: play/pause, prev/next controls
 // TODO: make pause stop the animations too?
 // TODO: style the Go Further and It's Not All Good and Tips
@@ -37,3 +36,4 @@
 // DONE: put in chapter separators
 // DONE: style the sidebars
 // DONE: make watch it/try it tab panels again
+// DONE: jump via steps needs to work for Watch and Try

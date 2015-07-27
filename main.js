@@ -391,9 +391,10 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		event.stopImmediatePropagation();
 		event.preventDefault();
 
-		var row = t.parents(".row");
-		var type;
-		if (row.hasClass("watch")) {
+		var btn = $("button.banner.selected");
+		var isWatch = btn.hasClass("watch");
+
+		if (isWatch) {
 			type = "watch";
 			cp[0].gotoSlide(key);
 		} else {

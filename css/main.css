@@ -121,10 +121,17 @@ aside.sidenote-go-further {
     color: white;
     font-weight: 200;
     font-style: italic;
-    transform: rotate(-90deg) translateY(-50%);
+    transform: rotate(-90deg) translateY(40%) translateX(-50%);
     position: absolute;
-    left: -1em;
-    top: 50%; }
+    left: 0;
+    top: 50%;
+    transform-origin: 0 0; }
+    aside.sidenote-go-further h3::before {
+      padding-right: 5px;
+      content: "\003e\003e\003e";
+      display: inline-block; }
+  aside.sidenote-go-further h4.sidenote-title {
+    font-weight: 400; }
 
 .button-separator {
   background-color: #000044;
