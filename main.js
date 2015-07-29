@@ -337,19 +337,19 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 				// NOTE: this doesn't seem to fire from within an iFrame:
 //				cp_events[index].addEventListener("CPAPI_MOVIESTART", function () { console.log("movie started!"); });
 
-				cp_events[index].addEventListener("CPAPI_SLIDEENTER", onWatchSlideEntered);
-				cp_events[index].addEventListener("CPAPI_MOVIESTOP", onWatchMovieStop);
+				cp_events[index].addEventListener("CPAPI_SLIDEENTER", onSlideEntered);
+				cp_events[index].addEventListener("CPAPI_MOVIESTOP", onMovieStop);
 
-				cp_events[index].addEventListener("QUE_COMPLETE", onWatchLessonComplete);
+				cp_events[index].addEventListener("QUE_COMPLETE", onLessonComplete);
 				break;
 			case 1:
 				// NOTE: this doesn't seem to fire from within an iFrame:
 //				cp_events[index].addEventListener("CPAPI_MOVIESTART", function () { console.log("movie started!"); });
 
-				cp_events[index].addEventListener("CPAPI_SLIDEENTER", onTrySlideEntered);
-				cp_events[index].addEventListener("CPAPI_MOVIESTOP", onTryMovieStop);
+				cp_events[index].addEventListener("CPAPI_SLIDEENTER", onSlideEntered);
+				cp_events[index].addEventListener("CPAPI_MOVIESTOP", onMovieStop);
 
-				cp_events[index].addEventListener("QUE_COMPLETE", onTryLessonComplete);
+				cp_events[index].addEventListener("QUE_COMPLETE", onLessonComplete);
 				break;
 		}
 
@@ -377,6 +377,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		var p = $(".steps p").first();
 
 		$(".task-desc .lead").empty().append(p.clone());
+
+		$(".button-holder").css("min-height", $(".task-desc").outerHeight());
 	}
 
 	function activatePageLinks () {
@@ -403,25 +405,15 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		}
 	}
 
-    function onWatchMovieStop () {
+    function onMovieStop () {
         var slide = getCurrentSlide(0);
 
 	    var numSlides = getNumberOfSlides(0);
 
 	    if (slide >= numSlides || numSlides == undefined) {
-            onWatchLessonComplete();
+            onLessonComplete();
         }
     }
-
-	function onTryMovieStop () {
-		var slide = getCurrentSlide(1);
-
-		var numSlides = getNumberOfSlides(1);
-
-		if (slide >= numSlides || numSlides == undefined) {
-			onTryLessonComplete();
-		}
-	}
 
 	function getCurrentSlide (index) {
         return cp[index].getCurrentSlideIndex();
@@ -436,13 +428,9 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 	        return undefined;
     }
 
-    function onWatchLessonComplete () {
+    function onLessonComplete () {
         setTimeout(showSuccessMessage, 1000, 0);
     }
-
-	function onTryLessonComplete () {
-		setTimeout(showSuccessMessage, 1000, 1);
-	}
 
 	function showSuccessMessage (index) {
         var audio = $("#lesson-complete-audio")[0];
@@ -471,7 +459,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		}
 	}
 
-	function onWatchSlideEntered (event) {
+	function onSlideEntered (event) {
 		// for Captivate: (and it required the captivateMapping, since removed)
 		//var slide = event.Data.slideNumber;
 
@@ -481,9 +469,9 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 
         var centerPoint = screenHeight * .5;
 
-		var stepDOM = $(".watch .step[data-key='" + key + "'");
+		var stepDOM = $(".step[data-key='" + key + "'");
 
-		$(".watch .current").removeClass("current");
+		$(".current").removeClass("current");
 
 		if (stepDOM.length) {
 			var gotoDOM = stepDOM;//stepDOM.find("p");
@@ -503,42 +491,6 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 					$("body").animate({scrollTop: b}, 2000);
 				}
 				*/
-			}
-		}
-	}
-
-	function onTrySlideEntered (event) {
-		// for Captivate: (and it required the captivateMapping, since removed)
-		//var slide = event.Data.slideNumber;
-
-		var key = event.key;
-
-		var screenHeight = $(window).height();
-
-		var centerPoint = screenHeight * .5;
-
-		var stepDOM = $(".try .step[data-key='" + key + "'");
-
-		$(".try .current").removeClass("current");
-
-		if (stepDOM.length) {
-			var gotoDOM = stepDOM;//stepDOM.find("p");
-
-			if (gotoDOM && gotoDOM.length) {
-				gotoDOM.addClass("current");
-
-				var a = $("body").scrollTop();
-				var t = gotoDOM.offset().top;
-				var b = t - centerPoint;
-
-				/*
-				 // don't scroll if it's already past the vertical center, unless it's off-screen
-				 if ((t - a) > centerPoint) {
-				 $("body").animate({scrollTop: b}, 2000);
-				 } else if (t - a < 0) {
-				 $("body").animate({scrollTop: b}, 2000);
-				 }
-				 */
 			}
 		}
 	}
@@ -598,9 +550,11 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		if (btn.hasClass("watch")) {
 			$(".tutorial.watch").css("transform", "translateX(0)");
 			$(".tutorial.try").css("transform", "translateX(1500px)");
+			cp[0].startOver();
 		} else {
 			$(".tutorial.watch").css("transform", "translateX(1500px)");
 			$(".tutorial.try").css("transform", "translateX(0)");
+			cp[1].startOver();
 		}
 	}
 

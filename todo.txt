@@ -37,3 +37,8 @@
 // DONE: style the sidebars
 // DONE: make watch it/try it tab panels again
 // DONE: jump via steps needs to work for Watch and Try
+// DONE: click watch/try button restarts from beginning
+// DONE: try it (in container) doesn't click (first step of first lesson)
+// DONE: watch it (in container) doesn't proceed
+// DONE: rearrange so watch it/try it is moved up
+// DONE: highlighting of steps is broken again

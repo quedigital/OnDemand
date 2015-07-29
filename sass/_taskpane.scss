@@ -11,7 +11,6 @@
 }
 
 #masthead {
-	min-height:270px;
 	background-color:#000044;
   	color:#aaaacc;
 }
@@ -64,10 +63,11 @@
 }
 
 .task-intro {
-	padding-bottom: 2em;
-	
 	.task-desc {
 		padding-top: 2em;
+		padding-left: 10%;
+		padding-right: 5%;
+		padding-bottom: 2em;
 	}
 	
 	.poster {
@@ -82,9 +82,12 @@
 .task-buttons {
 	background-color: rgb(149, 151, 181);
 	padding: 15px 0;
-	margin: 0;
 	text-align: center;
 	border-radius: 25px 25px 0 0;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
 }
 
 .task-steps {

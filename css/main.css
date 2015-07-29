@@ -155,7 +155,6 @@ aside.sidenote-go-further {
   display: block; }
 
 #masthead {
-  min-height: 270px;
   background-color: #000044;
   color: #aaaacc; }
 
@@ -193,21 +192,25 @@ aside.sidenote-go-further {
   padding-top: 1em;
   background-color: #dedfd4; }
 
-.task-intro {
+.task-intro .task-desc {
+  padding-top: 2em;
+  padding-left: 10%;
+  padding-right: 5%;
   padding-bottom: 2em; }
-  .task-intro .task-desc {
-    padding-top: 2em; }
-  .task-intro .poster {
-    width: 100%; }
-  .task-intro h2 {
-    color: white; }
+.task-intro .poster {
+  width: 100%; }
+.task-intro h2 {
+  color: white; }
 
 .task-buttons {
   background-color: #9597b5;
   padding: 15px 0;
-  margin: 0;
   text-align: center;
-  border-radius: 25px 25px 0 0; }
+  border-radius: 25px 25px 0 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%; }
 
 .task-steps {
   /*visibility: hidden;*/ }
