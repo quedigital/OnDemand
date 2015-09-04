@@ -231,6 +231,9 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 
         $(".steps").load(html, onStepsLoaded);
 
+		$(".banner.selected").removeClass("selected");
+		$(".banner.watch").addClass("selected");
+
 		//$(".task-steps").removeClass("animated");
 		
 		// delay; animate after sizing

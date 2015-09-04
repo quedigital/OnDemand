@@ -1,3 +1,4 @@
+// TODO: pause watch when try is clicked (and vice versa)
 // TODO: play/pause, prev/next controls
 // TODO: make pause stop the animations too?
 // TODO: style the Go Further and It's Not All Good and Tips
@@ -42,3 +43,4 @@
 // DONE: watch it (in container) doesn't proceed
 // DONE: rearrange so watch it/try it is moved up
 // DONE: highlighting of steps is broken again
+// DONE: reset buttons to "Watch It" when switching tasks
