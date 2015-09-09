@@ -221,12 +221,12 @@
 
     <div id="taskpane" class="hidden">
         <div id="masthead">
-            <div class="task-intro container-fluid">
-                <div class="row">
-                    <div class="col-md-6 task-desc">
+            <div class="task-intro container">
+                    <div class="task-desc">
                         <h2>Show and Hide Folders</h2>
                         <p class="lead"></p>
                     </div>
+	                <!--
 				    <div class="col-md-6 button-holder">
 					    <div class="task-buttons">
 						    <button class="banner watch selected">
@@ -241,7 +241,7 @@
 						    </button>
 					    </div>
 				    </div>
-			    </div>
+				    -->
             </div>
         </div>
 
@@ -252,7 +252,26 @@
                     </div>
                 </div>
                 <div class="col-md-6 task-demo">
-	                <!-- iframes go here -->
+	                <!-- Nav tabs -->
+	                <ul class="nav nav-tabs" role="tablist">
+		                <li class="active">
+			                <a href="#tab-watch" role="tab" data-toggle="tab">
+				                <h3>Watch It <icon class="fa fa-eye"></icon></h3>
+			                </a>
+		                </li>
+		                <li><a href="#tab-try" role="tab" data-toggle="tab">
+			                <h3>Try It <icon class="fa fa-hand-o-left"></i></h3>
+		                </a>
+		                </li>
+	                </ul>
+
+	                <!-- Tab panes -->
+	                <div class="tab-content">
+		                <div class="tab-pane fade active in" id="tab-watch">
+		                </div>
+		                <div class="tab-pane fade" id="tab-try">
+		                </div>
+	                </div>
                 </div>
             </div>
 

@@ -1,5 +1,6 @@
-// TODO: did I turn off the scroll-locking for the iframes??
+// TODO: nav tabs need to pause the playback too
 // TODO: review resizing logic
+// TODO: did I turn off the scroll-locking for the iframes?? [yes, I think so]
 // TODO: make pause stop the animations too?
 // TODO: style the Go Further and It's Not All Good and Tips
 // TODO: make sure the Player can load from InformIT (ie, AWS) using getJSON [should work the same as the ContentViewer]

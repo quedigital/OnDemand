@@ -105,7 +105,9 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 
 		var iframe = $("<iframe>").addClass("tutorial " + type).attr({ frameborder: 0, src: url });
 
-		$(".task-demo").prepend(iframe);
+		$("#tab-" + type).empty().append(iframe);
+
+		//$(".task-demo").prepend(iframe);
 
 		// NOTE: I wish these numbers weren't so kludgy; they don't bode well
 
@@ -628,6 +630,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 	$("body").on("do-watch-it", onSearchDoWatchIt);
 	$("body").on("do-try-it", onSearchDoTryIt);
 	$("body").on("go-to-task", onSearchGoToTask);
+
+	$(".nav-tabs a").on("show.bs.tab", pauseBoth);
 
 	//$("#accordion").clone().appendTo("#my-progress-clone-holder");
 	

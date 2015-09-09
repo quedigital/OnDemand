@@ -198,12 +198,14 @@ aside.sidenote-go-further {
 }
 
 .tutorial {
+	/*
 	position: absolute;
 	transition: transform 1s ease-in-out;
+	*/
 }
 
 .tutorial.try {
-	transform: translateX(1500px);
+	//transform: translateX(1500px);
 }
 
 .button-holder {
