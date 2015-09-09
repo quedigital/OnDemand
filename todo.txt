@@ -1,5 +1,5 @@
-// TODO: pause watch when try is clicked (and vice versa)
-// TODO: play/pause, prev/next controls
+// TODO: did I turn off the scroll-locking for the iframes??
+// TODO: review resizing logic
 // TODO: make pause stop the animations too?
 // TODO: style the Go Further and It's Not All Good and Tips
 // TODO: make sure the Player can load from InformIT (ie, AWS) using getJSON [should work the same as the ContentViewer]
@@ -44,3 +44,5 @@
 // DONE: rearrange so watch it/try it is moved up
 // DONE: highlighting of steps is broken again
 // DONE: reset buttons to "Watch It" when switching tasks
+// DONE: pause watch when try is clicked (and vice versa)
+// DONE: play/pause, prev/next controls

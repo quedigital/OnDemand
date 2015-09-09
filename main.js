@@ -544,6 +544,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 	}
 
 	function onClickButton (event) {
+		pauseBoth();
+
 		$(".banner.selected").removeClass("selected");
 
 		var btn = $(event.currentTarget);
@@ -588,6 +590,11 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		title = metadata.title;
 
 		initialize();
+	}
+
+	function pauseBoth () {
+		cp[0].pause();
+		cp[1].pause();
 	}
 
 	$(window).resize(sizeToFit);
