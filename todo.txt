@@ -1,4 +1,3 @@
-// TODO: nav tabs need to pause the playback too
 // TODO: review resizing logic
 // TODO: did I turn off the scroll-locking for the iframes?? [yes, I think so]
 // TODO: make pause stop the animations too?
@@ -47,3 +46,4 @@
 // DONE: reset buttons to "Watch It" when switching tasks
 // DONE: pause watch when try is clicked (and vice versa)
 // DONE: play/pause, prev/next controls
+// DONE: nav tabs need to pause the playback too

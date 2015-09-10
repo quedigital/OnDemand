@@ -196,6 +196,10 @@ aside.sidenote-go-further {
   padding-left: 10%;
   padding-right: 5%;
   padding-bottom: 2em; }
+  .task-intro .task-desc h2 {
+    display: none; }
+  .task-intro .task-desc p {
+    display: none; }
 .task-intro .poster {
   width: 100%; }
 .task-intro h2 {
@@ -223,6 +227,8 @@ aside.sidenote-go-further {
   .task-steps h2 {
     color: #30517c;
     text-shadow: -1px 1px 3px rgba(0, 0, 0, 0.3); }
+  .task-steps .steps > h2 + p {
+    font-size: 150%; }
 
 .task-demo {
   position: relative;

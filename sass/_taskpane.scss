@@ -68,6 +68,14 @@
 		padding-left: 10%;
 		padding-right: 5%;
 		padding-bottom: 2em;
+
+		h2 {
+			display: none;
+		}
+
+		p {
+			display: none;
+		}
 	}
 	
 	.poster {
@@ -109,6 +117,10 @@
 	h2 {
 		color: rgb(48, 81, 124);
 		text-shadow: -1px 1px 3px rgba(0, 0, 0, .3);
+	}
+
+	.steps > h2 + p {
+		font-size: 150%;
 	}
 }
 
