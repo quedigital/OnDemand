@@ -1,5 +1,5 @@
 body {
-  padding-top: 50px;
+  /*padding-top: 50px;*/
   background-color: #F2C694; }
 
 #main-bar {
@@ -9,11 +9,15 @@ body {
   height: inherit; }
 
 #home-button {
-  color: white;
-  font-weight: bold;
-  font-size: 18px; }
-  #home-button img {
-    height: 16px; }
+  cursor: pointer; }
+
+#toc-toggler {
+  margin: 8px 0 0 8px; }
+  #toc-toggler:focus {
+    outline: none; }
+  #toc-toggler.open {
+    background: white !important;
+    color: #337ab7 !important; }
 
 #side-menu {
   padding-top: 100px;
@@ -54,6 +58,8 @@ hr.examplefour {
   cursor: pointer; }
   #contents-menu .entry:not(.chapter) a {
     padding: 5px 15px; }
+  #contents-menu .entry:not(.chapter):hover {
+    background: #C8C8D8; }
 #contents-menu .entry.chapter a {
   font-weight: bold;
   color: white;
@@ -142,6 +148,29 @@ aside.sidenote-go-further {
   position: absolute;
   transition: transform 1s ease-in-out;
   */ }
+
+#contents-menu .navbar {
+  margin-bottom: 0; }
+  #contents-menu .navbar .container-fluid .btn.pull-right {
+    margin-top: 7px; }
+  #contents-menu .navbar .container-fluid p {
+    margin-bottom: 0; }
+
+.navbar-brand:not(:hover) .title span.title {
+  color: #ddd; }
+
+#show-menu-button {
+  background-color: #2aabd2; }
+
+.navbar-toggle {
+  padding: 6px 12px; }
+
+#search-bar {
+  padding-right: 10px;
+  margin-right: 0; }
+
+#header-nav .navbar-header a {
+  cursor: pointer; }
 
 #search-form {
   position: absolute;
@@ -266,7 +295,11 @@ aside.sidenote-go-further {
 
 .footer {
   background-color: #BABAE0;
-  border-top: 5px solid #8d8cc5; }
+  border-top: 5px solid #8d8cc5;
+  padding: 20px 0; }
+  .footer .panel {
+    max-width: 600px;
+    margin: 0 auto; }
   .footer .left {
     padding: 20px 25px 0 25px; }
   .footer .right {
@@ -335,6 +368,7 @@ aside.sidenote-go-further {
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: 0 0;
+  padding-top: 75px;
   min-height: 100%; }
   #homepane > div {
     padding-top: 10px; }
@@ -357,7 +391,7 @@ aside.sidenote-go-further {
   border-radius: 30px 0px 0px 30px; }
 
 .search-button {
-  border-radius: 0px 30px 30px 0px;
+  /*border-radius: 0px 30px 30px 0px;*/
   cursor: pointer; }
 
 #start-to-finish {

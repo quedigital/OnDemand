@@ -164,6 +164,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 	}
 
 	function playIt (type) {
+		console.log("play it");
+
         currentType = type;
 
 		var item = toc[currentIndex];
@@ -204,7 +206,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		$("#homepane").addClass("hidden");
 		$("#progress").removeClass("hidden");
 		$("#searchpane").removeClass("hidden");
-		$("body").css("padding-top", 80);
+		//$("body").css("padding-top", 80);
 		
 		$("#toc-button").removeClass("hidden");
 		$("#search-form").removeClass("hidden");
@@ -223,11 +225,12 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		$("#toc-button").removeClass("hidden");
 		$("#search-form").removeClass("hidden");
 		$(".back-to-search").addClass("hidden");
-		$("body").css("padding-top", 50);
+		//$("body").css("padding-top", 50);
 
 		$(window).scrollTop(0);
 
 		$(".task-desc h2").text(toc[currentIndex].title);
+		$("a.navbar-brand .title").html("Back to <span class='title'>" + title + "</span> Home");
 
 		var html = toc[currentIndex].html;
 
@@ -240,6 +243,9 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		
 		// delay; animate after sizing
 		//setTimeout(function () { $(".task-steps").addClass("animated"); }, 10);
+
+		var t = getNextTaskTitle();
+		$("#next-task-title").text(t);
 
 		loadPlayers();
 	}
@@ -279,15 +285,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 
 		loadCaptivate(type, path);
 
-		var keys = item[type].keys;
-
-		setCaptivateMapping(keys);
-
-		checkForCaptivate();
-
-		var type = "try";
-
-		var path;
+		type = "try";
 
 		if (window.location.hostname == "localhost")
 			path = "../Authoring/Player/index.html?" + item[type].params;
@@ -295,6 +293,11 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 			path = "player/index.html?" + item[type].params;
 
 		loadCaptivate(type, path);
+
+		var keys = item[type].keys;
+		setCaptivateMapping(keys);
+
+		checkForCaptivate();
 	}
 	
 	function onHomeButton () {
@@ -304,10 +307,14 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		
 		$("#toc-button").removeClass("hidden");
 		$(".back-to-search").addClass("hidden");
-		$("body").css("padding-top", 50);
+		//$("body").css("padding-top", 50);
 		
 		$("#search-form").addClass("hidden");
 		$("#progress").removeClass("hidden");
+
+		$("a.navbar-brand .title").text(title);
+
+		showNextTask();
 	}
 
 	function checkForCaptivate () {
@@ -361,13 +368,6 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		setTimeout(function () {
 			cp[index].pause();
 		}, 0);
-
-        /*
-		setTimeout(function () {
-	        cp.start();
-	        cp.play();
-        }, 1500);
-        */
 	}
 
     function onStepsLoaded () {
@@ -398,14 +398,9 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		event.stopImmediatePropagation();
 		event.preventDefault();
 
-		var btn = $("button.banner.selected");
-		var isWatch = btn.hasClass("watch");
-
-		if (isWatch) {
-			type = "watch";
+		if (currentType == "watch") {
 			cp[0].gotoSlide(key);
 		} else {
-			type = "try";
 			cp[1].gotoSlide(key);
 		}
 	}
@@ -501,7 +496,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 	}
 
 	function buildUIforTOC () {
-		var m = $("#contents-menu ul");
+		var m = $("#contents-menu-list");
 
 		m.empty();
 
@@ -516,6 +511,38 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 				li.addClass("chapter");
 			}
 			li.appendTo(m);
+		}
+
+		showNextTask();
+	}
+
+	function showNextTask () {
+		for (var i = currentIndex; i < toc.length; i++) {
+			var t = toc[i];
+			if (t.html) {
+				$("#next-task").text(t.title);
+				break;
+			}
+		}
+	}
+
+	function getNextTaskTitle () {
+		for (var i = currentIndex + 1; i < toc.length; i++) {
+			var t = toc[i];
+			if (t && t.html) {
+				return t.title;
+			}
+		}
+	}
+
+	function onGoToNextTask () {
+		for (var i = currentIndex + 1; i < toc.length; i++) {
+			var t = toc[i];
+			if (t && t.html) {
+				currentIndex = i;
+				onGoToTask();
+				break;
+			}
 		}
 	}
 
@@ -545,24 +572,9 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		onGoToTask(event);
 	}
 
-	function onClickButton (event) {
-		pauseBoth();
-
-		$(".banner.selected").removeClass("selected");
-
-		var btn = $(event.currentTarget);
-
-		btn.addClass("selected");
-
-		if (btn.hasClass("watch")) {
-			$(".tutorial.watch").css("transform", "translateX(0)");
-			$(".tutorial.try").css("transform", "translateX(1500px)");
-			cp[0].startOver();
-		} else {
-			$(".tutorial.watch").css("transform", "translateX(1500px)");
-			$(".tutorial.try").css("transform", "translateX(0)");
-			cp[1].startOver();
-		}
+	function onClickTab (event) {
+		var tab = $(event.target);
+		currentType = tab.attr("data-type");
 	}
 
 	var cp = [], cp_events = [];
@@ -572,7 +584,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 
 	require([datafile], onLoadedTOC);
 
-	var currentIndex = 1, currentType = undefined;
+	var currentIndex = 1, currentType = "watch";
 
 	var toc, title;
 
@@ -583,6 +595,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		sr.option("toc", toc);
 
 		$(".project-title").text(title);
+		$("a.navbar-brand .title").text(title);
 
 		buildUIforTOC();
 	}
@@ -605,18 +618,20 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 	
 	//$(".task-steps").addClass("solo");
 
-	$(".banner").click(onClickButton);
-
 	$(".search-button").click(onDoSearch);
 
 	$("#show-popular").click(onDoSearch);
-	$("#home-button").click(onHomeButton);
+	$(".home-button").click(onHomeButton);
 	$("#back-button").click(onHomeButton);
 	//$(".navmenu-nav li").click(onDoSearch);
 //	$("#learn-more").click(onGoToTask);
 //	$("#progress").click(onShowProgress);
 	$(".go-to-task").click(onGoToTask);
-	
+	$(".go-to-next-task").click(onGoToTask);
+	$(".task-preview").click(onGoToNextTask)
+
+	$("#watch-try-tabs a[data-toggle='tab']").on("shown.bs.tab", onClickTab);
+
 	// manage z-index of side-menu with scrolling content
 	$("#side-menu").on("shown.bs.offcanvas", function () { $("#side-menu").css( { "z-index":  1 } ); });
 	$("#side-menu").on("show.bs.offcanvas", function () { $("#side-menu").css( { display: "block" } ); });

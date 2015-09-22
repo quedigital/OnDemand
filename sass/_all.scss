@@ -1,8 +1,10 @@
+$button-blue: #337ab7;
+
 html {
 }
 
 body {
-	padding-top: 50px;
+	/*padding-top: 50px;*/
 	background-color: #F2C694;
 }
 
@@ -18,16 +20,23 @@ body {
 }
 
 #home-button {
-	color: white;
-	font-weight: bold;
-	font-size: 18px;
-	
-	img {
-		height: 16px;
-	}
+	cursor: pointer;
 }
 
 #toc-button {
+}
+
+#toc-toggler {
+	margin: 8px 0 0 8px;
+
+	&:focus {
+		outline: none;
+	}
+
+	&.open {
+		background: white !important;
+		color: $button-blue !important;
+	}
 }
 
 #side-menu {
@@ -80,6 +89,10 @@ hr.examplefour {
 
 		& a {
 			padding: 5px 15px;
+		}
+
+		&:hover {
+			background: #C8C8D8;
 		}
 	}
 
@@ -209,4 +222,49 @@ aside.sidenote-go-further {
 }
 
 .button-holder {
+}
+
+#contents-menu .navbar {
+	margin-bottom: 0;
+
+	.container-fluid {
+		.btn.pull-right {
+			margin-top: 7px;
+		}
+
+		p {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.navbar-brand {
+	&:not(:hover) {
+		.title {
+			span.title {
+				color: #ddd;
+			}
+		}
+	}
+}
+
+#show-menu-button {
+	background-color: #2aabd2;
+}
+
+.navbar-toggle {
+	padding: 6px 12px;
+}
+
+#search-bar {
+	padding-right: 10px;
+	margin-right: 0;
+}
+
+#header-nav {
+	.navbar-header {
+		a {
+			cursor: pointer;
+		}
+	}
 }

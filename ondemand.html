@@ -22,6 +22,7 @@
 
 <body>
 
+<!--
 <header id="main-bar" class="navbar navbar-bright navbar-fixed-top" role="banner">
     <div class="container">
         <nav role="navigation">
@@ -60,10 +61,38 @@
         </div>
     </div>
 </header>
+-->
+<nav id="header-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<button id="toc-toggler" data-coach="Show and hide the Table of Contents." data-coach-pos="bottom" title="Show the table of contents." class="btn btn-primary pull-left" data-toggle="offcanvas" data-target="#contents-menu" data-autohide="true"><i class="fa fa-bars"></i> Contents</button>
+	<div class="navbar-header">
+		<button id="show-menu-button" title="Show the menu." data-coach-pos="bottom" class="navbar-toggle btn btn-info" data-toggle="collapse" data-target="#collapsible-menu"><i class="fa fa-sort-down"></i></button>
+		<a class="home-button navbar-brand hidden-xs" rel="home" title="Go to start screen."><span class="title"></span></a>
+		<a class="home-button navbar-brand visible-xs" rel="home" title="Go to start screen.">Home</a>
+	</div>
+	<div class="collapse navbar-collapse" id="collapsible-menu">
+		<div id="search-bar" class="nav navbar-form navbar-right" role="search">
+			<div class="input-group">
+				<div class="input-group-btn">
+					<button id="clear-search-button" class="btn btn-primary" title="Clear search text."><span class="fa fa-times-circle-o fa-lg"></span></button>
+				</div>
+				<input type="text" class="form-control" placeholder="Search" id="query" name="query" value="">
+				<div class="input-group-btn">
+					<button class="btn btn-primary search-button" title="Search video titles."><span class="glyphicon glyphicon-search"></span></button>
+				</div>
+			</div>
+			<button id="account-button" data-coach="Go to your Account page." title="Go to your Account Page." data-coach-pos="bottom" class="btn btn-primary">Account</button>
+		</div>
+	</div>
+</nav>
 
 <div id="contents-menu" class="navmenu navmenu-default navmenu-fixed-left offcanvas-lg">
-    <a class="navmenu-brand visible-md visible-lg project-title" href="#"></a>
-    <ul class="nav navmenu-nav">
+	<nav class="navbar">
+		<div class="container-fluid">
+			<button class="btn pull-right btn-primary" data-toggle="offcanvas" data-target="#contents-menu"><i class="fa fa-close"></i></button>
+			<p class="navbar-brand project-title">WebSiteName</p>
+		</div>
+	</nav>
+    <ul class="nav navmenu-nav" id="contents-menu-list">
         <li class="active"><a href="#">Chapter 1</a></li>
         <li>
             <ul class="nav navmenu-nav">
@@ -175,14 +204,14 @@
         <div class="container-fluid screenheight">
             <div class="container">
                 <div id="start-chooser">
-                    <h1 class="headline text-center blue-ish">Welcome to <span class="label label-que">Que Interactive</span> <span class="project-title"></span></h1>
+                    <h1 class="headline text-center blue-ish">Welcome to <span class="label label-que project-title"></span></h1>
                     <hr class="examplefour"/>
                     <h3 id="start-here" class="headline text-center">Start Here:</h3>
                     <div id="choices" class="row">
                         <div class="col-xs-6 intro-box">
                             <div id="start-to-finish" class="jumbotron">
                                 <h3>Follow the Course:</h3>
-                                <button type="button" class="go-to-task btn btn-labeled btn-primary"><span class="btn-label">Next Up <i class="fa fa-arrow-right"></i></span>Installing Windows</button>
+                                <button type="button" class="go-to-next-task btn btn-labeled btn-primary"><span class="btn-label">Next Up <i class="fa fa-arrow-right"></i></span><span id="next-task"></span></button>
                             </div>
                         </div>
                         <div class="col-xs-6">
@@ -226,22 +255,6 @@
                         <h2>Show and Hide Folders</h2>
                         <p class="lead"></p>
                     </div>
-	                <!--
-				    <div class="col-md-6 button-holder">
-					    <div class="task-buttons">
-						    <button class="banner watch selected">
-							    <span class="h2">Watch It&nbsp;</span>
-						        <span class="fa fa-eye fa-5x">
-						        </span>
-						    </button>
-						    <button class="banner try">
-							    <span class="h2">Try It&nbsp;</span>
-						        <span class="fa fa-hand-o-left fa-5x">
-						        </span>
-						    </button>
-					    </div>
-				    </div>
-				    -->
             </div>
         </div>
 
@@ -253,13 +266,13 @@
                 </div>
                 <div class="col-md-6 task-demo">
 	                <!-- Nav tabs -->
-	                <ul class="nav nav-tabs" role="tablist">
+	                <ul id="watch-try-tabs" class="nav nav-tabs" role="tablist">
 		                <li class="active">
-			                <a href="#tab-watch" role="tab" data-toggle="tab">
+			                <a href="#tab-watch" data-type="watch" role="tab" data-toggle="tab">
 				                <h3>Watch It <icon class="fa fa-eye"></icon></h3>
 			                </a>
 		                </li>
-		                <li><a href="#tab-try" role="tab" data-toggle="tab">
+		                <li><a href="#tab-try" data-type="try" role="tab" data-toggle="tab">
 			                <h3>Try It <icon class="fa fa-hand-o-left"></icon></h3>
 		                </a>
 		                </li>
@@ -276,6 +289,15 @@
             </div>
 
 	        <div class="footer row">
+		        <div class="container">
+			        <div class="panel panel-primary">
+				        <div class="panel-heading">Next Task In The Course:</div>
+				        <div class="panel-body">
+					        <div class="thumbnail task-preview"><div class="caption"><h3 id="next-task-title">Installing Office</h3><div class="btn-group btn-group-justified"><a class="btn btn-primary do-watch-it" role="button">Watch It</a><a class="btn btn-success do-watch-it" role="button">Try It</a></div></div></div>
+				        </div>
+			        </div>
+		        </div>
+		        <!--
                 <div class="left col-xs-2">
                 </div>
                 <div class="right col-xs-4">
@@ -304,6 +326,7 @@
                 </div>
                 <div class="left col-xs-2">
                 </div>
+                <!-->
             </div>
         </div>
     </div>

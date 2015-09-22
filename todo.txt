@@ -1,5 +1,7 @@
-// TODO: review resizing logic
 // TODO: did I turn off the scroll-locking for the iframes?? [yes, I think so]
+// TODO: front screen isn't responsive enough at small sizes
+// TODO: checkboxes for watch it/try it completion per task
+// TODO: review resizing logic
 // TODO: make pause stop the animations too?
 // TODO: style the Go Further and It's Not All Good and Tips
 // TODO: make sure the Player can load from InformIT (ie, AWS) using getJSON [should work the same as the ContentViewer]
@@ -47,3 +49,9 @@
 // DONE: pause watch when try is clicked (and vice versa)
 // DONE: play/pause, prev/next controls
 // DONE: nav tabs need to pause the playback too
+// DONE: re-do navbars to more closely match ContentViewer's
+// DONE: collapsed menu button doesn't work
+// DONE: navbar elements don't fit on narrow screens
+// DONE: highlighting isn't always working for Watch It
+// DONE: clickable steps isn't working for Watch It; they aren't continuing
+// DONE: play/pause button needs to sync with clickable steps for Watch It
