@@ -54,16 +54,44 @@ hr.examplefour {
   padding-bottom: 0;
   vertical-align: middle; }
 
-#contents-menu .entry:not(.chapter) {
-  cursor: pointer; }
-  #contents-menu .entry:not(.chapter) a {
-    padding: 5px 15px; }
-  #contents-menu .entry:not(.chapter):hover {
-    background: #C8C8D8; }
-#contents-menu .entry.chapter a {
-  font-weight: bold;
-  color: white;
-  background: #3c365f; }
+#contents-menu {
+  box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5); }
+  #contents-menu .navbar {
+    margin-bottom: 0; }
+    #contents-menu .navbar .container-fluid .btn.pull-right {
+      margin-top: 7px; }
+    #contents-menu .navbar .container-fluid p {
+      margin-bottom: 0; }
+  #contents-menu #contents-menu-list {
+    border-top: 1px solid #3c365f;
+    border-bottom: 3px solid #3c365f; }
+  #contents-menu .entry.header .checkable {
+    color: black;
+    font-size: 125%; }
+  #contents-menu .entry:not(.chapter):not(.header) {
+    cursor: pointer; }
+    #contents-menu .entry:not(.chapter):not(.header) a {
+      padding: 5px 15px; }
+    #contents-menu .entry:not(.chapter):not(.header):hover {
+      background: #C8C8D8; }
+  #contents-menu .entry.chapter {
+    font-weight: bold;
+    color: white;
+    background: #3c365f; }
+    #contents-menu .entry.chapter a {
+      color: white; }
+    #contents-menu .entry.chapter .checkable {
+      border-left-color: #B1B2C1;
+      color: #19CE19; }
+  #contents-menu .entry.current {
+    background-color: #ECECB6; }
+  #contents-menu .entry {
+    display: table-row; }
+    #contents-menu .entry .checkable {
+      display: table-cell;
+      color: green;
+      padding: 0 10px;
+      border-left: 1px solid #3c365f; }
 
 .divider {
   height: 50px;
@@ -149,13 +177,6 @@ aside.sidenote-go-further {
   transition: transform 1s ease-in-out;
   */ }
 
-#contents-menu .navbar {
-  margin-bottom: 0; }
-  #contents-menu .navbar .container-fluid .btn.pull-right {
-    margin-top: 7px; }
-  #contents-menu .navbar .container-fluid p {
-    margin-bottom: 0; }
-
 .navbar-brand:not(:hover) .title span.title {
   color: #ddd; }
 
@@ -166,7 +187,7 @@ aside.sidenote-go-further {
   padding: 6px 12px; }
 
 #search-bar {
-  padding-right: 10px;
+  padding-right: 8px;
   margin-right: 0; }
 
 #header-nav .navbar-header a {
@@ -184,7 +205,14 @@ aside.sidenote-go-further {
 
 #masthead {
   background-color: #000044;
-  color: #aaaacc; }
+  color: #aaaacc;
+  padding-top: 60px; }
+  #masthead .prev-next-buttons {
+    height: 45px; }
+    #masthead .prev-next-buttons .go-to-prev-task {
+      margin-left: 8px; }
+    #masthead .prev-next-buttons .go-to-next-task {
+      margin-right: 8px; }
 
 #masthead h1 {
   font-size: 55px;
@@ -220,19 +248,21 @@ aside.sidenote-go-further {
   padding-top: 1em;
   background-color: #dedfd4; }
 
-.task-intro .task-desc {
-  padding-top: 2em;
-  padding-left: 10%;
-  padding-right: 5%;
-  padding-bottom: 2em; }
-  .task-intro .task-desc h2 {
-    display: none; }
-  .task-intro .task-desc p {
-    display: none; }
-.task-intro .poster {
-  width: 100%; }
-.task-intro h2 {
-  color: white; }
+.task-intro {
+  display: none; }
+  .task-intro .task-desc {
+    padding-top: 2em;
+    padding-left: 10%;
+    padding-right: 5%;
+    padding-bottom: 2em; }
+    .task-intro .task-desc h2 {
+      display: none; }
+    .task-intro .task-desc p {
+      display: none; }
+  .task-intro .poster {
+    width: 100%; }
+  .task-intro h2 {
+    color: white; }
 
 .task-buttons {
   background-color: #9597b5;
@@ -316,7 +346,7 @@ aside.sidenote-go-further {
 
 #searchpane {
   background-color: #caf1fa;
-  padding-top: 25px;
+  padding-top: 60px;
   min-height: 700px; }
 
 .search-result .marker-new {
@@ -346,6 +376,7 @@ aside.sidenote-go-further {
 .task-preview {
   cursor: pointer;
   overflow: hidden;
+  box-shadow: 5px 5px 10px #333;
   transition: background-color .25s ease-in-out; }
   .task-preview:hover {
     background-color: #c1e2c0;
@@ -354,7 +385,8 @@ aside.sidenote-go-further {
     overflow: hidden;
     height: 2em;
     margin-top: 0px;
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    text-align: center; }
 
 .search-footer {
   height: 100px;
@@ -438,6 +470,9 @@ aside.sidenote-go-further {
   left: 0;
   width: 100%;
   border-radius: 0; }
+
+.navmenu {
+  width: 400px; }
 
 .navmenu-que {
   background-color: #f5a346;

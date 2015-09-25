@@ -1,6 +1,6 @@
+// TODO: checkmark on task screen (overlaid on Watch / Try)
 // TODO: did I turn off the scroll-locking for the iframes?? [yes, I think so]
 // TODO: front screen isn't responsive enough at small sizes
-// TODO: checkboxes for watch it/try it completion per task
 // TODO: review resizing logic
 // TODO: make pause stop the animations too?
 // TODO: style the Go Further and It's Not All Good and Tips
@@ -55,3 +55,6 @@
 // DONE: highlighting isn't always working for Watch It
 // DONE: clickable steps isn't working for Watch It; they aren't continuing
 // DONE: play/pause button needs to sync with clickable steps for Watch It
+// DONE: prev/next buttons on task page
+// DONE: show current task in table of contents
+// DONE: checkboxes for watch it/try it completion per task

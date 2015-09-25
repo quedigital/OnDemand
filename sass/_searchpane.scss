@@ -1,6 +1,6 @@
 #searchpane {
 	background-color: #caf1fa;
-	padding-top: 25px;
+	padding-top: 60px;
 	
 	min-height: 700px;
 }
@@ -39,6 +39,8 @@
 .task-preview {
 	cursor: pointer;
 	overflow: hidden;
+
+	box-shadow: 5px 5px 10px #333;
 	
 	transition: background-color .25s ease-in-out;
 	
@@ -52,6 +54,7 @@
 		height: 2em;
 		margin-top: 0px;
 		margin-bottom: 20px;
+		text-align: center;
 	}
 }
 

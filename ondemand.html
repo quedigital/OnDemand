@@ -211,7 +211,7 @@
                         <div class="col-xs-6 intro-box">
                             <div id="start-to-finish" class="jumbotron">
                                 <h3>Follow the Course:</h3>
-                                <button type="button" class="go-to-next-task btn btn-labeled btn-primary"><span class="btn-label">Next Up <i class="fa fa-arrow-right"></i></span><span id="next-task"></span></button>
+                                <button type="button" class="go-to-current-task btn btn-labeled btn-primary"><span class="btn-label">Next Up <i class="fa fa-arrow-right"></i></span><span class="next-task-title"></span></button>
                             </div>
                         </div>
                         <div class="col-xs-6">
@@ -250,6 +250,16 @@
 
     <div id="taskpane" class="hidden">
         <div id="masthead">
+	        <div class="prev-next-buttons">
+		        <button type="button" class="pull-left go-to-prev-task btn btn-labeled btn-primary">
+			        <span class="prev-task-title">Previous Task</span>
+			        <span class="btn-label btn-label-right"><i class="fa fa-arrow-left"></i> Back One</span>
+		        </button>
+		        <button type="button" class="pull-right go-to-next-task btn btn-labeled btn-primary">
+			        <span class="btn-label">Next Up <i class="fa fa-arrow-right"></i></span>
+			        <span class="next-task-title">Next Task</span>
+		        </button>
+	        </div>
             <div class="task-intro container">
                     <div class="task-desc">
                         <h2>Show and Hide Folders</h2>
@@ -290,10 +300,10 @@
 
 	        <div class="footer row">
 		        <div class="container">
-			        <div class="panel panel-primary">
+			        <div id="next-task-ad" class="panel panel-primary">
 				        <div class="panel-heading">Next Task In The Course:</div>
 				        <div class="panel-body">
-					        <div class="thumbnail task-preview"><div class="caption"><h3 id="next-task-title">Installing Office</h3><div class="btn-group btn-group-justified"><a class="btn btn-primary do-watch-it" role="button">Watch It</a><a class="btn btn-success do-watch-it" role="button">Try It</a></div></div></div>
+					        <div class="thumbnail task-preview go-to-next-task"><div class="caption"><h3 class="next-task-title">Installing Office</h3><div class="btn-group btn-group-justified"><a class="btn btn-primary do-watch-it" role="button">Watch It</a><a class="btn btn-success do-watch-it" role="button">Try It</a></div></div></div>
 				        </div>
 			        </div>
 		        </div>

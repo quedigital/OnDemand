@@ -13,6 +13,19 @@
 #masthead {
 	background-color:#000044;
   	color:#aaaacc;
+	padding-top: 60px;
+
+	.prev-next-buttons {
+		height: 45px;
+
+		.go-to-prev-task {
+			margin-left: 8px;
+		}
+
+		.go-to-next-task {
+			margin-right: 8px;
+		}
+	}
 }
 
 #masthead h1 {
@@ -63,6 +76,8 @@
 }
 
 .task-intro {
+	display: none;
+
 	.task-desc {
 		padding-top: 2em;
 		padding-left: 10%;

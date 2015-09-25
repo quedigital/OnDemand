@@ -6,7 +6,8 @@ requirejs.config({
 		"bootstrap": "bootstrap",
 		"jasny-bootstrap": "jasny-bootstrap.min",
 		"holder": "holder.min",
-		"joyride": "jquery.joyride-2.1"
+		"joyride": "jquery.joyride-2.1",
+		"jquery-json": "jquery.json.min"
 	},
 	
 	shim: {
@@ -28,12 +29,16 @@ requirejs.config({
 			export: "$",
 			deps: ['jquery']
 		},
+		"jquery-json": {
+			export: "$",
+			deps: ['jquery']
+		}
 	},
 });
 
 // NOTE: Couldn't use embed-responsive-4by3 for the iframe (even though it made sizing automatic) because it didn't (easily) work with affix's fixed positioning
 
-require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "search-results", "joyride", "coach-marks"], function (domReady) {
+require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-bootstrap", "search-results", "joyride", "coach-marks"], function (domReady) {
 
 	$.urlParam = function(name){
 		var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -136,7 +141,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 			event.stopPropagation();
 
 		if ($("#taskpane").hasClass("hidden")) {
-			onGoToTask(event);
+			onGoToCurrentTask(event);
 		}
 
 		$(".task-steps.solo").removeClass("solo").addClass("dual").css("margin-left", 0);
@@ -199,7 +204,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		$(".go-to-task").off("click");
 //		$(".do-watch-it").off("click");
 		
-		$(".go-to-task").click(onGoToTask);
+		$(".go-to-current-task").click(onGoToCurrentTask);
 //		$(".do-watch-it").click(onDoWatchIt);
 		
 		$("#taskpane").addClass("hidden");
@@ -212,8 +217,15 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		$("#search-form").removeClass("hidden");
 		$(".back-to-search").removeClass("hidden");
 	}
+
+	function setCurrentIndex (index) {
+		currentIndex = index;
+
+		$("li.entry").removeClass("current");
+		$("li.entry[data-index=" + currentIndex + "]").addClass("current");
+	}
 	
-	function onGoToTask (event) {
+	function onGoToCurrentTask (event) {
 		$('#previewModal').modal('hide');
 		
 		$("#homepane").addClass("hidden");
@@ -244,8 +256,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		// delay; animate after sizing
 		//setTimeout(function () { $(".task-steps").addClass("animated"); }, 10);
 
-		var t = getNextTaskTitle();
-		$("#next-task-title").text(t);
+		showNextTask(1);
 
 		loadPlayers();
 	}
@@ -314,7 +325,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 
 		$("a.navbar-brand .title").text(title);
 
-		showNextTask();
+		showNextTask(0);
 	}
 
 	function checkForCaptivate () {
@@ -429,6 +440,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
     }
 
     function onLessonComplete () {
+	    saveStatus(currentIndex, currentType, true);
+
         setTimeout(showSuccessMessage, 1000, 0);
     }
 
@@ -437,9 +450,22 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
         audio.play();
 
 		var type = index == 0 ? "watch" : "try";
-
-        toc[currentIndex][type].completed = true;
     }
+
+	function saveStatus (index, type, status) {
+		switch (type) {
+			case "watch":
+				toc[index]["watched"] = status;
+				break;
+			case "try":
+				toc[index]["tried"] = status;
+				break;
+		}
+
+		refreshStatusUI();
+
+		saveTOCStatus();
+	}
 
     function onShowFeatures () {
 		$("#coach-marks").CoachMarks().CoachMarks("instance").open();
@@ -500,11 +526,38 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 
 		m.empty();
 
+		var li = $("<li>", { class: "entry header" });
+		var a = $("<p>");
+		a.appendTo(li);
+
+		var watched = $("<div>", { class: "watched checkable" });
+		watched.append('<i class="fa fa-eye">');
+		watched.appendTo(li);
+		var tried = $("<div>", { class: "tried checkable" });
+		tried.append('<i class="fa fa-hand-o-left">');
+		tried.appendTo(li);
+
+//		li.addClass("chapter");
+		li.appendTo(m);
+
 		for (var i = 0; i < toc.length; i++) {
 			var t = toc[i];
-			var li = $("<li>", { class: "entry" });
+			var li = $("<li>", { class: "entry" }).attr("data-index", i);
 			var a = $("<a>", { text: t.title });
 			a.appendTo(li);
+
+			var watched = $("<div>", { class: "watched checkable" });
+			if (toc[i].watched) {
+				watched.append("<i class='fa fa-check'>");
+			}
+			watched.appendTo(li);
+
+			var tried = $("<div>", { class: "tried checkable" });
+			if (toc[i].tried) {
+				tried.append("<i class='fa fa-check'>");
+			}
+			tried.appendTo(li);
+
 			if (t.html) {
 				li.click($.proxy(onClickTaskFromMenu, this, i));
 			} else {
@@ -512,18 +565,37 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 			}
 			li.appendTo(m);
 		}
-
-		showNextTask();
 	}
 
-	function showNextTask () {
-		for (var i = currentIndex; i < toc.length; i++) {
+	function showNextTask (offset) {
+		if (offset == undefined) offset = 1;
+
+		var found = false;
+
+		for (var i = currentIndex + offset; i < toc.length; i++) {
 			var t = toc[i];
 			if (t.html) {
-				$("#next-task").text(t.title);
+				$(".next-task-title").text(t.title);
+				found = true;
 				break;
 			}
 		}
+
+		$(".next-task-title").parent().css("display", found ? "block" : "none");
+		$("#next-task-ad").css("display", found ? "block" : "none");
+
+		found = false;
+
+		for (var i = currentIndex + offset - 2; i >= 0; i--) {
+			var t = toc[i];
+			if (t.html) {
+				$(".prev-task-title").text(t.title);
+				found = true;
+				break;
+			}
+		}
+
+		$(".prev-task-title").parent().css("display", found ? "block" : "none");
 	}
 
 	function getNextTaskTitle () {
@@ -539,8 +611,19 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		for (var i = currentIndex + 1; i < toc.length; i++) {
 			var t = toc[i];
 			if (t && t.html) {
-				currentIndex = i;
-				onGoToTask();
+				setCurrentIndex(i);
+				onGoToCurrentTask();
+				break;
+			}
+		}
+	}
+
+	function onGoToPrevTask () {
+		for (var i = currentIndex - 1; i >= 0; i--) {
+			var t = toc[i];
+			if (t && t.html) {
+				setCurrentIndex(i);
+				onGoToCurrentTask();
 				break;
 			}
 		}
@@ -549,27 +632,27 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 	function onClickTaskFromMenu (index) {
 		$("#contents-menu").offcanvas('hide');
 
-		currentIndex = index;
+		setCurrentIndex(index);
 
-		onGoToTask();
+		onGoToCurrentTask();
 	}
 
 	function onSearchDoWatchIt (event, index) {
-		currentIndex = index;
+		setCurrentIndex(index);
 
 		onDoWatchIt(event, true);
 	}
 
 	function onSearchDoTryIt (event, index) {
-		currentIndex = index;
+		setCurrentIndex(index);
 
 		onDoTryIt(event, true);
 	}
 
 	function onSearchGoToTask (event, index) {
-		currentIndex = index;
+		setCurrentIndex(index);
 
-		onGoToTask(event);
+		onGoToCurrentTask(event);
 	}
 
 	function onClickTab (event) {
@@ -577,14 +660,23 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		currentType = tab.attr("data-type");
 	}
 
+	function getFolderName (path) {
+		var s = path.split("/");
+		if (s.length) return s[0];
+
+		return "undefined";
+	}
+
 	var cp = [], cp_events = [];
 
 	var path = $.urlParam("content");
 	var datafile = decodeURI(path);
 
+	var foldername = getFolderName(datafile);
+
 	require([datafile], onLoadedTOC);
 
-	var currentIndex = 1, currentType = "watch";
+	var currentIndex, currentType = "watch";
 
 	var toc, title;
 
@@ -597,7 +689,13 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		$(".project-title").text(title);
 		$("a.navbar-brand .title").text(title);
 
+		loadTOCStatus();
+
 		buildUIforTOC();
+
+		setCurrentIndex(1);
+
+		showNextTask(0);
 	}
 
 	function onLoadedTOC (metadata) {
@@ -605,6 +703,61 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 		title = metadata.title;
 
 		initialize();
+	}
+
+	function saveTOCStatus () {
+		var savedStatus = [];
+
+		for (var i = 0; i < toc.length; i++) {
+			if (!savedStatus[i])
+				savedStatus[i] = {};
+
+			savedStatus[i].watched = toc[i].watched;
+			savedStatus[i].tried = toc[i].tried;
+		}
+
+		var data = localStorage.getItem(foldername);
+		if (!data) {
+			data = {};
+		} else {
+			data = $.evalJSON(data);
+		}
+
+		data.status = savedStatus;
+
+		localStorage.setItem(foldername, $.toJSON(data));
+	}
+
+	function loadTOCStatus () {
+		var data = localStorage.getItem(foldername);
+		if (data) {
+			data = $.evalJSON(data);
+		}
+
+		for (var i = 0; i < toc.length; i++) {
+			if (data && data.status[i]) {
+				toc[i].watched = data.status[i].watched;
+				toc[i].tried = data.status[i].tried;
+			} else {
+				toc[i].watched = false;
+				toc[i].tried = false;
+			}
+		}
+	}
+
+	function refreshStatusUI () {
+		for (var i = 0; i < toc.length; i++) {
+			var el = $("li[data-index=" + i + "]");
+			el.find(".watched i").remove();
+			if (toc[i].watched) {
+				el.find(".watched").append("<i class='fa fa-check'>");
+			}
+
+			el.find(".tried i").remove();
+			if (toc[i].tried) {
+				el.find(".tried").append("<i class='fa fa-check'>");
+			}
+		}
 	}
 
 	function pauseBoth () {
@@ -626,9 +779,9 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jasny-bootstrap", "se
 	//$(".navmenu-nav li").click(onDoSearch);
 //	$("#learn-more").click(onGoToTask);
 //	$("#progress").click(onShowProgress);
-	$(".go-to-task").click(onGoToTask);
-	$(".go-to-next-task").click(onGoToTask);
-	$(".task-preview").click(onGoToNextTask)
+	$(".go-to-current-task").click(onGoToCurrentTask);
+	$(".go-to-next-task").click(onGoToNextTask)
+	$(".go-to-prev-task").click(onGoToPrevTask)
 
 	$("#watch-try-tabs a[data-toggle='tab']").on("shown.bs.tab", onClickTab);
 
