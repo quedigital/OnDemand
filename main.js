@@ -59,8 +59,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		
 		$(".screenheight").css("min-height", screenHeight - 50);
 		
-		var bh = $("#main-bar").height();
-		var wh = $(window).innerHeight() - bh;
+		var bh = $("#header-nav").height();
+		var wh = $(window).innerHeight() - bh - $("#watch-try-tabs").height() - 15;
 		
 		var w = $(".task-demo").width();
 		var h = w * .75;
@@ -73,8 +73,9 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 //		holder.find(".task-demo iframe").css({left: container_left + 15, width: container_width, maxHeight: wh, height: h});
 		holder.find(".task-demo iframe").css({width: container_width, maxHeight: wh, height: h});
 
-		holder.css("min-height", h);
-		$(".task-demo").css("min-height", h);
+		//holder.css("min-height", h);
+		holder.css("min-height", $("#video-holder").height());
+		$(".task-demo").css("min-height", $(".demo-holder").height());
 
 		/*
 		container_width = $(".task-container").width();
@@ -95,6 +96,18 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		} else if (b < a) {
 			$("#start-to-finish").outerHeight(a);
 		}
+
+		$("#video-holder").affix({
+			offset: {
+				top: function () {
+					return $("#video-holder").parent().offset().top - $("#header-nav").outerHeight(false);
+	                //return $(".task-container").offset().top - $("#search-form").outerHeight(false);
+				},
+				bottom: function () {
+					return $(".footer").outerHeight();
+				}
+			}
+		});
 	}
 	
     function setCaptivateMapping (keys) {
@@ -259,6 +272,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		showNextTask(1);
 
 		loadPlayers();
+
+		refreshStatusUI();
 	}
 
 	function removePlayers () {
@@ -757,6 +772,18 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 			if (toc[i].tried) {
 				el.find(".tried").append("<i class='fa fa-check'>");
 			}
+		}
+
+		if (toc[currentIndex].watched) {
+			$("#watch-try-tabs .check-mark.watch").show(0);
+		} else {
+			$("#watch-try-tabs .check-mark.watch").hide(0);
+		}
+
+		if (toc[currentIndex].tried) {
+			$("#watch-try-tabs .check-mark.try").show(0);
+		} else {
+			$("#watch-try-tabs .check-mark.try").hide(0);
 		}
 	}
 

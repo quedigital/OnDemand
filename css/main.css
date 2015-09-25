@@ -291,7 +291,7 @@ aside.sidenote-go-further {
 
 .task-demo {
   position: relative;
-  overflow: hidden;
+  /*overflow: hidden;*/
   /* Tab Navigation */
   /* Tab Content */ }
   .task-demo .nav-tabs {
@@ -323,6 +323,17 @@ aside.sidenote-go-further {
     bottom: 0;
     position: absolute; }
 
+#video-holder.affix-top {
+  position: relative;
+  top: 0px; }
+#video-holder.affix {
+  top: 50px;
+  position: fixed; }
+#video-holder.affix-bottom {
+  position: absolute;
+  bottom: 15px;
+  top: auto !important; }
+
 .footer {
   background-color: #BABAE0;
   border-top: 5px solid #8d8cc5;
@@ -343,6 +354,17 @@ aside.sidenote-go-further {
   width: 10em;
   margin-left: auto;
   margin-right: 0; }
+
+#watch-try-tabs .check-mark {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  z-index: 1;
+  transform: translateX(-50%) translateY(-50%); }
+  #watch-try-tabs .check-mark i.fa-check-circle {
+    color: #4C9A54; }
+  #watch-try-tabs .check-mark i.fa-circle {
+    color: #61EA22; }
 
 #searchpane {
   background-color: #caf1fa;

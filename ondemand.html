@@ -275,24 +275,39 @@
                     </div>
                 </div>
                 <div class="col-md-6 task-demo">
-	                <!-- Nav tabs -->
-	                <ul id="watch-try-tabs" class="nav nav-tabs" role="tablist">
-		                <li class="active">
-			                <a href="#tab-watch" data-type="watch" role="tab" data-toggle="tab">
-				                <h3>Watch It <icon class="fa fa-eye"></icon></h3>
-			                </a>
-		                </li>
-		                <li><a href="#tab-try" data-type="try" role="tab" data-toggle="tab">
-			                <h3>Try It <icon class="fa fa-hand-o-left"></icon></h3>
-		                </a>
-		                </li>
-	                </ul>
+	                <div id="video-holder">
+		                <!-- Nav tabs -->
+		                <ul id="watch-try-tabs" class="nav nav-tabs" role="tablist">
+			                <li class="active">
+				                <a class="video-tab" href="#tab-watch" data-type="watch" role="tab" data-toggle="tab">
+					                <h3>Watch It <icon class="fa fa-eye"></icon></h3>
+				                </a>
+				                <div class="check-mark watch">
+					                <span class="fa-stack fa-2x">
+					                    <i class="fa fa-circle fa-stack-1x"></i>
+					                    <i class="fa fa-check-circle fa-stack-1x"></i>
+					                </span>
+				                </div>
+			                </li>
+			                <li>
+				                <a class="video-tab" href="#tab-try" data-type="try" role="tab" data-toggle="tab">
+					                <h3>Try It <icon class="fa fa-hand-o-left"></icon></h3>
+				                </a>
+				                <div class="check-mark try">
+					                <span class="fa-stack fa-2x">
+					                    <i class="fa fa-circle fa-stack-1x"></i>
+					                    <i class="fa fa-check-circle fa-stack-1x"></i>
+					                </span>
+				                </div>
+			                </li>
+		                </ul>
 
-	                <!-- Tab panes -->
-	                <div class="tab-content">
-		                <div class="tab-pane fade active in" id="tab-watch">
-		                </div>
-		                <div class="tab-pane fade" id="tab-try">
+		                <!-- Tab panes -->
+		                <div class="tab-content">
+			                <div class="tab-pane fade active in" id="tab-watch">
+			                </div>
+			                <div class="tab-pane fade" id="tab-try">
+			                </div>
 		                </div>
 	                </div>
                 </div>

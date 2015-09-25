@@ -141,7 +141,7 @@
 
 .task-demo {
 	position: relative;
-	overflow: hidden;
+	/*overflow: hidden;*/ // turned off so the checkmarks can appear
 
 	/* Tab Navigation */
 	.nav-tabs {
@@ -194,6 +194,24 @@
 	}
 }
 
+#video-holder {
+	&.affix-top {
+		position: relative;
+		top: 0px;
+	}
+
+	&.affix {
+		top: 50px;
+		position: fixed;
+	}
+
+	&.affix-bottom {
+		position: absolute;
+		bottom: 15px;
+		top: auto !important;	// so it doesn't get overridden by the affix code
+	}
+}
+
 .footer {	
 	background-color: #BABAE0;
 	border-top: 5px solid rgb(141, 140, 197);
@@ -222,4 +240,23 @@
 	width: 10em;
 	margin-left: auto;
 	margin-right: 0;
+}
+
+#watch-try-tabs {
+	.check-mark {
+		position: absolute;
+		top: 0;
+		left: 100%;
+		z-index: 1;
+
+		transform: translateX(-50%) translateY(-50%);
+
+		i.fa-check-circle {
+			color: #4C9A54;
+		}
+
+		i.fa-circle {
+			color: #61EA22;
+		}
+	}
 }
