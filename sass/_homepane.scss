@@ -317,5 +317,19 @@
 }
 
 #help {
-	margin: 7px 25px 10px 0;
+	margin-right: 25px;
+}
+
+#logo {
+	text-align: center;
+
+	img {
+		height: 40px;
+		margin-top: 5px;
+	}
+
+	span {
+		color: white;
+		vertical-align: bottom;
+	}
 }

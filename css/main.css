@@ -12,7 +12,7 @@ body {
   cursor: pointer; }
 
 #toc-toggler {
-  margin: 8px 0 0 8px; }
+  margin-left: 8px; }
   #toc-toggler:focus {
     outline: none; }
   #toc-toggler.open {
@@ -58,8 +58,6 @@ hr.examplefour {
   box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5); }
   #contents-menu .navbar {
     margin-bottom: 0; }
-    #contents-menu .navbar .container-fluid .btn.pull-right {
-      margin-top: 7px; }
     #contents-menu .navbar .container-fluid p {
       margin-bottom: 0; }
   #contents-menu #contents-menu-list {
@@ -635,7 +633,17 @@ aside.sidenote-go-further {
   overflow-x: hidden; }
 
 #help {
-  margin: 7px 25px 10px 0; }
+  margin-right: 25px; }
+
+#logo {
+  text-align: center; }
+  #logo img {
+    height: 40px;
+    margin-top: 5px;
+    box-sizing: content-box; }
+  #logo span {
+    color: white;
+    vertical-align: bottom; }
 
 @font-face {
   font-family: 'icomoon';
