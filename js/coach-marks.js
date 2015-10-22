@@ -21,10 +21,10 @@ define(["jquery.ui"], function () {
 		_create: function () {
 			this.markcontainer = $("<div>", { class: "coach markcontainer" });
 			this.element.append(this.markcontainer);
-			
+
 			this.element.click($.proxy(this.onClick, this));
 			
-			this.refresh();
+			//this.refresh();
 		},
 		
 		refresh: function () {
@@ -38,17 +38,22 @@ define(["jquery.ui"], function () {
 		
 		open: function () {
 			this.refresh();
-			
-			this.element.show();
+
+			this.element.hide(0);
+			this.element.show("fade");
+
+			this.preventScroll();
 		},
 		
 		onClick: function () {
-			this.element.hide();
+			this.element.hide("fade");
+
+			this.enableScroll();
 		},
 		
 		createCoachMark: function (el) {
 			el = $(el);
-			
+
 			var rect = el[0].getBoundingClientRect();
 			this.mark = $("<div>", { class: "coach mark" });
 			this.markcontainer.append(this.mark);
@@ -99,12 +104,20 @@ define(["jquery.ui"], function () {
 					break;				
 			}
 			
-			var img = $("<img>", { src: ar.url }).css( { left: arrowX, top: arrowY } );
+			var img = $("<img>", { src: ar.url }).css( { top: arrowY, display: "none" } );
 			img.appendTo(this.mark);
-			
+
 			switch (pos) {
 				case "bottom":
-					this.mark.position( { my: "center top", at: "center bottom", of: el, collision: "none" } );
+					this.mark.position( { my: "center top", at: "center bottom", of: el, collision: "fit" } );
+
+					var opts = { el: el[0], mark: this.mark[0], img: img, arrowX: arrowX };
+
+					var func = $.proxy(this.positionArrow, this, opts);
+
+					// use a delay to make sure things are positioned correctly the second and subsequent times
+					setTimeout(func, 0);
+
 					break;
 			}
 		},
@@ -124,6 +137,31 @@ define(["jquery.ui"], function () {
 			}
 
 			this._super( "_setOption", key, value );
+		},
+
+		positionArrow: function (opts) {
+			// find offset from arrowhead to center of target
+			var rect1 = opts.el.getBoundingClientRect();
+			var rect2 = opts.mark.getBoundingClientRect();
+			var offset = (rect1.left + rect1.width * .5) - (rect2.left + rect2.width * .5);
+			var x = opts.arrowX + offset;
+			console.log("x = " + x);
+			opts.img.css({left: x, display: "block"});
+		},
+
+		preventScroll: function () {
+			window.onwheel = preventDefault;
+		},
+
+		enableScroll: function () {
+			window.onwheel = null;
 		}
 	});
+
+	function preventDefault (e) {
+		e = e || window.event;
+		if (e.preventDefault)
+			e.preventDefault();
+		e.returnValue = false;
+	}
 });

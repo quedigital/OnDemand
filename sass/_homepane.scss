@@ -12,6 +12,8 @@
 	}
 	
 	.jumbotron {
+		background-color: #CAE8D2;
+
 		h3 {
 			margin-top: 0;
 			margin-bottom: 1em;
@@ -151,7 +153,20 @@
 	}
 }
 
+.container-narrow {
+	margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+	.container-narrow {
+		max-width: 730px;
+	}
+}
+
 .intro-box {
+	max-width: 400px;
+	margin: 0 auto;
+
 	.panel-box {
 		height: 150px;
 		float: left;		
@@ -242,7 +257,7 @@
 			left: 0;
 			right: 0;
 			bottom: 0;
-			background-color: rgba(0, 0, 0, .5);
+			background-color: rgba(0, 0, 0, .3);
 		}
 		
 		.mark {
@@ -301,3 +316,6 @@
 	overflow-x: hidden;
 }
 
+#help {
+	margin: 7px 25px 10px 0;
+}

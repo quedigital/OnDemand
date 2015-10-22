@@ -180,39 +180,29 @@
 		text-align: center;
 		padding: 10px;
 	}
+}
 
-	iframe {
+@media (min-width: 992px) {
+	#video-holder {
+		&.affix-top {
+			position: relative;
+			top: 0px;
+		}
+
 		&.affix {
 			top: 50px;
+			position: fixed;
 		}
-		
+
 		&.affix-bottom {
-			left: 15px !important;
-			bottom: 0;
 			position: absolute;
+			bottom: 15px;
+			top: auto !important; // so it doesn't get overridden by the affix code
 		}
 	}
 }
 
-#video-holder {
-	&.affix-top {
-		position: relative;
-		top: 0px;
-	}
-
-	&.affix {
-		top: 50px;
-		position: fixed;
-	}
-
-	&.affix-bottom {
-		position: absolute;
-		bottom: 15px;
-		top: auto !important;	// so it doesn't get overridden by the affix code
-	}
-}
-
-.footer {	
+.footer {
 	background-color: #BABAE0;
 	border-top: 5px solid rgb(141, 140, 197);
 	padding: 20px 0;

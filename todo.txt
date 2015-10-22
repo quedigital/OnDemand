@@ -1,4 +1,3 @@
-// TODO: front screen isn't responsive enough at small sizes
 // TODO: review resizing logic
 // TODO: make pause stop the animations too?
 // TODO: style the Go Further and It's Not All Good and Tips
@@ -58,3 +57,7 @@
 // DONE: checkboxes for watch it/try it completion per task
 // DONE: did I turn off the scroll-locking for the iframes?? [yes, I think so; back on]
 // DONE: checkmark on task screen (overlaid on Watch / Try)
+// DONE: temporarily hide search & browse
+// DONE: "Watched It" "Tried It" for checkmarks
+// DONE: front screen isn't responsive enough at small sizes
+// DONE: instead of "Follow the course" and "Next up" say "Start the course" and "First up" when starting

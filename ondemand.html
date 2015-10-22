@@ -12,8 +12,6 @@
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 
-    <link href="google_hangouts/pages/images.css" rel="stylesheet">
-
     <link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Martel+Sans:400,800' rel='stylesheet' type='text/css'>
 
@@ -63,13 +61,17 @@
 </header>
 -->
 <nav id="header-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-	<button id="toc-toggler" data-coach="Show and hide the Table of Contents." data-coach-pos="bottom" title="Show the table of contents." class="btn btn-primary pull-left" data-toggle="offcanvas" data-target="#contents-menu" data-autohide="true"><i class="fa fa-bars"></i> Contents</button>
+	<button id="toc-toggler" data-coach="Show and hide the Table of Contents" data-coach-pos="bottom" title="Show the table of contents." class="btn btn-primary pull-left" data-toggle="offcanvas" data-target="#contents-menu" data-autohide="true"><i class="fa fa-bars"></i> Contents</button>
 	<div class="navbar-header">
 		<button id="show-menu-button" title="Show the menu." data-coach-pos="bottom" class="navbar-toggle btn btn-info" data-toggle="collapse" data-target="#collapsible-menu"><i class="fa fa-sort-down"></i></button>
 		<a class="home-button navbar-brand hidden-xs" rel="home" title="Go to start screen."><span class="title"></span></a>
-		<a class="home-button navbar-brand visible-xs" rel="home" title="Go to start screen.">Home</a>
+		<a class="home-button navbar-brand visible-xs" rel="home" title="Go to start screen."><span class="title"></span></a>
 	</div>
 	<div class="collapse navbar-collapse" id="collapsible-menu">
+		<div class="navbar-header navbar-right">
+			<button class="btn btn-primary" id="help" title="Bring up the help screen." data-coach="Stuck? Get help here" data-coach-pos="bottom">Help</button>
+		</div>
+		<!--
 		<div id="search-bar" class="nav navbar-form navbar-right" role="search">
 			<div class="input-group">
 				<div class="input-group-btn">
@@ -82,6 +84,7 @@
 			</div>
 			<button id="account-button" data-coach="Go to your Account page." title="Go to your Account Page." data-coach-pos="bottom" class="btn btn-primary">Account</button>
 		</div>
+		-->
 	</div>
 </nav>
 
@@ -202,32 +205,11 @@
 
     <div id="homepane" class="hidden hidden-on-startup">
         <div class="container-fluid screenheight">
-            <div class="container">
-                <div id="start-chooser">
-                    <h1 class="headline text-center blue-ish">Welcome to <span class="label label-que project-title"></span></h1>
-                    <hr class="examplefour"/>
-                    <h3 id="start-here" class="headline text-center">Start Here:</h3>
-                    <div id="choices" class="row">
-                        <div class="col-xs-6 intro-box">
-                            <div id="start-to-finish" class="jumbotron">
-                                <h3>Follow the Course:</h3>
-                                <button type="button" class="go-to-current-task btn btn-labeled btn-primary"><span class="btn-label">Next Up <i class="fa fa-arrow-right"></i></span><span class="next-task-title"></span></button>
-                            </div>
-                        </div>
-                        <div class="col-xs-6">
-                            <div id="welcome-search" class="jumbotron">
-                                <h3>Browse for Tasks in the Course:</h3>
-                                <div class="input-group">
-                                    <input type="text" class="form-control search-form input-large" placeholder="Search" data-coach="Find what you want to learn by typing something here." data-coach-pos="bottom" data-coach-arrow="ne">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary search-button">
-                                    <i class="fa fa-search fa-lg"></i>
-                                </button>
-                            </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="container-narrow">
+	            <div class="jumbotron">
+		            <h2>Welcome to <span class="project-title"></span></h2>
+		            <p class="lead">This hands-on training will teach you how to use Microsoft Excel. Start the course with the first lesson here:</p>
+		            <button type="button" class="go-to-current-task btn btn-labeled btn-primary"><span class="btn-label"><span id="next-task-label">First Up</span> <i class="fa fa-arrow-right"></i></span><span class="next-task-title" data-coach="Start here!" data-coach-pos="bottom"></span></button>
                 </div>
             </div>
         </div>
@@ -363,7 +345,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <video controls>
-                    <source src="video/sample1.m4v" type="video/mp4" autoplay>
+                    <!--<source src="video/sample1.m4v" type="video/mp4" autoplay>-->
                 </video>
             </div>
             <div class="modal-footer">

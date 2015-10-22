@@ -56,6 +56,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 
 	function sizeToFit () {
 		var screenHeight = $(window).height();
+		var screenWidth = $(window).width();
 		
 		$(".screenheight").css("min-height", screenHeight - 50);
 		
@@ -70,24 +71,21 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		var container_width = holder.find(".task-demo").width();
 		var container_left = holder.find(".task-steps").outerWidth();
 
-//		holder.find(".task-demo iframe").css({left: container_left + 15, width: container_width, maxHeight: wh, height: h});
-		holder.find(".task-demo iframe").css({width: container_width, maxHeight: wh, height: h});
-
-		//holder.css("min-height", h);
 		holder.css("min-height", $("#video-holder").height());
-		$(".task-demo").css("min-height", $(".demo-holder").height());
 
-		/*
-		container_width = $(".task-container").width();
+		// go single-column with widths less than 992px
 
-		w = which.find(".task-steps").width();
-		var margin = (container_width - w) * .5;
+		var narrow = false;
 
-		$(".task-steps.solo").css("margin-left", margin);
-
-		// give the task steps a bottom margin so the Captivate can be seen as we scroll to the last step
-		//$(".task-steps").css("margin-bottom", h * .5);
-		*/
+		if (screenWidth < 992) {
+			$(".task-demo").css("min-height", h);
+			holder.find(".task-demo iframe").css({width: container_width, height: h});
+			narrow = true;
+		} else {
+			$(".task-demo").css("min-height", "auto");
+			$(".task-demo").css("min-height", $(".demo-holder").height());
+			holder.find(".task-demo iframe").css({width: container_width, maxHeight: wh, height: h});
+		}
 
 		var a = $("#welcome-search").outerHeight();
 		var b = $("#start-to-finish").outerHeight();
@@ -97,17 +95,22 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 			$("#start-to-finish").outerHeight(a);
 		}
 
-		$("#video-holder").affix({
-			offset: {
-				top: function () {
-					return $("#video-holder").parent().offset().top - $("#header-nav").outerHeight(false);
-	                //return $(".task-container").offset().top - $("#search-form").outerHeight(false);
-				},
-				bottom: function () {
-					return $(".footer").outerHeight();
+		$(window).off(".affix");
+		$("#video-holder").removeClass("affix affix-top affix-bottom").removeData("bs.affix");
+
+		if (!narrow) {
+			$("#video-holder").affix({
+				offset: {
+					top: function () {
+						return $("#video-holder").parent().offset().top - $("#header-nav").outerHeight(false);
+						//return $(".task-container").offset().top - $("#search-form").outerHeight(false);
+					},
+					bottom: function () {
+						return $(".footer").outerHeight();
+					}
 				}
-			}
-		});
+			});
+		}
 	}
 	
     function setCaptivateMapping (keys) {
@@ -546,9 +549,11 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		a.appendTo(li);
 
 		var watched = $("<div>", { class: "watched checkable" });
+		watched.append($('<span>', { text: "Watched It " }));
 		watched.append('<i class="fa fa-eye">');
 		watched.appendTo(li);
 		var tried = $("<div>", { class: "tried checkable" });
+		tried.append($('<span>', { text: "Tried It " }));
 		tried.append('<i class="fa fa-hand-o-left">');
 		tried.appendTo(li);
 
@@ -586,6 +591,11 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		if (offset == undefined) offset = 1;
 
 		var found = false;
+
+		if (currentIndex == 1)
+			$("#next-task-label").text("First Up");
+		else
+			$("#next-task-label").text("Next Up");
 
 		for (var i = currentIndex + offset; i < toc.length; i++) {
 			var t = toc[i];
