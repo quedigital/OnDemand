@@ -37,7 +37,14 @@
 	.step {
 		position: relative;
 		cursor: pointer;
-		
+		padding: 2px 5px 2px 5px;
+
+		span {
+			box-sizing: border-box;
+			padding: 2px 5px 2px 5px;
+			margin-left: -6px;
+		}
+
 		.number {
 			display: inline-block;
 			color: white;
@@ -76,12 +83,12 @@
 			padding: .25rem .5rem;
 			transition: background-color ease-in-out 1s;
 		}
-		
-		&.current {
-			background-color: #f7ff80;
-		}
 	}
-	
+
+	.current {
+		background-color: #f7ff80;
+	}
+
 	.timesaver {
 		margin: 1rem 4rem 1rem 4.5rem;
 		font-style: italic;

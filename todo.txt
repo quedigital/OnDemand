@@ -1,3 +1,4 @@
+// TODO: "Changing the Font and Font Size" has a 2-part step; how do they get the first part of the text to highlight? [maybe 2 Callouts with merged text]
 // TODO: style the Go Further and It's Not All Good and Tips
 // TODO: make sure the Player can load from InformIT (ie, AWS) using getJSON [should work the same as the ContentViewer]
 // TODO: put something at the end of the steps to take up the blank space there
@@ -65,3 +66,5 @@
 // TODONT: use just 1 iframe for both watch and try (changing modes as necessary) [getDOM will need to be refreshed, possibly for the different modes?] [nah, it would make the tab setup wonky and make it difficult to have the the watch it/try its in 2 different states]
 // TODONT: make pause stop the animations too? [hides them]
 // DONE: highlight current step when tabbing between watch it and try it (because it could be different)
+// DONE: repeat button didn't seem to cause Pause button to appear
+// DONE: does clicking steps still jump to that step?

@@ -675,7 +675,12 @@ aside.sidenote-go-further {
   margin-left: 2em; }
 .task-container .step {
   position: relative;
-  cursor: pointer; }
+  cursor: pointer;
+  padding: 2px 5px 2px 5px; }
+  .task-container .step span {
+    box-sizing: border-box;
+    padding: 2px 5px 2px 5px;
+    margin-left: -6px; }
   .task-container .step .number {
     display: inline-block;
     color: white;
@@ -706,8 +711,8 @@ aside.sidenote-go-further {
     margin: 0 2rem 0 4rem;
     padding: .25rem .5rem;
     transition: background-color ease-in-out 1s; }
-  .task-container .step.current {
-    background-color: #f7ff80; }
+.task-container .current {
+  background-color: #f7ff80; }
 .task-container .timesaver {
   margin: 1rem 4rem 1rem 4.5rem;
   font-style: italic; }

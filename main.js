@@ -428,9 +428,9 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		event.preventDefault();
 
 		if (currentType == "watch") {
-			cp[0].gotoSlide(key);
+			cp[0].gotoStep(key);
 		} else {
-			cp[1].gotoSlide(key);
+			cp[1].gotoStep(key);
 		}
 	}
 
@@ -516,7 +516,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 
         var centerPoint = screenHeight * .5;
 
-		var stepDOM = $(".step[data-key=" + key + "]");
+		var stepDOM = $("[data-key=" + key + "]");
 
 		$(".current").removeClass("current");
 
