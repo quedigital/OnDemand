@@ -1,6 +1,6 @@
 #homepane {
-	background: url(../images/windows10.jpg), white;
-	background-size: 100% auto;
+	background: url(../images/background.jpg), white;
+	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-position: 0 0;
 	padding-top: 75px;
@@ -12,7 +12,8 @@
 	}
 	
 	.jumbotron {
-		background-color: #CAE8D2;
+		background-color: #227DB6;
+		color: white;
 
 		h3 {
 			margin-top: 0;
@@ -318,14 +319,16 @@
 
 #help {
 	margin-right: 25px;
+	opacity: 0;
+	pointer-events: none;
 }
 
 #logo {
 	text-align: center;
 
 	img {
-		height: 40px;
-		margin-top: 5px;
+		height: 20px;
+		padding-right: 25px;
 	}
 
 	span {

@@ -198,9 +198,9 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		var path;
 
 		if (window.location.hostname == "localhost")
-			path = "../Authoring/Player/index.html?" + item[type].params;
+			path = "../Authoring/Player2/index.html?" + item[type].params;
 		else
-			path = "player/index.html?" + item[type].params;
+			path = "player2/index.html?" + item[type].params;
 
 		loadCaptivate(type, path);
 
@@ -308,18 +308,18 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		var path;
 
 		if (window.location.hostname == "localhost")
-			path = "../Authoring/Player/index.html?" + item[type].params;
+			path = "../Authoring/Player2/index.html?" + item[type].params;
 		else
-			path = "player/index.html?" + item[type].params;
+			path = "player2/index.html?" + item[type].params;
 
 		loadCaptivate(type, path);
 
 		type = "try";
 
 		if (window.location.hostname == "localhost")
-			path = "../Authoring/Player/index.html?" + item[type].params;
+			path = "../Authoring/Player2/index.html?" + item[type].params;
 		else
-			path = "player/index.html?" + item[type].params;
+			path = "player2/index.html?" + item[type].params;
 
 		loadCaptivate(type, path);
 
@@ -435,7 +435,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 	}
 
     function onMovieStop () {
-        var slide = getCurrentSlide(0);
+        var slide = getCurrentStep(0);
 
 	    var numSlides = getNumberOfSlides(0);
 
@@ -444,8 +444,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
         }
     }
 
-	function getCurrentSlide (index) {
-        return cp[index].getCurrentSlideIndex();
+	function getCurrentStep (index) {
+        return cp[index].getCurrentStepIndex();
     }
 
     function getNumberOfSlides (index) {
@@ -461,6 +461,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 	    saveStatus(currentIndex, currentType, true);
 
         setTimeout(showSuccessMessage, 1000, 0);
+
+	    highlightSlide(undefined);
     }
 
 	function showSuccessMessage (index) {
@@ -504,16 +506,17 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 	}
 
 	function onSlideEntered (event) {
-		// for Captivate: (and it required the captivateMapping, since removed)
-		//var slide = event.Data.slideNumber;
-
 		var key = event.key;
 
+		highlightSlide(key);
+	}
+
+	function highlightSlide (key) {
         var screenHeight = $(window).height();
 
         var centerPoint = screenHeight * .5;
 
-		var stepDOM = $(".step[data-key='" + key + "'");
+		var stepDOM = $(".step[data-key=" + key + "]");
 
 		$(".current").removeClass("current");
 
@@ -683,6 +686,23 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 	function onClickTab (event) {
 		var tab = $(event.target);
 		currentType = tab.attr("data-type");
+
+		// when switching tabs, highlight the current slide for that type of viewer
+		var index;
+		switch (currentType) {
+			case "watch":
+				index = 0;
+				break;
+			case "try":
+				index = 1;
+				break;
+		}
+
+		// if we've stepped through a task, show our current step
+		var onStep = cp_events[index].onCurrentStep(cp_events[index].getCurrentStep());
+		if (!onStep) {
+			highlightSlide(undefined);
+		}
 	}
 
 	function getFolderName (path) {

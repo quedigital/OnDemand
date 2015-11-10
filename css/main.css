@@ -1,6 +1,5 @@
 body {
-  /*padding-top: 50px;*/
-  background-color: #F2C694; }
+  /*padding-top: 50px;*/ }
 
 #main-bar {
   border: none; }
@@ -353,7 +352,8 @@ aside.sidenote-go-further {
   top: 0;
   left: 100%;
   z-index: 1;
-  transform: translateX(-50%) translateY(-50%); }
+  transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%); }
   #watch-try-tabs .check-mark i.fa-check-circle {
     color: #4C9A54; }
   #watch-try-tabs .check-mark i.fa-circle {
@@ -367,7 +367,8 @@ aside.sidenote-go-further {
 .search-result .marker-new {
   position: relative;
   float: right;
-  transform: rotate(45deg); }
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg); }
   .search-result .marker-new:before {
     content: "New";
     position: absolute;
@@ -378,6 +379,7 @@ aside.sidenote-go-further {
     text-align: center;
     height: 1.6em;
     transform: translateX(-50%) translateY(50%);
+    -webkit-transform: translateX(-50%) translateY(50%);
     border-top: 1px solid red;
     border-bottom: 1px solid red; }
 .search-result .checkmark {
@@ -386,7 +388,8 @@ aside.sidenote-go-further {
   width: 50px;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%); }
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%); }
 
 .task-preview {
   cursor: pointer;
@@ -411,8 +414,8 @@ aside.sidenote-go-further {
   margin-bottom: 1em; }
 
 #homepane {
-  background: url(../images/windows10.jpg), white;
-  background-size: 100% auto;
+  background: url(../images/background.jpg), white;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: 0 0;
   padding-top: 75px;
@@ -420,7 +423,8 @@ aside.sidenote-go-further {
   #homepane > div {
     padding-top: 10px; }
   #homepane .jumbotron {
-    background-color: #CAE8D2; }
+    background-color: #227DB6;
+    color: white; }
     #homepane .jumbotron h3 {
       margin-top: 0;
       margin-bottom: 1em; }
@@ -633,14 +637,15 @@ aside.sidenote-go-further {
   overflow-x: hidden; }
 
 #help {
-  margin-right: 25px; }
+  margin-right: 25px;
+  opacity: 0;
+  pointer-events: none; }
 
 #logo {
   text-align: center; }
   #logo img {
-    height: 40px;
-    margin-top: 5px;
-    box-sizing: content-box; }
+    height: 20px;
+    padding-right: 25px; }
   #logo span {
     color: white;
     vertical-align: bottom; }

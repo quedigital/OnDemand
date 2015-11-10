@@ -1,4 +1,3 @@
-// TODO: make pause stop the animations too?
 // TODO: style the Go Further and It's Not All Good and Tips
 // TODO: make sure the Player can load from InformIT (ie, AWS) using getJSON [should work the same as the ContentViewer]
 // TODO: put something at the end of the steps to take up the blank space there
@@ -62,3 +61,7 @@
 // DONE: instead of "Follow the course" and "Next up" say "Start the course" and "First up" when starting
 // DONE: review resizing logic [I think]
 // DONE: add Que logo to home page
+// DONE: resizing throws off the click timing and destroys the audio finished callback [seems ok]
+// TODONT: use just 1 iframe for both watch and try (changing modes as necessary) [getDOM will need to be refreshed, possibly for the different modes?] [nah, it would make the tab setup wonky and make it difficult to have the the watch it/try its in 2 different states]
+// TODONT: make pause stop the animations too? [hides them]
+// DONE: highlight current step when tabbing between watch it and try it (because it could be different)
