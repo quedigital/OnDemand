@@ -1,7 +1,7 @@
 requirejs.config({
 	baseUrl: "js",
 	paths: {
-		"jquery": "jquery-2.1.3.min",
+		"jquery": "jquery-2.1.4",
 		"jquery.ui": "jquery-ui.min",
 		"bootstrap": "bootstrap",
 		"jasny-bootstrap": "jasny-bootstrap.min",
@@ -71,7 +71,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		var container_width = holder.find(".task-demo").width();
 		var container_left = holder.find(".task-steps").outerWidth();
 
-		holder.css("min-height", $("#video-holder").height());
+		holder.css("min-height", "");
+		holder.css("min-height", $("#video-holder").height() + 15);
 
 		// go single-column with widths less than 992px
 
@@ -82,7 +83,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 			holder.find(".task-demo iframe").css({width: container_width, height: h});
 			narrow = true;
 		} else {
-			$(".task-demo").css("min-height", "auto");
+			$(".task-demo").css("min-height", "");
 			$(".task-demo").css("min-height", $(".demo-holder").height());
 			holder.find(".task-demo iframe").css({width: container_width, maxHeight: wh, height: h});
 		}
@@ -99,14 +100,17 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		$("#video-holder").removeClass("affix affix-top affix-bottom").removeData("bs.affix");
 
 		if (!narrow) {
+			//var t = $("#video-holder").parent().offset().top - $("#header-nav").outerHeight(false);
+			var t = $("#header-nav").outerHeight(true);
+			var b = $(".footer").outerHeight() + 15;
+
 			$("#video-holder").affix({
 				offset: {
 					top: function () {
-						return $("#video-holder").parent().offset().top - $("#header-nav").outerHeight(false);
-						//return $(".task-container").offset().top - $("#search-form").outerHeight(false);
+						return t;
 					},
 					bottom: function () {
-						return $(".footer").outerHeight();
+						return b;
 					}
 				}
 			});

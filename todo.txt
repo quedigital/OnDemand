@@ -68,3 +68,5 @@
 // DONE: highlight current step when tabbing between watch it and try it (because it could be different)
 // DONE: repeat button didn't seem to cause Pause button to appear
 // DONE: does clicking steps still jump to that step?
+// DONE: reset demo holder height after switching tasks [stays tall on Firefox]
+// DONE: switched to jquery-2.1.4 non-min to add null checks [was null for some style tests in Firefox]
