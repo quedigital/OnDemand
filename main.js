@@ -152,63 +152,16 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
         */
 	}
 
-	function getCaptivateFrameReady () {
-		if (event)
-			event.stopPropagation();
-
-		if ($("#taskpane").hasClass("hidden")) {
-			onGoToCurrentTask(event);
-		}
-
-		$(".task-steps.solo").removeClass("solo").addClass("dual").css("margin-left", 0);
-
-		$(".task-demo.hidden").removeClass("hidden");
-
-		sizeToFit();
-
-		if (scrollTo != false) {
-            var t = $(".task-steps").offset().top - 50;
-            $("html, body").animate({ scrollTop: t }, 1000);
-		}
-	}
-
 	function onDoWatchIt (event, scrollTo) {
-		getCaptivateFrameReady();
+		event.stopPropagation();
 
-        playIt("watch");
+		onGoToNextTask(event, "watch");
 	}
 
-	function onDoTryIt (event, scrollTo) {
-		getCaptivateFrameReady();
+	function onDoTryIt (event) {
+		event.stopPropagation();
 
-        playIt("try");
-	}
-
-	function playIt (type) {
-		console.log("play it");
-
-        currentType = type;
-
-		var item = toc[currentIndex];
-
-		// NOTE: this is now assuming we're using the Que player (ie, not Captivate anymore)
-
-		// TODO: this path will need to be changed at Production time
-
-		var path;
-
-		if (window.location.hostname == "localhost")
-			path = "../Authoring/Player2/index.html?" + item[type].params;
-		else
-			path = "player2/index.html?" + item[type].params;
-
-		loadCaptivate(type, path);
-
-		var keys = item[type].keys;
-
-		setCaptivateMapping(keys);
-
-		checkForCaptivate();
+		onGoToNextTask(event, "try");
 	}
 
 	function onDoSearch () {
@@ -241,7 +194,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		$("li.entry[data-index=" + currentIndex + "]").addClass("current");
 	}
 	
-	function onGoToCurrentTask (event) {
+	function onGoToCurrentTask (event, type) {
 		$('#previewModal').modal('hide');
 		
 		$("#homepane").addClass("hidden");
@@ -277,6 +230,11 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		loadPlayers();
 
 		refreshStatusUI();
+
+		if (type != undefined) {
+			var tabHref = "#tab-" + type;
+			$("a[href='" + tabHref + "']").tab('show');
+		}
 	}
 
 	function removePlayers () {
@@ -624,6 +582,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		}
 
 		$(".prev-task-title").parent().css("display", found ? "block" : "none");
+
+		$("a[href='#tab-watch']").tab('show');
 	}
 
 	function getNextTaskTitle () {
@@ -635,12 +595,12 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		}
 	}
 
-	function onGoToNextTask () {
+	function onGoToNextTask (event, type) {
 		for (var i = currentIndex + 1; i < toc.length; i++) {
 			var t = toc[i];
 			if (t && t.html) {
 				setCurrentIndex(i);
-				onGoToCurrentTask();
+				onGoToCurrentTask(event, type);
 				break;
 			}
 		}
@@ -699,9 +659,11 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		}
 
 		// if we've stepped through a task, show our current step
-		var onStep = cp_events[index].onCurrentStep(cp_events[index].getCurrentStep());
-		if (!onStep) {
-			highlightSlide(undefined);
+		if (cp_events[index]) {
+			var onStep = cp_events[index].onCurrentStep(cp_events[index].getCurrentStepIndex());
+			if (!onStep) {
+				highlightSlide(undefined);
+			}
 		}
 	}
 
@@ -818,8 +780,11 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 	}
 
 	function pauseBoth () {
-		cp[0].pause();
-		cp[1].pause();
+		if (cp[0])
+			cp[0].pause();
+
+		if (cp[1])
+			cp[1].pause();
 	}
 
 	$(window).resize(sizeToFit);
@@ -852,9 +817,14 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 	
 	$("body").on("hide.bs.modal", function () { $("video")[0].pause(); });
 
+	/*
 	$("body").on("do-watch-it", onSearchDoWatchIt);
 	$("body").on("do-try-it", onSearchDoTryIt);
 	$("body").on("go-to-task", onSearchGoToTask);
+	*/
+
+	$(".do-watch-it").click(onDoWatchIt);
+	$(".do-try-it").click(onDoTryIt);
 
 	$(".nav-tabs a").on("show.bs.tab", pauseBoth);
 
