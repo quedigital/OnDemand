@@ -1,3 +1,10 @@
+// TODO: checkmark in search results
+// TODO: cancel search button
+// TODO: search mechanism (Google-like)
+// TODO: help system
+// TODO: try it changes
+// TODO: ability to download project files
+// TODO: course overview in blue header area
 // TODO: "Changing the Font and Font Size" has a 2-part step; how do they get the first part of the text to highlight? [maybe 2 Callouts with merged text]
 // TODO: style the Go Further and It's Not All Good and Tips
 // TODO: make sure the Player can load from InformIT (ie, AWS) using getJSON [should work the same as the ContentViewer]
@@ -70,3 +77,6 @@
 // DONE: does clicking steps still jump to that step?
 // DONE: reset demo holder height after switching tasks [stays tall on Firefox]
 // DONE: switched to jquery-2.1.4 non-min to add null checks [was null for some style tests in Firefox]
+// DONE: resize 25% / 75%
+// DONE: clickable search results
+// DONE: search count, back button, additional search bar

@@ -20,46 +20,6 @@
 
 <body>
 
-<!--
-<header id="main-bar" class="navbar navbar-bright navbar-fixed-top" role="banner">
-    <div class="container">
-        <nav role="navigation">
-            <div class="navbar-form hidden" id="search-form" name="search-form">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" id="query" name="query" value="">
-                    <div class="input-group-btn">
-                        <button class="btn btn-success search-button"><span class="glyphicon glyphicon-search"></span></button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-left">
-                    <li>
-                        <a id="home-button"><span class="label label-info">Home</span> <img src="images/que.png"/> Interactive <span class="project-title normal"></span></a>
-                    </li>
-                    <li>
-                        <a id="toc-button" class="" data-toggle="offcanvas" data-target="#contents-menu" data-autohide="true"><i class="fa fa-list"></i> Contents</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a id="progress" data-toggle="offcanvas" data-target="#progress-menu" data-autohide="true"><span class="label label-info">My Progress</span></a></li>
-                    <li data-coach="Stuck? Get help here." data-coach-pos="bottom"><a id="help">Help</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <div class="back-to-search container-fluid hidden">
-        <div class="container">
-            <ul class="nav navbar-nav navbar-left">
-                <li>
-                    <a id="back-button">Try search again</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</header>
--->
 <nav id="header-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<button id="toc-toggler" data-coach="Show and hide the Table of Contents" data-coach-pos="bottom" title="Show the table of contents." class="btn btn-primary pull-left navbar-btn" data-toggle="offcanvas" data-target="#contents-menu" data-autohide="true"><i class="fa fa-bars"></i> Contents</button>
 	<div class="navbar-header">
@@ -74,7 +34,6 @@
 			</a>
 			<button class="btn btn-primary navbar-btn" id="help" title="Bring up the help screen." data-coach="Stuck? Get help here" data-coach-pos="bottom">Help</button>
 		</div>
-		<!--
 		<div id="search-bar" class="nav navbar-form navbar-right" role="search">
 			<div class="input-group">
 				<div class="input-group-btn">
@@ -87,7 +46,6 @@
 			</div>
 			<button id="account-button" data-coach="Go to your Account page." title="Go to your Account Page." data-coach-pos="bottom" class="btn btn-primary">Account</button>
 		</div>
-		-->
 	</div>
 </nav>
 
@@ -222,15 +180,35 @@
     </div>
 
     <div id="searchpane" class="hidden">
-        <div>
-            <div id="left-side" class="col-xs-12">
+        <div class="container">
+	        <div class="col-xs-4">
+		        <p id="result-count">54 results</p>
+	        </div>
+	        <div class="col-xs-4">
+		        <button id="backButton" class="btn btn-success form-control">Back</button>
+			</div>
+	        <div class="col-xs-4">
+		        <div class="form-inline">
+			        <div class="form-group">
+				        <label for="searchTerm">Your Search</label>
+				        <div class="input-group">
+					        <input type="text" class="form-control" id="searchTerm" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" id="searchAgain">Go!</button>
+                            </span>
+				        </div>
+			        </div>
+		        </div>
+	        </div>
+            <div id="results" class="col-xs-12">
                 <div class="container-fluid search-results-container">
                 </div>
             </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="search-footer">
-        </div>
+	        <div class="clearfix">
+	        </div>
+	        <div class="search-footer">
+	        </div>
+	    </div>
     </div>
 
     <div id="taskpane" class="hidden">
@@ -255,11 +233,11 @@
 
         <div class="task-container container-fluid">
 	        <div class="row demo-holder">
-                <div class="col-md-6 task-steps">
+                <div class="col-md-3 task-steps">
                     <div class="steps well">
                     </div>
                 </div>
-                <div class="col-md-6 task-demo">
+                <div class="col-md-9 task-demo">
 	                <div id="video-holder">
 		                <!-- Nav tabs -->
 		                <ul id="watch-try-tabs" class="nav nav-tabs" role="tablist">
@@ -307,36 +285,6 @@
 				        </div>
 			        </div>
 		        </div>
-		        <!--
-                <div class="left col-xs-2">
-                </div>
-                <div class="right col-xs-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">Next Task In The Course:</div>
-                        <div class="panel-body">
-                            <div class="thumbnail task-preview"><div class="caption"><h3>Installing Office</h3><div class="btn-group btn-group-justified"><a class="btn btn-primary do-watch-it" role="button">Watch It</a><a class="btn btn-success do-watch-it" role="button">Try It</a></div></div></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="right col-xs-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">Related Tasks:</div>
-                        <div class="panel-body">
-                            <div class="col-xs-4">
-                                <div class="thumbnail task-preview"><div class="caption"><h3>Related Task 1</h3><div class="btn-group btn-group-justified"><a class="btn btn-primary do-watch-it" role="button">Watch It</a><a class="btn btn-success do-watch-it" role="button">Try It</a></div></div></div>
-                            </div>
-                            <div class="col-xs-4">
-                                <div class="thumbnail task-preview"><div class="caption"><h3>Related Task 2</h3><div class="btn-group btn-group-justified"><a class="btn btn-primary do-watch-it" role="button">Watch It</a><a class="btn btn-success do-watch-it" role="button">Try It</a></div></div></div>
-                            </div>
-                            <div class="col-xs-4">
-                                <div class="thumbnail task-preview"><div class="caption"><h3>Next Result</h3><div class="btn-group btn-group-justified"><a class="btn btn-primary do-watch-it" role="button">Watch It</a><a class="btn btn-success do-watch-it" role="button">Try It</a></div></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="left col-xs-2">
-                </div>
-                <!-->
             </div>
         </div>
     </div>

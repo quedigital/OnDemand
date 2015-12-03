@@ -1,51 +1,84 @@
-define(["holder", "jquery.ui"], function (Holder) {
+define(["lunr", "jquery.ui"], function (lunr) {
 
 	$.widget("que.SearchResults", {
 
 		options: {},
 
 		_create: function () {
+			this.element.find("#searchAgain").click($.proxy(this.onSearchAgain, this));
+			this.element.find("#backButton").click($.proxy(this.onGoBack, this));
 		},
-		
-		doit: function () {
-			this.element.empty();
-			
-			var n = Math.floor(Math.random() * 25) + 1;
-			
-			for (var i = 0; i < n; i++) {
-				var index = Math.floor(Math.random() * this.options.toc.length);
+
+		setSearchIndex: function (data) {
+			this.searchIndex = lunr.Index.load(data);
+		},
+
+		doSearch: function (term) {
+			if (!this.searchIndex) return;
+
+			this.element.find("#searchTerm").val(term);
+
+			var results = this.searchIndex.search(term);
+
+			var container = this.element.find(".search-results-container");
+
+			this.element.find(".search-results-container").empty();
+
+			for (var i = 0; i < results.length; i++) {
+				var r = results[i];
+
+				var index = parseInt(r.ref);
 
 				var el = this.addResult(index);
 				
-				el.animate( { _dummy: 0 }, { duration: i * 100, complete: function () { $(this).css("visibility", "visible").addClass("animated fadeInUp"); } });
+				//el.animate( { _dummy: 0 }, { duration: i * 100, complete: function () { $(this).css("visibility", "visible").addClass("animated fadeInUp"); } });
 			}
-			
-			Holder.run();			
+
+			var t = results.length + " result";
+			if (results.length != 1) t += "s";
+
+			this.element.find("#result-count").text(t);
 		},
-		
+
+		onSearchAgain: function () {
+			var term = this.element.find("#searchTerm").val();
+
+			this.doSearch(term);
+		},
+
 		addResult: function (index) {
 			var title = this.options.toc[index].title;
+			var desc = this.options.toc[index].intro;
 
-			var s = '<div class="search-result col-sm-4 col-md-3"><div class="thumbnail task-preview"><div class="caption"><h3>' + title + '</h3><div class="btn-group btn-group-justified"><a class="btn btn-primary do-watch-it" role="button">Watch It</a><a class="btn btn-success do-try-it" role="button">Try It</a></div></div></div></div>';
-			
-			var el = $(s);
+			var el = $("<div>", { class: "search-result" });
 
-			el.css("visibility", "hidden");
+			var t = $("<p>", { class: "title", text: title } );
+			var d = $("<p>", { class: "desc", text: desc } );
 			
+			el.append(t).append(d);
+
+			t.click(function (event) {
+				$(this).trigger("go-to-task", index);
+			});
+
+			//el.css("visibility", "hidden");
+			
+			/*
 			if (Math.random() < .1) {
 				$("<div>", { class: "marker-new" }).prependTo(el.find(".task-preview"));
 			}
+			*/
 			
-			if (Math.random() < .1) {
+			if (this.options.toc[index].watched || this.options.toc[index].tried) {
 				$("<img>", { class: "checkmark", src: "images/checkmark.png" }).appendTo(el);
 			}
 			
-			el.find(".task-preview").click($.proxy(this.showPreview, this, index));
+			//el.find(".task-preview").click($.proxy(this.showPreview, this, index));
 
-			el.find(".do-watch-it").click(function (event) { event.stopPropagation(); el.trigger("do-watch-it", index); });
-			el.find(".do-try-it").click(function (event) { event.stopPropagation(); el.trigger("do-try-it", index); });
+			//el.find(".do-watch-it").click(function (event) { event.stopPropagation(); el.trigger("do-watch-it", index); });
+			//el.find(".do-try-it").click(function (event) { event.stopPropagation(); el.trigger("do-try-it", index); });
 
-			this.element.append(el);
+			this.element.find(".search-results-container").append(el);
 			
 			return el;		
 		},
@@ -73,6 +106,10 @@ define(["holder", "jquery.ui"], function (Holder) {
 			}
 
 			this._super( "_setOption", key, value );
+		},
+
+		onGoBack: function (event) {
+			$(event.target).trigger("go-back");
 		}
 	});
 });

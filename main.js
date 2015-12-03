@@ -7,7 +7,8 @@ requirejs.config({
 		"jasny-bootstrap": "jasny-bootstrap.min",
 		"holder": "holder.min",
 		"joyride": "jquery.joyride-2.1",
-		"jquery-json": "jquery.json.min"
+		"jquery-json": "jquery.json.min",
+		"lunr": "lunr.min",
 	},
 	
 	shim: {
@@ -170,9 +171,11 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 
 	function onDoSearch () {
 		$(window).scrollTop(0);
+
+		var term = $("#query").val();
 		
-		var sr = $(".search-results-container").SearchResults("instance");
-		sr.doit(toc);
+		var sr = $("#searchpane").SearchResults("instance");
+		sr.doSearch(term);
 
 		$(".go-to-task").off("click");
 //		$(".do-watch-it").off("click");
@@ -189,6 +192,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		$("#toc-button").removeClass("hidden");
 		$("#search-form").removeClass("hidden");
 		$(".back-to-search").removeClass("hidden");
+
+		setScreen("search");
 	}
 
 	function setCurrentIndex (index) {
@@ -239,6 +244,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 			var tabHref = "#tab-" + type;
 			$("a[href='" + tabHref + "']").tab('show');
 		}
+
+		setScreen("task");
 	}
 
 	function removePlayers () {
@@ -647,6 +654,23 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		onGoToCurrentTask(event);
 	}
 
+	function onGoBack (event) {
+		$("#searchpane").addClass("hidden");
+
+		switch (lastScreen) {
+			case "home":
+				$("#homepane").removeClass("hidden");
+				break;
+			case "task":
+				$("#taskpane").removeClass("hidden");
+				break;
+		}
+
+		//$("#toc-button").removeClass("hidden");
+		//$("#search-form").removeClass("hidden");
+		//$(".back-to-search").removeClass("hidden");
+	}
+
 	function onClickTab (event) {
 		var tab = $(event.target);
 		currentType = tab.attr("data-type");
@@ -687,14 +711,19 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 
 	require([datafile], onLoadedTOC);
 
+	var searchfile = foldername + "/search_index.js";
+
+	require([searchfile], onLoadedSearchIndex);
+
 	var currentIndex, currentType = "watch";
 
 	var toc, title;
 
 	function initialize () {
 		var v = $(".toc-viewer").TOCViewer();
-		$(".search-results-container").SearchResults();
-		var sr = $(".search-results-container").SearchResults("instance");
+
+		$("#searchpane").SearchResults();
+		var sr = $("#searchpane").SearchResults("instance");
 		sr.option("toc", toc);
 
 		$(".project-title").text(title);
@@ -714,6 +743,11 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		title = metadata.title;
 
 		initialize();
+	}
+
+	function onLoadedSearchIndex (data) {
+		var sr = $("#searchpane").SearchResults("instance");
+		sr.setSearchIndex(data);
 	}
 
 	function saveTOCStatus () {
@@ -791,6 +825,15 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 			cp[1].pause();
 	}
 
+	function setScreen (newScreen) {
+		lastScreen = currentScreen;
+		currentScreen = newScreen;
+	}
+
+	var currentScreen = lastScreen = undefined;
+
+	setScreen("home");
+
 	$(window).resize(sizeToFit);
 		
 	$(".hidden-on-startup").removeClass("hidden");
@@ -824,8 +867,9 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 	/*
 	$("body").on("do-watch-it", onSearchDoWatchIt);
 	$("body").on("do-try-it", onSearchDoTryIt);
-	$("body").on("go-to-task", onSearchGoToTask);
 	*/
+	$("body").on("go-to-task", onSearchGoToTask);
+	$("body").on("go-back", onGoBack);
 
 	$(".do-watch-it").click(onDoWatchIt);
 	$(".do-try-it").click(onDoTryIt);
