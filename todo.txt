@@ -1,6 +1,3 @@
-// TODO: checkmark in search results
-// TODO: cancel search button
-// TODO: search mechanism (Google-like)
 // TODO: help system
 // TODO: try it changes
 // TODO: ability to download project files
@@ -80,3 +77,7 @@
 // DONE: resize 25% / 75%
 // DONE: clickable search results
 // DONE: search count, back button, additional search bar
+// DONE: cancel search button
+// DONE: back button [task to home, etc]
+// DONE: checkmark in search results
+// DONE: search mechanism (Google-like)

@@ -182,16 +182,6 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		
 		$(".go-to-current-task").click(onGoToCurrentTask);
 //		$(".do-watch-it").click(onDoWatchIt);
-		
-		$("#taskpane").addClass("hidden");
-		$("#homepane").addClass("hidden");
-		$("#progress").removeClass("hidden");
-		$("#searchpane").removeClass("hidden");
-		//$("body").css("padding-top", 80);
-		
-		$("#toc-button").removeClass("hidden");
-		$("#search-form").removeClass("hidden");
-		$(".back-to-search").removeClass("hidden");
 
 		setScreen("search");
 	}
@@ -204,23 +194,11 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 	}
 	
 	function onGoToCurrentTask (event, type) {
-		$('#previewModal').modal('hide');
-		
-		$("#homepane").addClass("hidden");
-		$("#searchpane").addClass("hidden");
-		$("#taskpane").removeClass("hidden");
-
-		$("#progress").removeClass("hidden");
-
-		$("#toc-button").removeClass("hidden");
-		$("#search-form").removeClass("hidden");
-		$(".back-to-search").addClass("hidden");
 		//$("body").css("padding-top", 50);
 
 		$(window).scrollTop(0);
 
 		$(".task-desc h2").text(toc[currentIndex].title);
-		$("a.navbar-brand .title").html("Back to <span class='title'>" + title + "</span> Home");
 
 		var html = toc[currentIndex].html;
 
@@ -299,18 +277,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 	}
 	
 	function onHomeButton () {
-		$("#searchpane").addClass("hidden");
-		$("#taskpane").addClass("hidden");
-		$("#homepane").removeClass("hidden");
-		
-		$("#toc-button").removeClass("hidden");
-		$(".back-to-search").addClass("hidden");
-		//$("body").css("padding-top", 50);
-		
-		$("#search-form").addClass("hidden");
-		$("#progress").removeClass("hidden");
-
-		$("a.navbar-brand .title").text(title);
+		setScreen("home");
 
 		showNextTask(0);
 	}
@@ -654,21 +621,12 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		onGoToCurrentTask(event);
 	}
 
+	function onClearSearch () {
+		$("#query").val("");
+	}
+
 	function onGoBack (event) {
-		$("#searchpane").addClass("hidden");
-
-		switch (lastScreen) {
-			case "home":
-				$("#homepane").removeClass("hidden");
-				break;
-			case "task":
-				$("#taskpane").removeClass("hidden");
-				break;
-		}
-
-		//$("#toc-button").removeClass("hidden");
-		//$("#search-form").removeClass("hidden");
-		//$(".back-to-search").removeClass("hidden");
+		setScreen(lastScreen);
 	}
 
 	function onClickTab (event) {
@@ -826,6 +784,30 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 	}
 
 	function setScreen (newScreen) {
+		switch (newScreen) {
+			case "home":
+				$("#homepane").removeClass("hidden");
+				$("#searchpane").addClass("hidden");
+				$("#taskpane").addClass("hidden");
+
+				$("a.navbar-brand .title").text(title);
+				break;
+			case "task":
+				$("#homepane").addClass("hidden");
+				$("#taskpane").removeClass("hidden");
+				$("#searchpane").addClass("hidden");
+
+				$("a.navbar-brand .title").html("Back to <span class='title'>" + title + "</span> Home");
+				break;
+			case "search":
+				$("#searchpane").removeClass("hidden");
+				$("#taskpane").addClass("hidden");
+				$("#homepane").addClass("hidden");
+
+				$("a.navbar-brand .title").html("Back to <span class='title'>" + title + "</span> Home");
+				break;
+		}
+
 		lastScreen = currentScreen;
 		currentScreen = newScreen;
 	}
@@ -851,6 +833,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 	$(".go-to-current-task").click(onGoToCurrentTask);
 	$(".go-to-next-task").click(onGoToNextTask)
 	$(".go-to-prev-task").click(onGoToPrevTask)
+
+	$("#clear-search-button").click(onClearSearch);
 
 	$("#watch-try-tabs a[data-toggle='tab']").on("shown.bs.tab", onClickTab);
 

@@ -25,6 +25,7 @@
 	border: 1px solid gray;
 	border-radius: 8px;
 	margin: 1em 4em 1em 4em;
+	position: relative;
 
 	p.title {
 		margin-top: 0;
@@ -59,13 +60,13 @@
 	}
 		
 	.checkmark {
-		position: absolute;
-		z-index: 100;
 		width: 50px;
-		bottom: 0;
-		left: 50%;
-		transform: translateX(-50%);
-		-webkit-transform: translateX(-50%);
+		position: absolute;
+		top: 50%;
+		left: 0;
+		margin-left: -10px;
+		-webkit-transform: translateX(-100%) translateY(-50%);
+		transform: translateX(-100%) translateY(-50%);
 	}
 }
 
