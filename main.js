@@ -9,6 +9,7 @@ requirejs.config({
 		"joyride": "jquery.joyride-2.1",
 		"jquery-json": "jquery.json.min",
 		"lunr": "lunr.min",
+		"imagesloaded": "imagesloaded.pkgd.min"
 	},
 	
 	shim: {
@@ -423,8 +424,18 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		saveTOCStatus();
 	}
 
-    function onShowFeatures () {
-		$("#coach-marks").CoachMarks().CoachMarks("instance").open();
+    function onShowFeatures (event) {
+	    event.preventDefault();
+
+	    var coach = $("#coach-marks").CoachMarks().CoachMarks("instance");
+
+	    var dynamics = [
+		    { selector: "ol.steps", text: "Follow these steps", pos: "top", set: "task" }
+		    ];
+
+	    coach.option("dynamics", dynamics);
+
+        coach.open( { set: currentScreen } );
 	}
 	
 	function onShowProgress () {
@@ -808,8 +819,10 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 				break;
 		}
 
-		lastScreen = currentScreen;
-		currentScreen = newScreen;
+		if (newScreen != currentScreen) {
+			lastScreen = currentScreen;
+			currentScreen = newScreen;
+		}
 	}
 
 	var currentScreen = lastScreen = undefined;
@@ -844,7 +857,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 	$("#side-menu").on("hide.bs.offcanvas", function () { $("#side-menu").css( { "z-index": -1 } ); });
 	$("#side-menu").on("hidden.bs.offcanvas", function () { $("#side-menu").css( { display: "none" } ); });
 		
-	$("#help").click(onShowFeatures);
+	$("#help-tour").click(onShowFeatures);
 	
 	$("body").on("hide.bs.modal", function () { $("video")[0].pause(); });
 

@@ -12,10 +12,13 @@
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 
+	<!--
     <link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Martel+Sans:400,800' rel='stylesheet' type='text/css'>
+    -->
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 
-    <script	data-main="main" src="js/require.js"></script>
+	<script	data-main="main" src="js/require.js"></script>
 </head>
 
 <body>
@@ -32,19 +35,27 @@
 			<a id="logo" href="http://www.quepublishing.com" target="_blank">
 				<img src="images/que.png"/>
 			</a>
-			<button class="btn btn-primary navbar-btn" id="help" title="Bring up the help screen." data-coach="Stuck? Get help here" data-coach-pos="bottom">Help</button>
+			<button class="btn btn-primary navbar-btn dropdown-toggle" title="Bring up the help screen." data-coach="Stuck? Get help here" data-coach-pos="bottom" data-coach-set="home" type="button" id="help" data-toggle="dropdown">
+				Help
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li><a id="help-tour" href="#">Tour</a></li>
+				<li><a href="#">FAQ</a></li>
+				<li><a href="#">Contact Us</a></li>
+			</ul>
 		</div>
 		<div id="search-bar" class="nav navbar-form navbar-right" role="search">
 			<div class="input-group">
 				<div class="input-group-btn">
 					<button id="clear-search-button" class="btn btn-primary" title="Clear search text."><span class="fa fa-times-circle-o fa-lg"></span></button>
 				</div>
-				<input type="text" class="form-control" placeholder="Search" id="query" name="query" value="">
+				<input type="text" class="form-control" placeholder="Search" id="query" name="query" value="" data-coach="Looking for something specific?" data-coach-pos="bottom" data-coach-set="home">
 				<div class="input-group-btn">
 					<button class="btn btn-primary search-button" title="Search video titles."><span class="glyphicon glyphicon-search"></span></button>
 				</div>
 			</div>
-			<button id="account-button" data-coach="Go to your Account page." title="Go to your Account Page." data-coach-pos="bottom" class="btn btn-primary">Account</button>
+			<button id="account-button" data-coach="Go to your Account page." title="Go to your Account Page." data-coach-pos="bottom" data-coach-set="home" class="btn btn-primary">Account</button>
 		</div>
 	</div>
 </nav>
@@ -170,7 +181,10 @@
 	            <div class="jumbotron">
 		            <h2>Welcome to <span class="project-title"></span></h2>
 		            <p class="lead">This hands-on training will teach you how to use Microsoft Excel. Start the course with the first lesson here:</p>
-		            <button type="button" class="go-to-current-task btn btn-labeled btn-primary"><span class="btn-label"><span id="next-task-label">First Up</span> <i class="fa fa-arrow-right"></i></span><span class="next-task-title" data-coach="Start here!" data-coach-pos="bottom"></span></button>
+		            <button type="button" class="go-to-current-task btn btn-labeled btn-primary" data-coach="Start here!" data-coach-pos="bottom" data-coach-set="home"><span class="btn-label">
+			            <span id="next-task-label">First Up</span> <i class="fa fa-arrow-right"></i></span>
+			            <span class="next-task-title"></span>
+		            </button>
                 </div>
             </div>
         </div>

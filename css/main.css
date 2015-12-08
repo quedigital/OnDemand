@@ -595,7 +595,17 @@ aside.sidenote-go-further {
       right: 1em;
       text-shadow: -1px 1px 2px darkblue; }
 
-.coach.markcontainer {
+#coach-marks .button-holder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20000;
+  white-space: nowrap; }
+  #coach-marks .button-holder .btn:focus {
+    outline: none; }
+  #coach-marks .button-holder .end-button {
+    margin-right: 15px; }
+#coach-marks .markcontainer {
   font-family: 'Permanent Marker', cursive;
   position: absolute;
   top: 0;
@@ -603,7 +613,9 @@ aside.sidenote-go-further {
   right: 0;
   bottom: 0;
   z-index: 10000; }
-  .coach.markcontainer:before {
+  #coach-marks .markcontainer .mark-unit {
+    width: 100px; }
+  #coach-marks .markcontainer:before {
     position: absolute;
     display: block;
     content: "";
@@ -612,18 +624,18 @@ aside.sidenote-go-further {
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.3); }
-  .coach.markcontainer .mark {
+  #coach-marks .markcontainer .text {
     display: block;
     position: absolute;
     width: auto;
     height: auto;
-    text-align: left;
+    text-align: center;
     color: white;
     background: none;
     font-size: 24px;
     line-height: 1.2em; }
-    .coach.markcontainer .mark img {
-      position: absolute; }
+  #coach-marks .markcontainer img {
+    position: absolute; }
 
 .videopopup video {
   width: 100%; }
@@ -655,9 +667,7 @@ aside.sidenote-go-further {
   overflow-x: hidden; }
 
 #help {
-  margin-right: 25px;
-  opacity: 0;
-  pointer-events: none; }
+  margin-right: 25px; }
 
 #logo {
   text-align: center; }

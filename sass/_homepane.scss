@@ -240,8 +240,27 @@
 	}
 }
 
-.coach {
-	&.markcontainer {
+#coach-marks {
+	.button-holder {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 20000;
+
+		white-space: nowrap;
+
+		.btn {
+			&:focus {
+				outline: none;
+			}
+		}
+
+		.end-button {
+			margin-right: 15px;
+		}
+	}
+
+	.markcontainer {
 		font-family: 'Permanent Marker', cursive;
 		position: absolute;
 		top: 0;
@@ -249,6 +268,10 @@
 		right: 0;
 		bottom: 0;
 		z-index: 10000;
+
+		.mark-unit {
+			width: 100px;
+		}
 		
 		&:before {
 			position: absolute;
@@ -261,20 +284,20 @@
 			background-color: rgba(0, 0, 0, .3);
 		}
 		
-		.mark {
+		.text {
 			display: block;
 			position: absolute;
 			width: auto;
 			height: auto;
-			text-align: left;
+			text-align: center;
 			color: white;
 			background: none;
 			font-size: 24px;
 			line-height: 1.2em;
-			
-			img {
-				position: absolute;
-			}
+		}
+
+		img {
+			position: absolute;
 		}
 	}
 }
@@ -319,8 +342,6 @@
 
 #help {
 	margin-right: 25px;
-	opacity: 0;
-	pointer-events: none;
 }
 
 #logo {

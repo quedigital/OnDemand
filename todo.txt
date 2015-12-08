@@ -1,3 +1,4 @@
+// TODO: tour of task screen
 // TODO: help system
 // TODO: try it changes
 // TODO: ability to download project files
@@ -81,3 +82,6 @@
 // DONE: back button [task to home, etc]
 // DONE: checkmark in search results
 // DONE: search mechanism (Google-like)
+// DONE: revise coach marks so the arrow is independent of the text
+// DONE: coach marks are always sequential (because they can't be guaranteed to fit)
+// DONE: Help menu: Tour, FAQ, Contact
