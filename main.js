@@ -425,17 +425,36 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 	}
 
     function onShowFeatures (event) {
-	    event.preventDefault();
+	    if (event)
+	        event.preventDefault();
 
 	    var coach = $("#coach-marks").CoachMarks().CoachMarks("instance");
 
 	    var dynamics = [
-		    { selector: "ol.steps", text: "Follow these steps", pos: "top", set: "task" }
-		    ];
+		    { selector: "h2.task-name", text: "Here's the name of the task you're learning", pos: "bottom", set: "task" },
+		    { selector: "ol.steps", text: "Follow along with the numbered steps", pos: "top", set: "task" },
+		    { selector: "#watch-try-tabs", text: "Choose to watch or try the task", pos: "left", set: "task" },
+		    { selector: "#video-holder", text: "This is the screen you'll interact with", pos: "left", set: "task" },
+		    { selector: "button.go-to-next-task", text: "Go on to another task", pos: "bottom", set: "task" }
+	    ];
 
 	    coach.option("dynamics", dynamics);
 
         coach.open( { set: currentScreen } );
+	}
+
+	function onHelpContact (event) {
+		event.preventDefault();
+
+		window.open("http://www.quepublishing.com/about/contact_us/", "_blank");
+	}
+
+	function onHelpFAQ (event) {
+		event.preventDefault();
+
+		var options = {};
+
+		$('#myModal').modal(options);
 	}
 	
 	function onShowProgress () {
@@ -686,7 +705,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 
 	var currentIndex, currentType = "watch";
 
-	var toc, title;
+	var toc, title, savedParams = {};
 
 	function initialize () {
 		var v = $(".toc-viewer").TOCViewer();
@@ -705,6 +724,11 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		setCurrentIndex(1);
 
 		showNextTask(0);
+
+		if (savedParams.seenHelp != true) {
+			onShowFeatures();
+			savedParams.seenHelp = true;
+		}
 	}
 
 	function onLoadedTOC (metadata) {
@@ -738,6 +762,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 		}
 
 		data.status = savedStatus;
+		data.params = savedParams;
 
 		localStorage.setItem(foldername, $.toJSON(data));
 	}
@@ -757,6 +782,9 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 				toc[i].tried = false;
 			}
 		}
+
+		if (data.params)
+			savedParams = data.params;
 	}
 
 	function refreshStatusUI () {
@@ -858,9 +886,9 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 	$("#side-menu").on("hidden.bs.offcanvas", function () { $("#side-menu").css( { display: "none" } ); });
 		
 	$("#help-tour").click(onShowFeatures);
+	$("#help-contact").click(onHelpContact);
+	$("#help-faq").click(onHelpFAQ);
 	
-	$("body").on("hide.bs.modal", function () { $("video")[0].pause(); });
-
 	/*
 	$("body").on("do-watch-it", onSearchDoWatchIt);
 	$("body").on("do-try-it", onSearchDoTryIt);

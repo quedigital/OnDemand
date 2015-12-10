@@ -1,8 +1,6 @@
-// TODO: tour of task screen
-// TODO: help system
-// TODO: try it changes
+// TODO: help overlay appears on first load
+// TODO: course overview / timeline-at-a-glance in blue header area
 // TODO: ability to download project files
-// TODO: course overview in blue header area
 // TODO: "Changing the Font and Font Size" has a 2-part step; how do they get the first part of the text to highlight? [maybe 2 Callouts with merged text]
 // TODO: style the Go Further and It's Not All Good and Tips
 // TODO: make sure the Player can load from InformIT (ie, AWS) using getJSON [should work the same as the ContentViewer]
@@ -85,3 +83,5 @@
 // DONE: revise coach marks so the arrow is independent of the text
 // DONE: coach marks are always sequential (because they can't be guaranteed to fit)
 // DONE: Help menu: Tour, FAQ, Contact
+// DONE: tour of task screen
+// DONE: try it changes (no audio; no directions; "try again" prompt)

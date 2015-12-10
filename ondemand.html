@@ -41,8 +41,8 @@
 			</button>
 			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 				<li><a id="help-tour" href="#">Tour</a></li>
-				<li><a href="#">FAQ</a></li>
-				<li><a href="#">Contact Us</a></li>
+				<li><a id="help-faq" href="#">FAQ</a></li>
+				<li><a id="help-contact" href="#">Contact Us</a></li>
 			</ul>
 		</div>
 		<div id="search-bar" class="nav navbar-form navbar-right" role="search">
@@ -178,7 +178,7 @@
     <div id="homepane" class="hidden hidden-on-startup">
         <div class="container-fluid screenheight">
             <div class="container-narrow">
-	            <div class="jumbotron">
+	            <div class="jumbotron" data-coach="Here's a quick tour of this Que Interactive!" data-coach-arrow="none" data-coach-preorder="1" data-coach-pos="bottom" data-coach-set="home">
 		            <h2>Welcome to <span class="project-title"></span></h2>
 		            <p class="lead">This hands-on training will teach you how to use Microsoft Excel. Start the course with the first lesson here:</p>
 		            <button type="button" class="go-to-current-task btn btn-labeled btn-primary" data-coach="Start here!" data-coach-pos="bottom" data-coach-set="home"><span class="btn-label">
@@ -247,11 +247,11 @@
 
         <div class="task-container container-fluid">
 	        <div class="row demo-holder">
-                <div class="col-md-3 task-steps">
+                <div class="col-xs-4 task-steps">
                     <div class="steps well">
                     </div>
                 </div>
-                <div class="col-md-9 task-demo">
+                <div class="col-xs-8 task-demo">
 	                <div id="video-holder">
 		                <!-- Nav tabs -->
 		                <ul id="watch-try-tabs" class="nav nav-tabs" role="tablist">
@@ -305,13 +305,22 @@
 
 </div>
 
-<div id="myModal" class="videopopup modal fade">
+<div id="myModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <video controls>
-                    <!--<source src="video/sample1.m4v" type="video/mp4" autoplay>-->
-                </video>
+	            <h2>Frequently Asked Questions</h2>
+	            <p class="lead">Here are the most frequently asked questions.</p>
+	            <ul>
+		            <li>
+			            <p>What is the best way to search?</p>
+			            <blockquote>Use the search button.</blockquote>
+		            </li>
+		            <li>
+			            <p>What is the carrying capacity of an African swallow?</p>
+			            <blockquote>Fourteen.</blockquote>
+		            </li>
+	            </ul>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

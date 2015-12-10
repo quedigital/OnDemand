@@ -241,6 +241,8 @@
 }
 
 #coach-marks {
+	display: none;
+
 	.button-holder {
 		position: absolute;
 		top: 0;
@@ -260,6 +262,17 @@
 		}
 	}
 
+	&:before {
+		position: absolute;
+		display: block;
+		content: "";
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, .3);
+	}
+
 	.markcontainer {
 		font-family: 'Permanent Marker', cursive;
 		position: absolute;
@@ -273,21 +286,10 @@
 			width: 100px;
 		}
 		
-		&:before {
-			position: absolute;
-			display: block;
-			content: "";
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background-color: rgba(0, 0, 0, .3);
-		}
-		
 		.text {
-			display: block;
+			display: inline-block;
 			position: absolute;
-			width: auto;
+			width: 150px;
 			height: auto;
 			text-align: center;
 			color: white;
