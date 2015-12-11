@@ -40,7 +40,7 @@ requirejs.config({
 
 // NOTE: Couldn't use embed-responsive-4by3 for the iframe (even though it made sizing automatic) because it didn't (easily) work with affix's fixed positioning
 
-require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-bootstrap", "search-results", "joyride", "coach-marks"], function (domReady) {
+require(["domready", "imagesloaded", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-bootstrap", "search-results", "joyride", "coach-marks"], function (domReady, imagesLoaded) {
 
 	$.urlParam = function(name){
 		var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -117,6 +117,8 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 				}
 			});
 		}
+
+		$("#coach-marks").CoachMarks().CoachMarks("onResize");
 	}
 	
     function setCaptivateMapping (keys) {
@@ -719,16 +721,13 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 
 		loadTOCStatus();
 
+		setScreen("home");
+
 		buildUIforTOC();
 
 		setCurrentIndex(1);
 
 		showNextTask(0);
-
-		if (savedParams.seenHelp != true) {
-			onShowFeatures();
-			savedParams.seenHelp = true;
-		}
 	}
 
 	function onLoadedTOC (metadata) {
@@ -739,6 +738,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 	}
 
 	function onLoadedSearchIndex (data) {
+		$("#searchpane").SearchResults();
 		var sr = $("#searchpane").SearchResults("instance");
 		sr.setSearchIndex(data);
 	}
@@ -783,7 +783,7 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 			}
 		}
 
-		if (data.params)
+		if (data && data.params)
 			savedParams = data.params;
 	}
 
@@ -822,6 +822,17 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 			cp[1].pause();
 	}
 
+	function showFeaturesDelayed () {
+		// wait for the new screen to load
+		imagesLoaded($("body"), function () {
+			onShowFeatures();
+
+			if (!savedParams.seenHelp)
+				savedParams.seenHelp = {};
+			savedParams.seenHelp[currentScreen] = true;
+		});
+	}
+
 	function setScreen (newScreen) {
 		switch (newScreen) {
 			case "home":
@@ -851,11 +862,15 @@ require(["domready", "holder", "toc-viewer", "bootstrap", "jquery-json", "jasny-
 			lastScreen = currentScreen;
 			currentScreen = newScreen;
 		}
+
+		if (!savedParams.seenHelp || savedParams.seenHelp[currentScreen] != true) {
+			setTimeout(showFeaturesDelayed, 500);
+		}
 	}
 
 	var currentScreen = lastScreen = undefined;
 
-	setScreen("home");
+//	setScreen("home");
 
 	$(window).resize(sizeToFit);
 		

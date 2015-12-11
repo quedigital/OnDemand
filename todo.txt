@@ -1,4 +1,3 @@
-// TODO: help overlay appears on first load
 // TODO: course overview / timeline-at-a-glance in blue header area
 // TODO: ability to download project files
 // TODO: "Changing the Font and Font Size" has a 2-part step; how do they get the first part of the text to highlight? [maybe 2 Callouts with merged text]
@@ -85,3 +84,5 @@
 // DONE: Help menu: Tour, FAQ, Contact
 // DONE: tour of task screen
 // DONE: try it changes (no audio; no directions; "try again" prompt)
+// DONE: redraw coachmarks on resize
+// DONE: help overlay appears on first load of each screen type

@@ -69,7 +69,7 @@ define(["imagesloaded", "jquery.ui"], function (imagesLoaded) {
 
 			this.setupDynamics();
 			
-			var all = $.find("[data-coach]");
+			var all = $.find("[data-coach]:visible");
 			for (var i = 0; i < all.length; i++) {
 				var mark = all[i];
 				var p = $(mark).attr("data-coach-preorder");
@@ -89,8 +89,8 @@ define(["imagesloaded", "jquery.ui"], function (imagesLoaded) {
 			imagesLoaded(this.element, $.proxy(this.onImagesLoaded, this));
 		},
 
-		showCurrentElement: function () {
-			if (!this.fontsLoaded) return;
+		showCurrentElement: function (opts) {
+			if (!this.fontsLoaded || !this.marks) return;
 
 			this.element.find(".animated").removeClass("animated zoomIn slideInUp");
 
@@ -152,13 +152,17 @@ define(["imagesloaded", "jquery.ui"], function (imagesLoaded) {
 							break;
 					}
 
-					mark.unit.hide(0);
-					mark.unit.addClass("animated zoomIn");
-					mark.unit.show(0);
+					if (opts && opts.animate == false) {
+						// no animation on resize redraw
+					} else {
+						mark.unit.hide(0);
+						mark.unit.addClass("animated zoomIn");
+						mark.unit.show(0);
 
-					this.buttons.hide(0);
-					this.buttons.addClass("animated slideInUp");
-					this.buttons.show(0);
+						this.buttons.hide(0);
+						this.buttons.addClass("animated slideInUp");
+						this.buttons.show(0);
+					}
 				} else {
 					mark.unit.hide(0);
 				}
@@ -168,14 +172,16 @@ define(["imagesloaded", "jquery.ui"], function (imagesLoaded) {
 		setupDynamics: function () {
 			var sortOrder = $("[data-coach]").length + 1;
 
-			for (var i = 0; i < this.options.dynamics.length; i++) {
-				var d = this.options.dynamics[i];
-				var el = $("body").find(d.selector);
-				if (el.length) {
-					el.attr("data-coach", d.text);
-					el.attr("data-coach-set", d.set);
-					el.attr("data-coach-pos", d.pos);
-					el.attr("data-coach-order", sortOrder++);
+			if (this.options.dynamics) {
+				for (var i = 0; i < this.options.dynamics.length; i++) {
+					var d = this.options.dynamics[i];
+					var el = $("body").find(d.selector);
+					if (el.length) {
+						el.attr("data-coach", d.text);
+						el.attr("data-coach-set", d.set);
+						el.attr("data-coach-pos", d.pos);
+						el.attr("data-coach-order", sortOrder++);
+					}
 				}
 			}
 		},
@@ -238,7 +244,7 @@ define(["imagesloaded", "jquery.ui"], function (imagesLoaded) {
 		createCoachMark: function (el, params) {
 			el = $(el);
 
-			if (params.set) {
+			if (params && params.set) {
 				if (el.attr("data-coach-set") && el.attr("data-coach-set") != params.set) return;
 			}
 
@@ -309,6 +315,12 @@ define(["imagesloaded", "jquery.ui"], function (imagesLoaded) {
 
 		enableScroll: function () {
 			window.onwheel = null;
+		},
+
+		onResize: function () {
+			if (this.element.is(":visible")) {
+				this.showCurrentElement({animate: false});
+			}
 		}
 	});
 
